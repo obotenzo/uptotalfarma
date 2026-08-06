@@ -12,21 +12,19 @@
 <div id="map"></div>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
-  var map = L.map('map').setView([-23.636, -46.733], 15);
+  var map = L.map('map').setView([-23.625, -46.735], 13);
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19, attribution: '© OpenStreetMap'
   }).addTo(map);
   
     L.marker([-23.64035, -46.73681]).addTo(map)
-        .bindPopup('<b>Droga Raia (Av. Gronchi, 5111)</b><br>Vonau Flash R$ 49,19 | tel (11) 3744-2089<br><small>Av. Giovanni Gronchi, 5111 - Vila Andrade</small>');
+        .bindPopup('<b>Droga Raia</b><br>Vonau Flash R$ 49,19 | tel (11) 3744-2089<br><small>Av. Giovanni Gronchi, 5111 - Vila Andrade</small>');
     L.marker([-23.6335, -46.73038]).addTo(map)
         .bindPopup('<b>Drogaria Sao Paulo (R. Urtiza, 975)</b><br>Vonau Flash R$ 28,79 | 24h<br><small>Rua Jose Ramon Urtiza, 975 - Vila Andrade</small>');
     L.marker([-23.63186, -46.733]).addTo(map)
         .bindPopup('<b>Drogaria Sao Paulo (R. Monte Kemel)</b><br>Loja na regiao<br><small>Rua Monte Kemel, Vila Andrade</small>');
-    L.marker([-23.636, -46.733]).addTo(map)
-        .bindPopup('<b>Drogaria Monte Kemel (aprox)</b><br>Mesmo CEP 05635-050 | tel (11) 3771-5735<br><small>Av. Jose Maria da Silva Paranhos, 345 (aprox no mapa)</small>');
-    L.marker([-23.635, -46.7315]).addTo(map)
-        .bindPopup('<b>Drogaria Farma100</b><br>WhatsApp (11) 96213-5847<br><small>Av. Claudio Franchi, 273 (aprox no mapa)</small>');
+    L.marker([-23.6004131, -46.7376992]).addTo(map)
+        .bindPopup('<b>Drogaria Farma100 (antiga Monte Kemel)</b><br>WhatsApp (11) 96213-5847 | mesma da Monte Kemel<br><small>Av. Claudio Franchi, 273 - Jardim Monte Kemel</small>');
 </script>
 </body>
 </html>
