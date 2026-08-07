@@ -5,18 +5,21 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Concorrentes da Farma100 - Jardim Monte Kemel, SP</title>
 <link rel="stylesheet" href="leaflet.css" />
-<style> #map { height: 600px; width: 100%; } body { font-family: sans-serif; margin: 20px; } .lista { max-height: 300px; overflow-y: auto; } </style>
+<style> #map { height: 600px; width: 100%; } body { font-family: sans-serif; margin: 20px; } .lista { max-height: 400px; overflow-y: auto; } </style>
 </head>
 <body>
 <h2>Concorrentes próximos da Farma100 (raio 2km)</h2>
 <p>Jardim Monte Kemel / Vila Andrade, SP. Azul = Farma100. Demais = concorrentes.</p>
 <div id="map"></div>
-<h3>Lista de farmácias e endereços</h3>
-<div class="lista"><ul><li><b>Drogaria Farma100 (antiga Monte Kemel)</b> — Av. Claudio Franchi, 273 - Jardim Monte Kemel (WhatsApp (11) 96213-5847 | mesma da Monte Kemel)</li><li>Drogaria São Paulo — Avenida Ministro Laudo Ferreira de Camargo, 340;344;348</li><li>Drogasil — Avenida Doutor Guilherme Dumont Vilares</li><li>Drogaria São Paulo — Avenida Doutor Guilherme Dumont Vilares</li><li>Droga Raia — endereço não informado</li><li>Drogaria São Paulo — endereço não informado</li><li>Drogaria e Perfumaria Sulavi — endereço não informado</li><li>Droga Raia — Avenida Professor Francisco Morato, 2858</li><li>Droga Raia — Rua Desembargador Dalmo do Valle Nogueira, 79</li><li>Drogasil — Avenida Eliseu de Almeida</li><li>Droga Raia — Avenida Ministro Laudo Ferreira de Camargo</li><li>Drogaria São Paulo — Avenida Ministro Laudo Ferreira de Camargo, 340;344;348</li><li>Drogasil — Avenida Jorge João Saad, 214</li><li>Farmácia sem nome — endereço não informado</li><li>Drogasil — endereço não informado</li><li>Drogaria São Paulo — Avenida Professor Francisco Morato, 2878</li></ul></div>
+<h3>Farmácias e endereços</h3>
+<div class="lista"><table border="1" cellpadding="6" cellspacing="0" style="border-collapse:collapse; width:100%; font-size:14px;">
+<tr style="background:#f0f0f0;"><th>Farmácia</th><th>Endereço</th><th>Telefone</th></tr>
+<tr><td><b>Drogaria Farma100 (antiga Monte Kemel)</b></td><td>Av. Claudio Franchi, 273 - Jardim Monte Kemel</td><td>(11) 96213-5847 (WhatsApp)</td></tr><tr><td>Drogaria São Paulo</td><td>Avenida Ministro Laudo Ferreira de Camargo, 340;344;348</td><td>(11) 3743-3112</td></tr><tr><td>Drogasil</td><td>Avenida Doutor Guilherme Dumont Vilares</td><td>(11) 3772-4262</td></tr><tr><td>Drogaria São Paulo</td><td>Avenida Doutor Guilherme Dumont Vilares</td><td>(11) 3743-3112</td></tr><tr><td>Droga Raia</td><td>endereço não informado</td><td>(11) 3742-2048</td></tr><tr><td>Drogaria São Paulo</td><td>endereço não informado</td><td>(11) 3743-3112</td></tr><tr><td>Drogaria e Perfumaria Sulavi</td><td>endereço não informado</td><td>ver site</td></tr><tr><td>Droga Raia</td><td>Avenida Professor Francisco Morato, 2858</td><td>(11) 3742-2048</td></tr><tr><td>Droga Raia</td><td>Rua Desembargador Dalmo do Valle Nogueira, 79</td><td>(11) 3742-2048</td></tr><tr><td>Drogasil</td><td>Avenida Eliseu de Almeida</td><td>(11) 3772-4262</td></tr><tr><td>Droga Raia</td><td>Avenida Ministro Laudo Ferreira de Camargo</td><td>(11) 3742-2048</td></tr><tr><td>Drogaria São Paulo</td><td>Avenida Ministro Laudo Ferreira de Camargo, 340;344;348</td><td>(11) 3743-3112</td></tr><tr><td>Drogasil</td><td>Avenida Jorge João Saad, 214</td><td>(11) 3772-4262</td></tr><tr><td>Farmácia sem nome</td><td>endereço não informado</td><td>—</td></tr><tr><td>Drogasil</td><td>endereço não informado</td><td>(11) 3772-4262</td></tr><tr><td>Drogaria São Paulo</td><td>Avenida Professor Francisco Morato, 2878</td><td>(11) 3743-3112</td></tr>
+</table></div>
 <script src="leaflet.js"></script>
 <script>
   var defaultIcon = L.icon({ iconUrl: 'marker-icon.png', iconSize: [25,41], iconAnchor:[12,41], popupAnchor:[1,-34] });
-  var blueIcon = L.icon({ iconUrl: 'marker-icon.png', iconSize: [25,41], iconAnchor:[12,41], popupAnchor:[1,-34], className: 'blue-marker' });
+  var blueIcon = L.icon({ iconUrl: 'marker-icon.png', iconSize: [25,41], iconAnchor:[12,41], popupAnchor:[1,-34] });
   var map = L.map('map', { zoomControl: false }).setView([-23.6004131, -46.7376992], 13);
   L.tileLayer('tiles/13/{x}/{y}.png', { maxZoom: 13, minZoom: 13, attribution: '© OpenStreetMap' }).addTo(map);
       L.marker([-23.6004131, -46.7376992], {icon: blueIcon}).addTo(map)
