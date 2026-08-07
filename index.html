@@ -2,29 +2,53 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>Farmacias perto do CEP 05635-050 - Vila Andrade, SP</title>
+<title>Concorrentes da Farma100 - Jardim Monte Kemel, SP</title>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 <style> #map { height: 600px; width: 100%; } body { font-family: sans-serif; margin: 20px; } </style>
 </head>
 <body>
-<h2>Farmacias ao redor do CEP 05635-050 (Vila Andrade, SP)</h2>
-<p>Vonau Flash 4mg (Biolab, idêntico à foto) - precos e locais. Clique nos pontos.</p>
+<h2>Concorrentes próximos da Farma100 (raio 2km)</h2>
+<p>Jardim Monte Kemel / Vila Andrade, SP. Azul = Farma100. Demais = concorrentes.</p>
 <div id="map"></div>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
-  var map = L.map('map').setView([-23.625, -46.735], 13);
+  var map = L.map('map').setView([-23.6004131, -46.7376992], 14);
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19, attribution: '© OpenStreetMap'
   }).addTo(map);
   
-    L.marker([-23.64035, -46.73681]).addTo(map)
-        .bindPopup('<b>Droga Raia</b><br>Vonau Flash R$ 49,19 | tel (11) 3744-2089<br><small>Av. Giovanni Gronchi, 5111 - Vila Andrade</small>');
-    L.marker([-23.6335, -46.73038]).addTo(map)
-        .bindPopup('<b>Drogaria Sao Paulo (R. Urtiza, 975)</b><br>Vonau Flash R$ 28,79 | 24h<br><small>Rua Jose Ramon Urtiza, 975 - Vila Andrade</small>');
-    L.marker([-23.63186, -46.733]).addTo(map)
-        .bindPopup('<b>Drogaria Sao Paulo (R. Monte Kemel)</b><br>Loja na regiao<br><small>Rua Monte Kemel, Vila Andrade</small>');
-    L.marker([-23.6004131, -46.7376992]).addTo(map)
+    L.marker([-23.6004131, -46.7376992], {icon: L.icon({iconUrl:'https://maps.google.com/mapfiles/ms/icons/blue.png'}}).addTo(map)
         .bindPopup('<b>Drogaria Farma100 (antiga Monte Kemel)</b><br>WhatsApp (11) 96213-5847 | mesma da Monte Kemel<br><small>Av. Claudio Franchi, 273 - Jardim Monte Kemel</small>');
+    L.marker([-23.5866859, -46.7369291]).addTo(map)
+        .bindPopup('<b>Drogaria São Paulo</b><br>Mo-Fr 07:30-23:00; Sa 07:30-23:30; Su 07:30-23:30<br><small>Avenida Ministro Laudo Ferreira de Camargo, 340;344;348</small>');
+    L.marker([-23.6136009, -46.741219]).addTo(map)
+        .bindPopup('<b>Drogasil</b><br>horario nao informado<br><small>Avenida Doutor Guilherme Dumont Vilares</small>');
+    L.marker([-23.6114447, -46.7415861]).addTo(map)
+        .bindPopup('<b>Drogaria São Paulo</b><br>horario nao informado<br><small>Avenida Doutor Guilherme Dumont Vilares</small>');
+    L.marker([-23.5873397, -46.7370409]).addTo(map)
+        .bindPopup('<b>Droga Raia</b><br>horario nao informado<br><small></small>');
+    L.marker([-23.594102, -46.7211493]).addTo(map)
+        .bindPopup('<b>Drogaria São Paulo</b><br>horario nao informado<br><small></small>');
+    L.marker([-23.6136026, -46.7262624]).addTo(map)
+        .bindPopup('<b>Drogaria e Perfumaria Sulavi</b><br>horario nao informado<br><small></small>');
+    L.marker([-23.5869782, -46.7259953]).addTo(map)
+        .bindPopup('<b>Droga Raia</b><br>24/7<br><small>Avenida Professor Francisco Morato, 2858</small>');
+    L.marker([-23.6157262, -46.7402406]).addTo(map)
+        .bindPopup('<b>Droga Raia</b><br>horario nao informado<br><small>Rua Desembargador Dalmo do Valle Nogueira, 79</small>');
+    L.marker([-23.5892295, -46.7346093]).addTo(map)
+        .bindPopup('<b>Drogasil</b><br>24/7<br><small>Avenida Eliseu de Almeida</small>');
+    L.marker([-23.5873011, -46.7370518]).addTo(map)
+        .bindPopup('<b>Droga Raia</b><br>Mo-Su 07:00-23:00<br><small>Avenida Ministro Laudo Ferreira de Camargo</small>');
+    L.marker([-23.5867025, -46.7368797]).addTo(map)
+        .bindPopup('<b>Drogaria São Paulo</b><br>Mo-Fr 07:30-23:00; Sa 07:30-23:30; Su 07:30-23:30<br><small>Avenida Ministro Laudo Ferreira de Camargo, 340;344;348</small>');
+    L.marker([-23.5886214, -46.7234545]).addTo(map)
+        .bindPopup('<b>Drogasil</b><br>horario nao informado<br><small>Avenida Jorge João Saad, 214</small>');
+    L.marker([-23.6111553, -46.7338108]).addTo(map)
+        .bindPopup('<b>Farmácia sem nome</b><br>horario nao informado<br><small></small>');
+    L.marker([-23.6064336, -46.7256248]).addTo(map)
+        .bindPopup('<b>Drogasil</b><br>horario nao informado<br><small></small>');
+    L.marker([-23.5872692, -46.7265015]).addTo(map)
+        .bindPopup('<b>Drogaria São Paulo</b><br>Mo-Su 07:00-23:00; PH off<br><small>Avenida Professor Francisco Morato, 2878</small>');
 </script>
 </body>
 </html>
