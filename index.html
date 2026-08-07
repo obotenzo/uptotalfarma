@@ -9,7 +9,7 @@
 </head>
 <body>
 <h2>Concorrentes próximos da Farma100 (raio 2km)</h2>
-<p>Jardim Monte Kemel / Vila Andrade, SP. Azul = Farma100. Demais = concorrentes.</p>
+<p>Jardim Monte Kemel / Vila Andrade, SP. Azul = Farma100. Demais = concorrentes. Use os botões + / - para zoom.</p>
 <div id="map"></div>
 <h3>Farmácias e endereços</h3>
 <div class="lista"><table border="1" cellpadding="6" cellspacing="0" style="border-collapse:collapse; width:100%; font-size:14px;">
@@ -20,7 +20,7 @@
 <script>
   var defaultIcon = L.icon({ iconUrl: 'marker-icon.png', iconSize: [25,41], iconAnchor:[12,41], popupAnchor:[1,-34] });
   var blueIcon = L.icon({ iconUrl: 'marker-icon.png', iconSize: [25,41], iconAnchor:[12,41], popupAnchor:[1,-34] });
-  var map = L.map('map', { zoomControl: false }).setView([-23.6004131, -46.7376992], 13);
+  var map = L.map('map', { zoomControl: true }).setView([-23.6004131, -46.7376992], 13);
   L.tileLayer('tiles/13/{x}/{y}.png', { maxZoom: 13, minZoom: 13, attribution: '© OpenStreetMap' }).addTo(map);
       L.marker([-23.6004131, -46.7376992], {icon: blueIcon}).addTo(map)
         .bindPopup('<b>Drogaria Farma100 (antiga Monte Kemel)</b><br>WhatsApp (11) 96213-5847 | mesma da Monte Kemel<br><small>Av. Claudio Franchi, 273 - Jardim Monte Kemel</small>');    L.marker([-23.5866859, -46.7369291], {icon: defaultIcon}).addTo(map)
