@@ -2,21 +2,25 @@
 <html>
 <head>
 <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Concorrentes da Farma100 - Jardim Monte Kemel, SP</title>
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css" />
 <style> #map { height: 600px; width: 100%; } body { font-family: sans-serif; margin: 20px; } </style>
 </head>
 <body>
 <h2>Concorrentes próximos da Farma100 (raio 2km)</h2>
 <p>Jardim Monte Kemel / Vila Andrade, SP. Azul = Farma100. Demais = concorrentes.</p>
 <div id="map"></div>
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
-  var map = L.map('map').setView([-23.6004131, -46.7376992], 14);
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    maxZoom: 19, attribution: '© OpenStreetMap'
-  }).addTo(map);
-  
+  if (typeof L === 'undefined') {
+    document.getElementById('map').innerHTML = '<p style="padding:20px;color:red">Não foi possível carregar o mapa (sem acesso ao CDN). Verifique sua internet.</p>';
+  } else {
+    var map = L.map('map').setView([-23.6004131, -46.7376992], 14);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19, attribution: '© OpenStreetMap'
+    }).addTo(map);
+    
     L.marker([-23.6004131, -46.7376992], {icon: L.icon({iconUrl:'https://maps.google.com/mapfiles/ms/icons/blue.png'}}).addTo(map)
         .bindPopup('<b>Drogaria Farma100 (antiga Monte Kemel)</b><br>WhatsApp (11) 96213-5847 | mesma da Monte Kemel<br><small>Av. Claudio Franchi, 273 - Jardim Monte Kemel</small>');
     L.marker([-23.5866859, -46.7369291]).addTo(map)
@@ -49,6 +53,7 @@
         .bindPopup('<b>Drogasil</b><br>horario nao informado<br><small></small>');
     L.marker([-23.5872692, -46.7265015]).addTo(map)
         .bindPopup('<b>Drogaria São Paulo</b><br>Mo-Su 07:00-23:00; PH off<br><small>Avenida Professor Francisco Morato, 2878</small>');
+  }
 </script>
 </body>
 </html>
