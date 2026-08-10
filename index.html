@@ -6,63 +6,63 @@
 <title>UP Total Farma - Concorrentes e Preços</title>
 <link rel="stylesheet" href="leaflet.css" />
 <style>
-  :root {{
+  :root {
     --azul: #0b2545;
     --azul2: #13315c;
     --magenta: #d6006e;
     --verde: #1e9e1e;
     --vermelho: #d63b3b;
     --cinza: #f4f6f9;
-  }}
-  * {{ box-sizing: border-box; }}
-  body {{ margin:0; font-family: 'Segoe UI', system-ui, sans-serif; color:#1a1a1a; background:var(--cinza); }}
-  header {{
+  }
+  * { box-sizing: border-box; }
+  body { margin:0; font-family: 'Segoe UI', system-ui, sans-serif; color:#1a1a1a; background:var(--cinza); }
+  header {
     background: linear-gradient(135deg, var(--azul) 0%, var(--azul2) 60%, var(--magenta) 140%);
     color:#fff; padding:18px 20px; display:flex; align-items:center; gap:16px; flex-wrap:wrap;
-  }}
-  .logo-mark {{
+  }
+  .logo-mark {
     width:46px; height:46px; border-radius:50%; background:var(--magenta);
     display:flex; align-items:center; justify-content:center; position:relative; flex-shrink:0;
     box-shadow: 0 0 0 4px rgba(255,255,255,0.15);
-  }}
-  .logo-mark::before {{
+  }
+  .logo-mark::before {
     content:''; position:absolute; width:14px; height:14px; background:#fff;
     clip-path: polygon(35% 0,65% 0,65% 35%,100% 35%,100% 65%,65% 65%,65% 100%,35% 100%,35% 65%,0 65%,0 35%,35% 35%);
-  }}
-  .logo-mark .pill {{ position:absolute; width:30px; height:14px; background:var(--azul); border-radius:8px; transform:rotate(-45deg); top:6px; left:8px; opacity:0.9; }}
-  .brand {{ font-size:1.6rem; font-weight:800; letter-spacing:1px; line-height:1; }}
-  .brand small {{ display:block; font-size:0.7rem; font-weight:500; opacity:0.85; letter-spacing:2px; }}
-  nav {{ margin-left:auto; display:flex; gap:8px; flex-wrap:wrap; }}
-  nav button {{
+  }
+  .logo-mark .pill { position:absolute; width:30px; height:14px; background:var(--azul); border-radius:8px; transform:rotate(-45deg); top:6px; left:8px; opacity:0.9; }
+  .brand { font-size:1.6rem; font-weight:800; letter-spacing:1px; line-height:1; }
+  .brand small { display:block; font-size:0.7rem; font-weight:500; opacity:0.85; letter-spacing:2px; }
+  nav { margin-left:auto; display:flex; gap:8px; flex-wrap:wrap; }
+  nav button {
     background:rgba(255,255,255,0.12); color:#fff; border:1px solid rgba(255,255,255,0.3);
     padding:8px 14px; border-radius:20px; cursor:pointer; font-size:0.85rem; font-weight:600;
     transition:all .15s;
-  }}
-  nav button:hover {{ background:rgba(255,255,255,0.25); }}
-  nav button.ativo {{ background:var(--magenta); border-color:var(--magenta); }}
-  main {{ max-width:1100px; margin:0 auto; padding:20px; }}
-  .titulo-unidade {{ font-size:1.3rem; color:var(--azul); margin:10px 0 4px; }}
-  .sub {{ color:#666; font-size:0.9rem; margin-bottom:14px; }}
-  .legenda {{ display:flex; gap:18px; font-size:0.82rem; margin:10px 0; flex-wrap:wrap; }}
-  .legenda span {{ display:inline-flex; align-items:center; gap:6px; }}
-  .dot {{ width:13px; height:13px; border-radius:50%; display:inline-block; box-shadow:0 0 3px rgba(0,0,0,.3); }}
-  #map {{ height:520px; width:100%; border-radius:12px; box-shadow:0 4px 16px rgba(0,0,0,.12); }}
-  .secao {{ margin-top:30px; background:#fff; border-radius:12px; padding:18px; box-shadow:0 2px 10px rgba(0,0,0,.06); }}
-  .secao h3 {{ margin:0 0 12px; color:var(--azul); }}
-  table {{ width:100%; border-collapse:collapse; font-size:0.88rem; }}
-  th, td {{ padding:9px 10px; text-align:left; border-bottom:1px solid #eee; }}
-  th {{ background:var(--cinza); color:var(--azul); font-weight:700; }}
-  tr:hover td {{ background:#fafbfc; }}
-  .preco-menor {{ background:#e7f8e7 !important; font-weight:700; }}
-  .menor-badge {{ background:var(--verde); color:#fff; padding:2px 8px; border-radius:10px; font-size:0.72rem; margin-left:6px; }}
-  a {{ color:var(--magenta); text-decoration:none; }}
-  a:hover {{ text-decoration:underline; }}
-  footer {{ text-align:center; padding:24px; color:#888; font-size:0.8rem; }}
-  @media (max-width:640px) {{
-    .brand {{ font-size:1.3rem; }}
-    nav {{ margin-left:0; width:100%; }}
-    #map {{ height:400px; }}
-  }}
+  }
+  nav button:hover { background:rgba(255,255,255,0.25); }
+  nav button.ativo { background:var(--magenta); border-color:var(--magenta); }
+  main { max-width:1100px; margin:0 auto; padding:20px; }
+  .titulo-unidade { font-size:1.3rem; color:var(--azul); margin:10px 0 4px; }
+  .sub { color:#666; font-size:0.9rem; margin-bottom:14px; }
+  .legenda { display:flex; gap:18px; font-size:0.82rem; margin:10px 0; flex-wrap:wrap; }
+  .legenda span { display:inline-flex; align-items:center; gap:6px; }
+  .dot { width:13px; height:13px; border-radius:50%; display:inline-block; box-shadow:0 0 3px rgba(0,0,0,.3); }
+  #map { height:520px; width:100%; border-radius:12px; box-shadow:0 4px 16px rgba(0,0,0,.12); }
+  .secao { margin-top:30px; background:#fff; border-radius:12px; padding:18px; box-shadow:0 2px 10px rgba(0,0,0,.06); }
+  .secao h3 { margin:0 0 12px; color:var(--azul); }
+  table { width:100%; border-collapse:collapse; font-size:0.88rem; }
+  th, td { padding:9px 10px; text-align:left; border-bottom:1px solid #eee; }
+  th { background:var(--cinza); color:var(--azul); font-weight:700; }
+  tr:hover td { background:#fafbfc; }
+  .preco-menor { background:#e7f8e7 !important; font-weight:700; }
+  .menor-badge { background:var(--verde); color:#fff; padding:2px 8px; border-radius:10px; font-size:0.72rem; margin-left:6px; }
+  a { color:var(--magenta); text-decoration:none; }
+  a:hover { text-decoration:underline; }
+  footer { text-align:center; padding:24px; color:#888; font-size:0.8rem; }
+  @media (max-width:640px) {
+    .brand { font-size:1.3rem; }
+    nav { margin-left:0; width:100%; }
+    #map { height:400px; }
+  }
 </style>
 </head>
 <body>
@@ -102,97 +102,97 @@ const btnTodas = document.createElement('button');
 btnTodas.textContent = 'Ver as 3 juntas';
 btnTodas.onclick = () => mostrarTodas();
 menu.appendChild(btnTodas);
-UNIDADES.forEach((u,i) => {{
+UNIDADES.forEach((u,i) => {
   const b = document.createElement('button');
   b.textContent = u.nome.replace('UP Total Farma - ','');
   b.onclick = () => mostrarUnidade(i);
   b.dataset.idx = i;
   menu.appendChild(b);
-}});
+});
 
-let map = L.map('map', {{zoomControl:true, scrollWheelZoom:true}});
-L.tileLayer('tiles/{{z}}/{{x}}/{{y}}.png', {{maxZoom:18, minZoom:12, attribution:'© OpenStreetMap'}}).addTo(map);
+let map = L.map('map', {zoomControl:true, scrollWheelZoom:true});
+L.tileLayer('tiles/{z}/{x}/{y}.png', {maxZoom:18, minZoom:12, attribution:'© OpenStreetMap'}).addTo(map);
 
-function parsePreco(s){{ const m = String(s).match(/[\d]+[,.]\d+/); return m ? parseFloat(m[0].replace(',','.')) : 999; }}
+function parsePreco(s){ const m = String(s).match(/[\d]+[,.]\d+/); return m ? parseFloat(m[0].replace(',','.')) : 999; }
 
-function corPin(item, isLoja){{ if(isLoja) return AZUL; return VERMELHO; }}
-function corPinPreco(preco, menor){{ if(preco==='Sua loja') return AZUL; if(parsePreco(preco)===menor) return VERDE; return VERMELHO; }}
+function corPin(item, isLoja){ if(isLoja) return AZUL; return VERMELHO; }
+function corPinPreco(preco, menor){ if(preco==='Sua loja') return AZUL; if(parsePreco(preco)===menor) return VERDE; return VERMELHO; }
 
-function divIcon(color, grande){{{
+function divIcon(color, grande){{
   const s = grande?20:15;
   const b = grande?'border:3px solid #fff':'border:2px solid #fff';
-  return L.divIcon({{className:'', html:`<div style="background:${{color}};width:${{s}}px;height:${{s}}px;border-radius:50%;${{b}};box-shadow:0 0 5px rgba(0,0,0,.5)"></div>`, iconSize:[s,s], iconAnchor:[s/2,s/2]}});
-}}}
+  return L.divIcon({className:'', html:`<div style="background:${color};width:${s}px;height:${s}px;border-radius:50%;${b};box-shadow:0 0 5px rgba(0,0,0,.5)"></div>`, iconSize:[s,s], iconAnchor:[s/2,s/2]});
+}}
 
-function montarTabelas(unid, concTodos, menorGlobal) {{
+function montarTabelas(unid, concTodos, menorGlobal) {
   // Enderecos
   let rows = `<tr><th>UP Total Farma</th><th>Endereço</th><th>Telefone</th><th>Coordenadas</th></tr>`;
-  rows += `<tr><td><b>${{unid.nome}}</b></td><td>${{unid.endereco}}</td><td>${{unid.telefone}}</td><td><a href="https://www.google.com/maps?q=${{unid.lat}},${{unid.lon}}" target="_blank">${{unid.lat.toFixed(5)}}, ${{unid.lon.toFixed(5)}}</a></td></tr>`;
-  unid.concorrentes.forEach(c => {{
-    rows += `<tr><td>${{c.nome}}</td><td>${{c.end}}</td><td>${{c.tel}}</td><td><a href="https://www.google.com/maps?q=${{c.lat}},${{c.lon}}" target="_blank">${{c.lat.toFixed(5)}}, ${{c.lon.toFixed(5)}}</a></td></tr>`;
-  }});
+  rows += `<tr><td><b>${unid.nome}</b></td><td>${unid.endereco}</td><td>${unid.telefone}</td><td><a href="https://www.google.com/maps?q=${unid.lat},${unid.lon}" target="_blank">${unid.lat.toFixed(5)}, ${unid.lon.toFixed(5)}</a></td></tr>`;
+  unid.concorrentes.forEach(c => {
+    rows += `<tr><td>${c.nome}</td><td>${c.end}</td><td>${c.tel}</td><td><a href="https://www.google.com/maps?q=${c.lat},${c.lon}" target="_blank">${c.lat.toFixed(5)}, ${c.lon.toFixed(5)}</a></td></tr>`;
+  });
   document.getElementById('tabela-enderecos').innerHTML = rows;
 
   // Precos
-  const lista = [{{nome:unid.nome, preco:'Sua loja'}}, ...unid.concorrentes.map(c=>({{nome:c.nome, preco:c.preco}}))];
+  const lista = [{nome:unid.nome, preco:'Sua loja'}, ...unid.concorrentes.map(c=>({nome:c.nome, preco:c.preco}))];
   lista.sort((a,b)=> (a.preco==='Consulte na loja'?1:0) - (b.preco==='Consulte na loja'?1:0) || parsePreco(a.preco)-parsePreco(b.preco));
   let pr = `<tr><th>Farmácia</th><th>Vonau Flash 4mg (10cp)</th><th></th></tr>`;
-  lista.forEach(it => {{
+  lista.forEach(it => {
     const menor = (it.preco!=='Consulte na loja' && it.preco!=='Sua loja' && parsePreco(it.preco)===menorGlobal);
-    pr += `<tr class="${{menor?'preco-menor':''}}"><td>${{it.nome}}</td><td>${{it.preco}}</td><td>${{menor?'<span class="menor-badge">MAIS BARATO</span>':''}}</td></tr>`;
-  }});
+    pr += `<tr class="${menor?'preco-menor':''}"><td>${it.nome}</td><td>${it.preco}</td><td>${menor?'<span class="menor-badge">MAIS BARATO</span>':''}</td></tr>`;
+  });
   document.getElementById('tabela-precos').innerHTML = pr;
-}}
+}
 
-function mostrarUnidade(idx) {{
+function mostrarUnidade(idx) {
   document.querySelectorAll('#menu button').forEach(b=>b.classList.remove('ativo'));
   document.querySelectorAll('#menu button')[idx+1].classList.add('ativo');
   const u = UNIDADES[idx];
-  document.getElementById('info-unidade').innerHTML = `<div class="titulo-unidade">${{u.nome}}</div><div class="sub">${{u.endereco}} · ${{u.telefone}} · Concorrentes em raio de 2km: ${{u.concorrentes.length}}</div>`;
-  map.eachLayer(l => {{ if(l instanceof L.Marker) map.removeLayer(l); }});
+  document.getElementById('info-unidade').innerHTML = `<div class="titulo-unidade">${u.nome}</div><div class="sub">${u.endereco} · ${u.telefone} · Concorrentes em raio de 2km: ${u.concorrentes.length}</div>`;
+  map.eachLayer(l => { if(l instanceof L.Marker) map.removeLayer(l); });
   map.setView([u.lat, u.lon], 14);
-  L.marker([u.lat,u.lon], {{icon:divIcon(AZUL,true)}}).addTo(map).bindPopup(`<b>${{u.nome}}</b><br>${{u.telefone}}`);
+  L.marker([u.lat,u.lon], {icon:divIcon(AZUL,true)}).addTo(map).bindPopup(`<b>${u.nome}</b><br>${u.telefone}`);
   const precos = u.concorrentes.filter(c=>c.preco!=='Consulte na loja').map(c=>parsePreco(c.preco));
   const menor = precos.length?Math.min(...precos):999;
-  u.concorrentes.forEach(c => {{
+  u.concorrentes.forEach(c => {
     const cor = corPinPreco(c.preco, menor);
-    L.marker([c.lat,c.lon], {{icon:divIcon(cor,false)}}).addTo(map).bindPopup(`<b>${{c.nome}}</b><br>${{c.tel}}<br>${{c.preco}}<br><small>${{c.end}}</small>`);
-  }});
+    L.marker([c.lat,c.lon], {icon:divIcon(cor,false)}).addTo(map).bindPopup(`<b>${c.nome}</b><br>${c.tel}<br>${c.preco}<br><small>${c.end}</small>`);
+  });
   montarTabelas(u, u.concorrentes, menor);
-}}
+}
 
-function mostrarTodas() {{
+function mostrarTodas() {
   document.querySelectorAll('#menu button').forEach(b=>b.classList.remove('ativo'));
   document.querySelectorAll('#menu button')[0].classList.add('ativo');
   document.getElementById('info-unidade').innerHTML = `<div class="titulo-unidade">Todas as unidades</div><div class="sub">Veja as 3 lojas UP Total Farma e seus concorrentes no mesmo mapa.</div>`;
-  map.eachLayer(l => {{ if(l instanceof L.Marker) map.removeLayer(l); }});
+  map.eachLayer(l => { if(l instanceof L.Marker) map.removeLayer(l); });
   const todos = [];
-  UNIDADES.forEach(u => {{
-    todos.push({{lat:u.lat, lon:u.lon, cor:AZUL, nome:u.nome, popup:`<b>${{u.nome}}</b><br>${{u.telefone}}`}});
-    u.concorrentes.forEach(c => {{
+  UNIDADES.forEach(u => {
+    todos.push({lat:u.lat, lon:u.lon, cor:AZUL, nome:u.nome, popup:`<b>${u.nome}</b><br>${u.telefone}`});
+    u.concorrentes.forEach(c => {
       const precos = u.concorrentes.filter(x=>x.preco!=='Consulte na loja').map(x=>parsePreco(x.preco));
       const menor = precos.length?Math.min(...precos):999;
-      todos.push({{lat:c.lat, lon:c.lon, cor:corPinPreco(c.preco,menor), nome:c.nome, popup:`<b>${{c.nome}}</b><br>${{c.tel}}<br>${{c.preco}}`}});
-    }});
-  }});
+      todos.push({lat:c.lat, lon:c.lon, cor:corPinPreco(c.preco,menor), nome:c.nome, popup:`<b>${c.nome}</b><br>${c.tel}<br>${c.preco}`});
+    });
+  });
   const latlngs = todos.map(t=>[t.lat,t.lon]);
-  map.fitBounds(latlngs, {{padding:[40,40]}});
-  todos.forEach(t => L.marker([t.lat,t.lon], {{icon:divIcon(t.cor, t.cor===AZUL)}}).addTo(map).bindPopup(t.popup));
+  map.fitBounds(latlngs, {padding:[40,40]});
+  todos.forEach(t => L.marker([t.lat,t.lon], {icon:divIcon(t.cor, t.cor===AZUL)}).addTo(map).bindPopup(t.popup));
   // Tabela: junta todas
   let rows = `<tr><th>Unidade / Farmácia</th><th>Preço Vonau 4mg</th></tr>`;
-  UNIDADES.forEach(u => {{
-    rows += `<tr style="background:var(--azul);color:#fff"><td colspan="2"><b>${{u.nome}}</b></td></tr>`;
-    rows += `<tr><td><b>${{u.nome}}</b> (sua loja)</td><td>—</td></tr>`;
+  UNIDADES.forEach(u => {
+    rows += `<tr style="background:var(--azul);color:#fff"><td colspan="2"><b>${u.nome}</b></td></tr>`;
+    rows += `<tr><td><b>${u.nome}</b> (sua loja)</td><td>—</td></tr>`;
     const precos = u.concorrentes.filter(c=>c.preco!=='Consulte na loja').map(c=>parsePreco(c.preco));
     const menor = precos.length?Math.min(...precos):999;
-    u.concorrentes.forEach(c => {{
+    u.concorrentes.forEach(c => {
       const m = (c.preco!=='Consulte na loja' && parsePreco(c.preco)===menor);
-      rows += `<tr class="${{m?'preco-menor':''}}"><td>${{c.nome}}</td><td>${{c.preco}} ${{m?'<span class="menor-badge">MAIS BARATO</span>':''}}</td></tr>`;
-    }});
-  }});
+      rows += `<tr class="${m?'preco-menor':''}"><td>${c.nome}</td><td>${c.preco} ${m?'<span class="menor-badge">MAIS BARATO</span>':''}</td></tr>`;
+    });
+  });
   document.getElementById('tabela-enderecos').innerHTML = rows;
   document.getElementById('tabela-precos').innerHTML = '<tr><th>Veja a tabela de endereços acima (modo "Ver as 3 juntas" agrupa por unidade).</th></tr>';
-}}
+}
 
 // Iniciar com Vila Andrade
 mostrarUnidade(0);
