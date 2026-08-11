@@ -41,7 +41,9 @@ export default function LoginForm() {
         <input name="password" type="password" placeholder="••••••••" required autoComplete="current-password" />
       </label>
       {error ? <div className="login-error">{error}</div> : null}
-      <button type="submit" disabled={loading}>{loading ? 'Entrando...' : 'Entrar'}</button>
+      <button type="submit" disabled={loading}>
+        {loading ? 'Entrando...' : 'Entrar'}
+      </button>
     </form>
   );
 }

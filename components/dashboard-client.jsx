@@ -47,8 +47,16 @@ export default function DashboardClient({ data }) {
           <span className="pill">{unit.concorrentes.length} concorrentes</span>
         </div>
         <div className="unit-mini-grid">
-          <div><strong>Telefone</strong><span>{unit.telefone || '—'}</span></div>
-          <div><strong>Coord.</strong><span>{unit.lat.toFixed(5)}, {unit.lon.toFixed(5)}</span></div>
+          <div>
+            <strong>Telefone</strong>
+            <span>{unit.telefone || '—'}</span>
+          </div>
+          <div>
+            <strong>Coord.</strong>
+            <span>
+              {unit.lat.toFixed(5)}, {unit.lon.toFixed(5)}
+            </span>
+          </div>
         </div>
         <div className="table-wrap">
           <table>
@@ -64,7 +72,10 @@ export default function DashboardClient({ data }) {
                 return (
                   <tr key={`${unit.id}-${c.nome}-${c.lat}-${c.lon}`} className={isMin ? 'row-highlight' : ''}>
                     <td>{c.nome}</td>
-                    <td>{c.preco}{isMin ? <span className="badge">MAIS BARATO</span> : null}</td>
+                    <td>
+                      {c.preco}
+                      {isMin ? <span className="badge">MAIS BARATO</span> : null}
+                    </td>
                   </tr>
                 );
               })}
@@ -84,9 +95,18 @@ export default function DashboardClient({ data }) {
           <p>Mapa de concorrentes, preços do Vonau Flash 4mg e visão consolidada das três unidades.</p>
         </div>
         <div className="hero-stats">
-          <div><strong>{stats.units}</strong><span>unidades</span></div>
-          <div><strong>{stats.competitors}</strong><span>concorrentes</span></div>
-          <div><strong>{stats.minPrice ? `R$ ${stats.minPrice.toFixed(2).replace('.', ',')}` : '—'}</strong><span>menor preço</span></div>
+          <div>
+            <strong>{stats.units}</strong>
+            <span>unidades</span>
+          </div>
+          <div>
+            <strong>{stats.competitors}</strong>
+            <span>concorrentes</span>
+          </div>
+          <div>
+            <strong>{stats.minPrice ? `R$ ${stats.minPrice.toFixed(2).replace('.', ',')}` : '—'}</strong>
+            <span>menor preço</span>
+          </div>
         </div>
       </section>
 
@@ -134,7 +154,7 @@ export default function DashboardClient({ data }) {
       <section className="section-card">
         <div className="section-head">
           <h2>Preço do Vonau Flash 4mg</h2>
-          <p>Verde = mais barato. Farmácias de bairro sem e-commerce ficam como “Consulte na loja”.</p>
+          <p>Verde = mais barato. Farmácias de bairro sem e-commerce ficam como "Consulte na loja".</p>
         </div>
         {viewMode === 'all' ? data.map((u) => renderPriceTable(u)) : renderPriceTable(activeUnit)}
       </section>
