@@ -1,234 +1,234 @@
 {
-    "uptotalfarma":  {
-                         "nome":  "UP Total Farma",
-                         "logo_desc":  "Azul petroleo + magenta/rosa + branco (pill com cruz)",
-                         "unidades":  [
-                                          {
-                                              "id":  "vila-andrade",
-                                              "nome":  "UP Total Farma - Vila Andrade",
-                                              "endereco":  "Av. Claudio Franchi, 273 - Jardim Monte Kemel, SÃ£o Paulo - SP",
-                                              "telefone":  "(11) 96213-5847 (WhatsApp)",
-                                              "lat":  -23.6004131,
-                                              "lon":  -46.7376992,
-                                              "concorrentes":  [
-                                                                   {
-                                                                       "nome":  "Drogaria SÃ£o Paulo",
-                                                                       "end":  "Av. Dr. Guilherme Dumont Vilares, 1030 - Jardim CaborÃ©, SÃ£o Paulo - SP, 05640-001",
-                                                                       "tel":  "(11) 3743-1493",
-                                                                       "lat":  -23.611444444444444,
-                                                                       "lon":  -46.74158333333333,
-                                                                       "preco":  "R$ 35,59",
-                                                                       "preco_fonte":  "Site oficial da rede"
-                                                                   },
-                                                                   {
-                                                                       "nome":  "Drogasil",
-                                                                       "end":  "Av. Dr. Guilherme Dumont Vilares, 1078 - Portal do Morumbi, SÃ£o Paulo - SP, 05640-002",
-                                                                       "tel":  "(11) 99705-4993",
-                                                                       "lat":  -23.6136,
-                                                                       "lon":  -46.74122,
-                                                                       "preco":  "R$ 49,19",
-                                                                       "preco_fonte":  "Site oficial da rede"
-                                                                   },
-                                                                   {
-                                                                       "nome":  "Ultrafarma - Unidade Morumbi",
-                                                                       "end":  "Av. Dr. Guilherme Dumont Vilares, 1155 - Jardim Londrina, SÃ£o Paulo - SP, 05640-001",
-                                                                       "tel":  "(11) 99988-2263",
-                                                                       "lat":  -23.613611,
-                                                                       "lon":  -46.741222,
-                                                                       "preco":  "R$ 36,31",
-                                                                       "preco_fonte":  "Site oficial da rede"
-                                                                   },
-                                                                   {
-                                                                       "nome":  "Drogasil",
-                                                                       "end":  "Avenida Eliseu de Almeida - Instituto de PrevidÃªncia, SÃ£o Paulo - SP",
-                                                                       "tel":  "(11) 3772-4262",
-                                                                       "lat":  -23.5892552,
-                                                                       "lon":  -46.7346043,
-                                                                       "preco":  "R$ 49,19",
-                                                                       "preco_fonte":  "Site oficial da rede"
-                                                                   },
-                                                                   {
-                                                                       "nome":  "Drogasil",
-                                                                       "end":  "Avenida Jorge JoÃ£o Saad, 214, SÃ£o Paulo",
-                                                                       "tel":  "(11) 3772-4262",
-                                                                       "lat":  -23.58859,
-                                                                       "lon":  -46.72345,
-                                                                       "preco":  "R$ 49,19",
-                                                                       "preco_fonte":  "Site oficial da rede"
-                                                                   },
-                                                                   {
-                                                                       "nome":  "Droga Raia",
-                                                                       "end":  "Avenida Professor Francisco Morato, 2858, SÃ£o Paulo",
-                                                                       "tel":  "(11) 3742-2048",
-                                                                       "lat":  -23.58698,
-                                                                       "lon":  -46.72599,
-                                                                       "preco":  "R$ 49,19",
-                                                                       "preco_fonte":  "Site oficial da rede"
-                                                                   },
-                                                                   {
-                                                                       "nome":  "Drogaria SÃ£o Paulo",
-                                                                       "end":  "Avenida Professor Francisco Morato, 2878, SÃ£o Paulo",
-                                                                       "tel":  "(11) 3743-3112",
-                                                                       "lat":  -23.58727,
-                                                                       "lon":  -46.7265,
-                                                                       "preco":  "R$ 35,59",
-                                                                       "preco_fonte":  "Site oficial da rede"
-                                                                   },
-                                                                   {
-                                                                       "nome":  "Droga Raia",
-                                                                       "end":  "Jardim Peri Peri, SÃ£o Paulo - SP",
-                                                                       "tel":  "(11) 3742-2048",
-                                                                       "lat":  -23.5876667,
-                                                                       "lon":  -46.7374444,
-                                                                       "preco":  "R$ 49,19",
-                                                                       "preco_fonte":  "Site oficial da rede"
-                                                                   },
-                                                                   {
-                                                                       "nome":  "Drogaria e Perfumaria Sulavi",
-                                                                       "end":  "R. Manoel AntÃ´nio Pinto, 458 - ParaisÃ³polis, SÃ£o Paulo - SP, 05663-020",
-                                                                       "tel":  "(11) 3739-3338",
-                                                                       "lat":  -23.613694444444445,
-                                                                       "lon":  -46.725833333333334,
-                                                                       "preco":  "Consulte na loja",
-                                                                       "preco_fonte":  "Sem e-commerce"
-                                                                   },
-                                                                   {
-                                                                       "nome":  "Droga Raia",
-                                                                       "end":  "Rua Correggio, 1 - Loja 01 - Vila Suzana",
-                                                                       "tel":  "(11) 99846-6502",
-                                                                       "lat":  -23.61116,
-                                                                       "lon":  -46.73381,
-                                                                       "preco":  "R$ 49,19",
-                                                                       "preco_fonte":  "Site oficial da rede"
-                                                                   },
-                                                                   {
-                                                                       "nome":  "Droga Raia",
-                                                                       "end":  "Rua Desembargador Dalmo do Valle Nogueira, 79, SÃ£o Paulo",
-                                                                       "tel":  "(11) 3742-2048",
-                                                                       "lat":  -23.61574,
-                                                                       "lon":  -46.74024,
-                                                                       "preco":  "R$ 49,19",
-                                                                       "preco_fonte":  "Site oficial da rede"
-                                                                   },
-                                                                   {
-                                                                       "nome":  "Drogaria SÃ£o Paulo",
-                                                                       "end":  "Rua Jeriquara, Vila SÃ´nia",
-                                                                       "tel":  "(11) 3743-3112",
-                                                                       "lat":  -23.5941,
-                                                                       "lon":  -46.72131,
-                                                                       "preco":  "R$ 35,59",
-                                                                       "preco_fonte":  "Site oficial da rede"
-                                                                   }
-                                                               ]
-                                          },
-                                          {
-                                              "id":  "vila-sonia",
-                                              "nome":  "UP Total Farma - Vila Sonia",
-                                              "endereco":  "Av. José Maria da Silva Paranhos, 345 - Vila Sônia, São Paulo - SP, 05635-050",
-                                              "telefone":  "—",
-                                              "lat":  -23.6052474,
-                                              "lon":  -46.7371986,
-                                              "concorrentes":  [
-                                                                   {
-                                                                       "nome":  "Droga Raia",
-                                                                       "end":  "Avenida Professor Francisco Morato, 2830 - Vila Sônia, São Paulo - SP, 05512-300",
-                                                                       "tel":  "(11) 3742-4677",
-                                                                       "lat":  -23.6136009,
-                                                                       "lon":  -46.741219,
-                                                                       "fonte":  "Droga Raia - Nossas lojas"
-                                                                   },
-                                                                   {
-                                                                       "nome":  "Ultrafarma - Morumbi",
-                                                                       "end":  "Avenida Dr. Guilherme Dumont Vilares, 1155 - Jardim Londrina, São Paulo - SP, 05640-001",
-                                                                       "tel":  "11 5071-0762",
-                                                                       "lat":  -23.613611,
-                                                                       "lon":  -46.741222,
-                                                                       "fonte":  "Ultrafarma - Nossas lojas"
-                                                                   },
-                                                                   {
-                                                                       "nome":  "Drogasil",
-                                                                       "end":  "Avenida José Galante, 600 - São Paulo - SP",
-                                                                       "tel":  "+55 11 3739 0047",
-                                                                       "lat":  -23.6210618,
-                                                                       "lon":  -46.7381429,
-                                                                       "fonte":  "Site/guia local"
-                                                                   },
-                                                                   {
-                                                                       "nome":  "Drogasil",
-                                                                       "end":  "Avenida Eliseu de Almeida - São Paulo - SP",
-                                                                       "tel":  "—",
-                                                                       "lat":  -23.5892295,
-                                                                       "lon":  -46.7346093,
-                                                                       "fonte":  "Site/guia local"
-                                                                   },
-                                                                   {
-                                                                       "nome":  "Droga Raia",
-                                                                       "end":  "Avenida Ministro Laudo Ferreira de Camargo - São Paulo - SP",
-                                                                       "tel":  "—",
-                                                                       "lat":  -23.5873011,
-                                                                       "lon":  -46.7370518,
-                                                                       "fonte":  "Site/guia local"
-                                                                   },
-                                                                   {
-                                                                       "nome":  "Drogasil",
-                                                                       "end":  "São Paulo - SP",
-                                                                       "tel":  "—",
-                                                                       "lat":  -23.6064336,
-                                                                       "lon":  -46.7256248,
-                                                                       "fonte":  "Site/guia local"
-                                                                   }
-                                                               ]
-                                          },
-                                          {
-                                              "id":  "campo-limpo",
-                                              "nome":  "UP Total Farma - Campo Limpo",
-                                              "endereco":  "Rua Chico Mana, 34 - Campo Limpo, São Paulo - SP, 05777-001",
-                                              "telefone":  "—",
-                                              "lat":  -23.6186853,
-                                              "lon":  -46.7520551,
-                                              "concorrentes":  [
-                                                                   {
-                                                                       "nome":  "Drogasil",
-                                                                       "end":  "Estrada do Campo Limpo, 4135 - Campo Limpo, São Paulo - SP, 05787-000",
-                                                                       "tel":  "(11) 3476-5850",
-                                                                       "lat":  -23.6136009,
-                                                                       "lon":  -46.741219,
-                                                                       "fonte":  "CNES/DataSUS"
-                                                                   },
-                                                                   {
-                                                                       "nome":  "Drogasil - Shopping Campo Limpo",
-                                                                       "end":  "Estrada do Campo Limpo, 459 - Vila Prel / Shopping Campo Limpo, São Paulo - SP, 05777-001",
-                                                                       "tel":  "(11) 5511-0543",
-                                                                       "lat":  -23.6254839,
-                                                                       "lon":  -46.7412669,
-                                                                       "fonte":  "Guia local / shopping"
-                                                                   },
-                                                                   {
-                                                                       "nome":  "Drogaria São Paulo - Campo Limpo IV",
-                                                                       "end":  "Avenida Anacé, 17 - Jardim Umarizal, São Paulo - SP, 05755-090",
-                                                                       "tel":  "(11) 2389-3101",
-                                                                       "lat":  -23.6170942,
-                                                                       "lon":  -46.7570229,
-                                                                       "fonte":  "CNES/DataSUS"
-                                                                   },
-                                                                   {
-                                                                       "nome":  "Drogaria São Paulo",
-                                                                       "end":  "Estrada do Campo Limpo, 4059 - Pirajussara, São Paulo - SP, 05787-000",
-                                                                       "tel":  "(11) 3274-7400",
-                                                                       "lat":  -23.6170942,
-                                                                       "lon":  -46.7570229,
-                                                                       "fonte":  "Cadastro local"
-                                                                   },
-                                                                   {
-                                                                       "nome":  "Farmacia\u0026Cia",
-                                                                       "end":  "Estrada São Francisco, São Paulo - SP",
-                                                                       "tel":  "—",
-                                                                       "lat":  -23.6184386,
-                                                                       "lon":  -46.7708071,
-                                                                       "fonte":  "Cadastro local"
-                                                                   }
-                                                               ]
-                                          }
-                                      ]
-                     }
+  "uptotalfarma": {
+    "nome": "UP Total Farma",
+    "logo_desc": "Azul petroleo + magenta/rosa + branco (pill com cruz)",
+    "unidades": [
+      {
+        "id": "vila-andrade",
+        "nome": "UP Total Farma - Vila Andrade",
+        "endereco": "Av. Claudio Franchi, 273 - Jardim Monte Kemel, SÃ£o Paulo - SP",
+        "telefone": "(11) 96213-5847 (WhatsApp)",
+        "lat": -23.6004131,
+        "lon": -46.7376992,
+        "concorrentes": [
+          {
+            "nome": "Drogaria SÃ£o Paulo",
+            "end": "Av. Dr. Guilherme Dumont Vilares, 1030 - Jardim CaborÃ©, SÃ£o Paulo - SP, 05640-001",
+            "tel": "(11) 3743-1493",
+            "lat": -23.611444444444444,
+            "lon": -46.74158333333333,
+            "preco": "R$ 35,59",
+            "preco_fonte": "Site oficial da rede"
+          },
+          {
+            "nome": "Drogasil",
+            "end": "Av. Dr. Guilherme Dumont Vilares, 1078 - Portal do Morumbi, SÃ£o Paulo - SP, 05640-002",
+            "tel": "(11) 99705-4993",
+            "lat": -23.6136,
+            "lon": -46.74122,
+            "preco": "R$ 49,19",
+            "preco_fonte": "Site oficial da rede"
+          },
+          {
+            "nome": "Ultrafarma - Unidade Morumbi",
+            "end": "Av. Dr. Guilherme Dumont Vilares, 1155 - Jardim Londrina, SÃ£o Paulo - SP, 05640-001",
+            "tel": "(11) 99988-2263",
+            "lat": -23.613611,
+            "lon": -46.741222,
+            "preco": "R$ 36,31",
+            "preco_fonte": "Site oficial da rede"
+          },
+          {
+            "nome": "Drogasil",
+            "end": "Avenida Eliseu de Almeida - Instituto de PrevidÃªncia, SÃ£o Paulo - SP",
+            "tel": "(11) 3772-4262",
+            "lat": -23.5892552,
+            "lon": -46.7346043,
+            "preco": "R$ 49,19",
+            "preco_fonte": "Site oficial da rede"
+          },
+          {
+            "nome": "Drogasil",
+            "end": "Avenida Jorge JoÃ£o Saad, 214, SÃ£o Paulo",
+            "tel": "(11) 3772-4262",
+            "lat": -23.58859,
+            "lon": -46.72345,
+            "preco": "R$ 49,19",
+            "preco_fonte": "Site oficial da rede"
+          },
+          {
+            "nome": "Droga Raia",
+            "end": "Avenida Professor Francisco Morato, 2858, SÃ£o Paulo",
+            "tel": "(11) 3742-2048",
+            "lat": -23.58698,
+            "lon": -46.72599,
+            "preco": "R$ 49,19",
+            "preco_fonte": "Site oficial da rede"
+          },
+          {
+            "nome": "Drogaria SÃ£o Paulo",
+            "end": "Avenida Professor Francisco Morato, 2878, SÃ£o Paulo",
+            "tel": "(11) 3743-3112",
+            "lat": -23.58727,
+            "lon": -46.7265,
+            "preco": "R$ 35,59",
+            "preco_fonte": "Site oficial da rede"
+          },
+          {
+            "nome": "Droga Raia",
+            "end": "Jardim Peri Peri, SÃ£o Paulo - SP",
+            "tel": "(11) 3742-2048",
+            "lat": -23.5876667,
+            "lon": -46.7374444,
+            "preco": "R$ 49,19",
+            "preco_fonte": "Site oficial da rede"
+          },
+          {
+            "nome": "Drogaria e Perfumaria Sulavi",
+            "end": "R. Manoel AntÃ´nio Pinto, 458 - ParaisÃ³polis, SÃ£o Paulo - SP, 05663-020",
+            "tel": "(11) 3739-3338",
+            "lat": -23.613694444444445,
+            "lon": -46.725833333333334,
+            "preco": "Consulte na loja",
+            "preco_fonte": "Sem e-commerce"
+          },
+          {
+            "nome": "Droga Raia",
+            "end": "Rua Correggio, 1 - Loja 01 - Vila Suzana",
+            "tel": "(11) 99846-6502",
+            "lat": -23.61116,
+            "lon": -46.73381,
+            "preco": "R$ 49,19",
+            "preco_fonte": "Site oficial da rede"
+          },
+          {
+            "nome": "Droga Raia",
+            "end": "Rua Desembargador Dalmo do Valle Nogueira, 79, SÃ£o Paulo",
+            "tel": "(11) 3742-2048",
+            "lat": -23.61574,
+            "lon": -46.74024,
+            "preco": "R$ 49,19",
+            "preco_fonte": "Site oficial da rede"
+          },
+          {
+            "nome": "Drogaria SÃ£o Paulo",
+            "end": "Rua Jeriquara, Vila SÃ´nia",
+            "tel": "(11) 3743-3112",
+            "lat": -23.5941,
+            "lon": -46.72131,
+            "preco": "R$ 35,59",
+            "preco_fonte": "Site oficial da rede"
+          }
+        ]
+      },
+      {
+        "id": "vila-sonia",
+        "nome": "UP Total Farma - Vila Sonia",
+        "endereco": "Av. José Maria da Silva Paranhos, 345 - Vila Sônia, São Paulo - SP, 05635-050",
+        "telefone": "—",
+        "lat": -23.6052474,
+        "lon": -46.7371986,
+        "concorrentes": [
+          {
+            "nome": "Droga Raia",
+            "end": "Avenida Professor Francisco Morato, 2830 - Vila Sônia, São Paulo - SP, 05512-300",
+            "tel": "(11) 3742-4677",
+            "lat": -23.6136009,
+            "lon": -46.741219,
+            "fonte": "Droga Raia - Nossas lojas"
+          },
+          {
+            "nome": "Drogasil 197 SP Vila Sônia 2",
+            "end": "Avenida Deputado Jacob Salvador Zveibil s/n - Butantã, São Paulo - SP, 05512-390",
+            "tel": "(11) 3769-5736",
+            "lat": -23.604607,
+            "lon": -46.747492,
+            "fonte": "CNES/DataSUS"
+          },
+          {
+            "nome": "Ultrafarma - Morumbi",
+            "end": "Avenida Dr. Guilherme Dumont Vilares, 1155 - Jardim Londrina, São Paulo - SP, 05640-001",
+            "tel": "11 5071-0762",
+            "lat": -23.613611,
+            "lon": -46.741222,
+            "fonte": "Ultrafarma - Lojas"
+          },
+          {
+            "nome": "Drogasil",
+            "end": "Avenida José Galante, 600 - São Paulo - SP",
+            "tel": "+55 11 3739 0047",
+            "lat": -23.6210618,
+            "lon": -46.7381429,
+            "fonte": "Guia local"
+          },
+          {
+            "nome": "Drogasil",
+            "end": "Avenida Eliseu de Almeida - São Paulo - SP",
+            "tel": "—",
+            "lat": -23.5892295,
+            "lon": -46.7346093,
+            "fonte": "Guia local"
+          },
+          {
+            "nome": "Droga Raia",
+            "end": "Avenida Ministro Laudo Ferreira de Camargo - São Paulo - SP",
+            "tel": "—",
+            "lat": -23.5873011,
+            "lon": -46.7370518,
+            "fonte": "Guia local"
+          }
+        ]
+      },
+      {
+        "id": "campo-limpo",
+        "nome": "UP Total Farma - Campo Limpo",
+        "endereco": "Rua Chico Mana, 34 - Campo Limpo, São Paulo - SP, 05777-001",
+        "telefone": "—",
+        "lat": -23.6186853,
+        "lon": -46.7520551,
+        "concorrentes": [
+          {
+            "nome": "Drogasil",
+            "end": "Estrada do Campo Limpo, 4135 - Campo Limpo, São Paulo - SP, 05787-000",
+            "tel": "(11) 3476-5850",
+            "lat": -23.6136009,
+            "lon": -46.741219,
+            "fonte": "CNES/DataSUS"
+          },
+          {
+            "nome": "Drogasil - Shopping Campo Limpo",
+            "end": "Estrada do Campo Limpo, 459 - Vila Prel / Shopping Campo Limpo, São Paulo - SP, 05777-001",
+            "tel": "(11) 5511-0543",
+            "lat": -23.6254839,
+            "lon": -46.7412669,
+            "fonte": "Guia local / shopping"
+          },
+          {
+            "nome": "Drogaria São Paulo - Campo Limpo IV",
+            "end": "Avenida Anacé, 17 - Jardim Umarizal, São Paulo - SP, 05755-090",
+            "tel": "(11) 2389-3101",
+            "lat": -23.6170942,
+            "lon": -46.7570229,
+            "fonte": "CNES/DataSUS"
+          },
+          {
+            "nome": "Drogaria São Paulo",
+            "end": "Estrada do Campo Limpo, 4059 - Pirajussara, São Paulo - SP, 05787-000",
+            "tel": "(11) 3274-7400",
+            "lat": -23.6170942,
+            "lon": -46.7570229,
+            "fonte": "Cadastro local"
+          },
+          {
+            "nome": "Farmacia&Cia",
+            "end": "Estrada São Francisco, São Paulo - SP",
+            "tel": "—",
+            "lat": -23.6184386,
+            "lon": -46.7708071,
+            "fonte": "Cadastro local"
+          }
+        ]
+      }
+    ]
+  }
 }
