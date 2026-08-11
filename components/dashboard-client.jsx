@@ -1,6 +1,7 @@
 'use client';
 
 import { useMemo, useState } from 'react';
+import Link from 'next/link';
 import MapPanel from './map-panel';
 
 function parsePreco(text) {
@@ -77,6 +78,9 @@ export default function DashboardClient({ data }) {
           <button className={viewMode === 'all' ? 'control active' : 'control'} onClick={() => setViewMode('all')}>
             Visão geral
           </button>
+          <Link className="control" href="/concorrentes">
+            Ver concorrentes
+          </Link>
           {data.map((u) => (
             <button
               key={u.id}

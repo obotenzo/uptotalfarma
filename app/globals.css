@@ -117,9 +117,14 @@ button, input { font: inherit; }
 .unit-mini-grid div { border: 1px solid var(--border); border-radius: 14px; padding: 12px; background: #fafbfc; }
 .unit-mini-grid strong { display:block; margin-bottom: 5px; color: var(--azul); }
 .unit-mini-grid span { color: var(--muted); }
+.competitor-section { margin-top: 16px; }
+.competitor-layout { display: grid; grid-template-columns: minmax(280px, 1.2fr) minmax(280px, 0.8fr); gap: 16px; align-items: start; }
+.competitor-map .map-shell { height: 520px; }
+.competitor-list { display: grid; gap: 12px; }
 @media (max-width: 780px) {
   .dashboard { padding: 16px; }
   .hero-stats { width: 100%; grid-template-columns: 1fr; min-width: 0; }
   .map-shell { height: 520px; }
   .hero-card, .hero-card--executive { align-items: stretch; }
+  .competitor-layout { grid-template-columns: 1fr; }
 }
