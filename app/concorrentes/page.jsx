@@ -5,27 +5,6 @@ import MapPanel from '@/components/map-panel';
 import { COOKIE_NAME, isAuthenticated } from '@/lib/auth';
 import { loadDashboardData } from '@/lib/load-data';
 
-function parsePreco(text) {
-  const m = String(text || '').match(/[\d]+[,.]\d+/);
-  return m ? Number(m[0].replace(',', '.')) : Number.POSITIVE_INFINITY;
-}
-
-function sortByPrice(items) {
-  return [...items].sort((a, b) => {
-    const pa = parsePreco(a.preco);
-    const pb = parsePreco(b.preco);
-    if (Number.isFinite(pa) && Number.isFinite(pb)) return pa - pb;
-    if (Number.isFinite(pa)) return -1;
-    if (Number.isFinite(pb)) return 1;
-    return 0;
-  });
-}
-
-function formatPrice(value) {
-  if (!Number.isFinite(value)) return 'Sem preço online';
-  return `R$ ${value.toFixed(2).replace('.', ',')}`;
-}
-
 export default async function ConcorrentesPage() {
   const cookie = (await cookies()).get(COOKIE_NAME)?.value;
   if (!isAuthenticated(cookie)) redirect('/login');
@@ -73,64 +52,56 @@ export default async function ConcorrentesPage() {
           </div>
         </section>
 
-        {units.map((unit) => {
-          const sortedCompetitors = sortByPrice(unit.concorrentes);
-          const cheapest = sortedCompetitors.find((c) => Number.isFinite(parsePreco(c.preco)));
+        {units.map((unit) => (
+          <section key={unit.id} className="section-card competitor-section">
+            <div className="section-head">
+              <div>
+                <h2>{unit.nome}</h2>
+                <p>{unit.endereco}</p>
+              </div>
+              <span className="pill">{unit.concorrentes.length} concorrentes</span>
+            </div>
 
-          return (
-            <section key={unit.id} className="section-card competitor-section">
-              <div className="section-head">
-                <div>
-                  <h2>{unit.nome}</h2>
-                  <p>{unit.endereco}</p>
-                </div>
-                <span className="pill">{unit.concorrentes.length} concorrentes</span>
+            <div className="unit-mini-grid">
+              <div>
+                <strong>Telefone</strong>
+                <span>{unit.telefone || '—'}</span>
+              </div>
+              <div>
+                <strong>Localização</strong>
+                <span>
+                  {unit.lat.toFixed(5)}, {unit.lon.toFixed(5)}
+                </span>
+              </div>
+              <div>
+                <strong>Visão</strong>
+                <span>Somente concorrentes mapeados</span>
+              </div>
+            </div>
+
+            <div className="competitor-layout">
+              <div className="competitor-map">
+                <MapPanel units={[unit]} viewMode="one" activeUnitId={unit.id} />
               </div>
 
-              <div className="unit-mini-grid">
-                <div>
-                  <strong>Telefone</strong>
-                  <span>{unit.telefone || '—'}</span>
-                </div>
-                <div>
-                  <strong>Menor preço</strong>
-                  <span>{formatPrice(cheapest ? parsePreco(cheapest.preco) : Number.POSITIVE_INFINITY)}</span>
-                </div>
-                <div>
-                  <strong>Concorrente líder</strong>
-                  <span>{cheapest ? cheapest.nome : 'Sem preço online'}</span>
-                </div>
+              <div className="competitor-list">
+                {unit.concorrentes.map((c) => (
+                  <article key={`${unit.id}-${c.nome}-${c.lat}-${c.lon}`} className="summary-card summary-card--executive">
+                    <div className="summary-card__top">
+                      <h3>{c.nome}</h3>
+                      <span className="pill">Ponto mapeado</span>
+                    </div>
+                    <p>{c.end || 'Endereço não informado'}</p>
+                    <div className="summary-meta">
+                      <span>{c.tel || '—'}</span>
+                      <span>{c.preco_fonte || 'Fonte não informada'}</span>
+                    </div>
+                  </article>
+                ))}
               </div>
-
-              <div className="competitor-layout">
-                <div className="competitor-map">
-                  <MapPanel units={[unit]} viewMode="one" activeUnitId={unit.id} />
-                </div>
-
-                <div className="competitor-list">
-                  {sortedCompetitors.map((c) => {
-                    const price = parsePreco(c.preco);
-                    const isCheapest = cheapest && c.nome === cheapest.nome && c.lat === cheapest.lat && c.lon === cheapest.lon;
-
-                    return (
-                      <article key={`${unit.id}-${c.nome}-${c.lat}-${c.lon}`} className="summary-card summary-card--executive">
-                        <div className="summary-card__top">
-                          <h3>{c.nome}</h3>
-                          {isCheapest ? <span className="badge">MAIS BARATO</span> : <span className="pill">{c.preco || 'Sem preço'}</span>}
-                        </div>
-                        <p>{c.end || 'Endereço não informado'}</p>
-                        <div className="summary-meta">
-                          <span>{c.tel || '—'}</span>
-                          <span>{Number.isFinite(price) ? `Preço mapeado: ${c.preco}` : 'Preço indisponível'}</span>
-                        </div>
-                      </article>
-                    );
-                  })}
-                </div>
-              </div>
-            </section>
-          );
-        })}
+            </div>
+          </section>
+        ))}
       </div>
     </main>
   );
