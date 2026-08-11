@@ -5,7 +5,7 @@ import { COOKIE_NAME, isAuthenticated } from '@/lib/auth';
 import { loadDashboardData } from '@/lib/load-data';
 
 export default async function DashboardPage() {
-  const cookie = cookies().get(COOKIE_NAME)?.value;
+  const cookie = (await cookies()).get(COOKIE_NAME)?.value;
   if (!isAuthenticated(cookie)) redirect('/login');
 
   const data = await loadDashboardData();
