@@ -88,7 +88,7 @@ button, input { font: inherit; }
 .eyebrow { display:inline-flex; align-items:center; gap: 6px; text-transform: uppercase; letter-spacing: .14em; font-size: .75rem; color: var(--magenta); font-weight: 800; }
 .hero-card h1 { margin: 8px 0 6px; font-size: clamp(1.8rem, 3vw, 3rem); color: var(--azul); }
 .hero-card p { margin: 0; color: var(--muted); max-width: 720px; line-height: 1.6; }
-.hero-stats { display: grid; grid-template-columns: repeat(3, minmax(96px, 1fr)); gap: 12px; min-width: 320px; }
+.hero-stats { display: grid; grid-template-columns: repeat(2, minmax(96px, 1fr)); gap: 12px; min-width: 240px; }
 .hero-stats div { background: #fff; border: 1px solid var(--border); border-radius: 16px; padding: 14px 16px; text-align: center; }
 .hero-stats strong { display:block; font-size: 1.35rem; color: var(--azul); }
 .hero-stats span { font-size: .82rem; color: var(--muted); }
@@ -110,11 +110,6 @@ button, input { font: inherit; }
 .summary-card h3 { margin: 0 0 8px; color: var(--azul); }
 .summary-card p { margin: 0; color: var(--muted); line-height: 1.5; }
 .summary-meta { display:flex; justify-content:space-between; gap: 12px; flex-wrap: wrap; margin-top: 12px; font-size: .9rem; color: var(--azul2); }
-.compact-card { border: 1px solid var(--border); border-radius: 18px; padding: 16px; margin-bottom: 14px; background: #fff; }
-.unit-card { border: 1px solid var(--border); border-radius: 18px; padding: 16px; margin-bottom: 14px; background: #fff; }
-.unit-card__header { display:flex; justify-content:space-between; gap: 10px; align-items:flex-start; flex-wrap: wrap; margin-bottom: 12px; }
-.unit-card__header h3 { margin: 0 0 6px; color: var(--azul); }
-.unit-card__header p { margin: 0; color: var(--muted); }
 .pill, .badge { display:inline-flex; align-items:center; border-radius: 999px; font-weight: 800; }
 .pill { background: rgba(19,49,92,.08); color: var(--azul2); padding: 8px 12px; }
 .badge { margin-left: 10px; background: var(--verde); color: #fff; padding: 4px 8px; font-size: .72rem; }
@@ -122,11 +117,6 @@ button, input { font: inherit; }
 .unit-mini-grid div { border: 1px solid var(--border); border-radius: 14px; padding: 12px; background: #fafbfc; }
 .unit-mini-grid strong { display:block; margin-bottom: 5px; color: var(--azul); }
 .unit-mini-grid span { color: var(--muted); }
-.table-wrap { overflow-x: auto; }
-table { width: 100%; border-collapse: collapse; }
-th, td { text-align: left; padding: 12px 10px; border-bottom: 1px solid var(--border); vertical-align: top; }
-th { background: #fafbfc; color: var(--azul); font-size: .86rem; }
-.row-highlight td { background: rgba(30,158,30,.08); font-weight: 700; }
 @media (max-width: 780px) {
   .dashboard { padding: 16px; }
   .hero-stats { width: 100%; grid-template-columns: 1fr; min-width: 0; }
