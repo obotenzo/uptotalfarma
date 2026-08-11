@@ -2,14 +2,8 @@
 
 import { useEffect, useMemo, useRef } from 'react';
 
-const BLUE = '#0b2545';
-const GREEN = '#1e9e1e';
-const RED = '#d63b3b';
-
-function parsePreco(text) {
-  const m = String(text || '').match(/[\d]+[,.]\d+/);
-  return m ? Number(m[0].replace(',', '.')) : Number.POSITIVE_INFINITY;
-}
+const UNIT_COLOR = '#d6006e';
+const OTHER_COLOR = '#5c6675';
 
 function divIcon(color, bigger = false) {
   const size = bigger ? 22 : 16;
@@ -49,20 +43,16 @@ export default function MapPanel({ units, viewMode, activeUnitId }) {
 
     const points = [];
     activeUnits.forEach((unit) => {
-      const unitMarker = window.L.marker([unit.lat, unit.lon], { icon: divIcon(BLUE, true) })
+      const unitMarker = window.L.marker([unit.lat, unit.lon], { icon: divIcon(UNIT_COLOR, true) })
         .addTo(mapRef.current)
         .bindPopup(`<b>${unit.nome}</b><br>${unit.endereco}<br>${unit.telefone || '—'}`);
       markersRef.current.push(unitMarker);
       points.push([unit.lat, unit.lon]);
 
-      const allPrices = unit.concorrentes.map((c) => parsePreco(c.preco)).filter((n) => Number.isFinite(n));
-      const min = allPrices.length ? Math.min(...allPrices) : Number.POSITIVE_INFINITY;
-
       unit.concorrentes.forEach((c) => {
-        const color = parsePreco(c.preco) === min ? GREEN : RED;
-        const marker = window.L.marker([c.lat, c.lon], { icon: divIcon(color, false) })
+        const marker = window.L.marker([c.lat, c.lon], { icon: divIcon(OTHER_COLOR, false) })
           .addTo(mapRef.current)
-          .bindPopup(`<b>${c.nome}</b><br>${c.tel || '—'}<br>${c.preco || 'Consulte na loja'}<br><small>${c.end || ''}</small>`);
+          .bindPopup(`<b>${c.nome}</b><br>${c.tel || '—'}<br><small>${c.end || ''}</small>`);
         markersRef.current.push(marker);
         points.push([c.lat, c.lon]);
       });
