@@ -3,6 +3,22 @@
 import { useMemo, useState } from 'react';
 import MapPanel from './map-panel';
 
+function parsePreco(text) {
+  const m = String(text || '').match(/[\d]+[,.]\d+/);
+  return m ? Number(m[0].replace(',', '.')) : Number.POSITIVE_INFINITY;
+}
+
+function sortByPrice(items) {
+  return [...items].sort((a, b) => {
+    const pa = parsePreco(a.preco);
+    const pb = parsePreco(b.preco);
+    if (Number.isFinite(pa) && Number.isFinite(pb)) return pa - pb;
+    if (Number.isFinite(pa)) return -1;
+    if (Number.isFinite(pb)) return 1;
+    return 0;
+  });
+}
+
 export default function DashboardClient({ data }) {
   const [viewMode, setViewMode] = useState('all');
   const [activeUnitId, setActiveUnitId] = useState(data[0]?.id || '');
@@ -14,7 +30,6 @@ export default function DashboardClient({ data }) {
 
   const stats = useMemo(() => {
     const allCompetitors = data.flatMap((u) => u.concorrentes);
-
     return {
       units: data.length,
       competitors: allCompetitors.length,
@@ -23,6 +38,7 @@ export default function DashboardClient({ data }) {
 
   const visibleUnits = viewMode === 'all' ? data : data.filter((u) => u.id === activeUnitId);
   const selectedUnit = viewMode === 'all' ? null : activeUnit;
+
   return (
     <div className="dashboard">
       <section className="hero-card hero-card--executive">
@@ -34,7 +50,7 @@ export default function DashboardClient({ data }) {
           <h1>{viewMode === 'all' ? 'Visão executiva das unidades' : selectedUnit?.nome || 'Unidade'}</h1>
           <p>
             Um painel mais simples para entender rapidamente o desempenho das unidades,
-            os concorrentes ao redor e o menor preço encontrado.
+            os concorrentes ao redor e o contexto de operação.
           </p>
         </div>
 
@@ -117,7 +133,6 @@ export default function DashboardClient({ data }) {
         </div>
         <MapPanel units={data} viewMode={viewMode} activeUnitId={activeUnitId} />
       </section>
-
     </div>
   );
 }
