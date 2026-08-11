@@ -116,7 +116,6 @@ export default function DashboardClient({ data }) {
                 <p>{u.endereco}</p>
                 <div className="summary-meta">
                   <span>{u.telefone || '—'}</span>
-                  <span>{cheapest ? `Menor preço: ${cheapest.preco}` : 'Sem preço online'}</span>
                 </div>
               </article>
             );
