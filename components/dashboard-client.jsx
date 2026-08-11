@@ -63,7 +63,7 @@ export default function DashboardClient({ data }) {
             <thead>
               <tr>
                 <th>Concorrente</th>
-                <th>Preço Vonau Flash 4mg</th>
+                <th>Preço de produtos</th>
               </tr>
             </thead>
             <tbody>
@@ -92,7 +92,7 @@ export default function DashboardClient({ data }) {
         <div>
           <div className="eyebrow">Dashboard Up Total Farma</div>
           <h1>{viewMode === 'all' ? 'Todas as unidades' : activeUnit?.nome || 'Unidade'}</h1>
-          <p>Mapa de concorrentes, preços do Vonau Flash 4mg e visão consolidada das três unidades.</p>
+          <p>Mapa de concorrentes, preços de concorrentes e visão consolidada das três unidades.</p>
         </div>
         <div className="hero-stats">
           <div>
