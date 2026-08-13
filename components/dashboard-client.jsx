@@ -47,7 +47,7 @@ function getNearbyCompetitors(unit) {
 
 function getNetworkName(name) {
   const value = String(name || '').toLowerCase();
-  if (value.includes('drogaria são paulo') || value.includes('drogaria s?o paulo')) return 'Drogaria São Paulo';
+  if (value.includes('drogaria sao paulo') || value.includes('drogaria são paulo')) return 'Drogaria São Paulo';
   if (value.includes('drogasil')) return 'Drogasil';
   if (value.includes('droga raia')) return 'Droga Raia';
   if (value.includes('ultrafarma')) return 'Ultrafarma';
@@ -65,36 +65,40 @@ function groupByNetwork(competitors) {
   }, {});
 }
 
+function buildUnitCards(units) {
+  return units.map((unit) => {
+    const nearby = getNearbyCompetitors(unit);
+    const networks = Object.values(groupByNetwork(nearby)).sort((a, b) => b.count - a.count);
+
+    return {
+      ...unit,
+      nearby,
+      networks,
+      closest: nearby[0] || null,
+      topNearby: nearby.slice(0, 3),
+    };
+  });
+}
+
 export default function DashboardClient({ data }) {
   const [viewMode, setViewMode] = useState('all');
   const [activeUnitId, setActiveUnitId] = useState(data[0]?.id || '');
 
   const activeUnit = useMemo(
-    () => data.find((u) => u.id === activeUnitId) || data[0],
+    () => data.find((unit) => unit.id === activeUnitId) || data[0],
     [data, activeUnitId]
   );
 
-  const visibleUnits = viewMode === 'all' ? data : data.filter((u) => u.id === activeUnitId);
+  const visibleUnits = viewMode === 'all' ? data : data.filter((unit) => unit.id === activeUnitId);
   const selectedUnit = viewMode === 'all' ? null : activeUnit;
-
-  const summaryUnits = visibleUnits.map((unit) => {
-    const nearby = getNearbyCompetitors(unit);
-    const networks = Object.values(groupByNetwork(nearby)).sort((a, b) => b.count - a.count);
-    return {
-      ...unit,
-      nearby,
-      closest: nearby[0] || null,
-      topNearby: nearby.slice(0, 3),
-      networks,
-    };
-  });
-
-  const rankingUnits = [...data]
-    .map((unit) => ({
-      ...unit,
-      nearby: getNearbyCompetitors(unit),
-    }))
-    .sort((a, b) => b.nearby.length - a.nearby.length);
+  const summaryUnits = useMemo(() => buildUnitCards(visibleUnits), [visibleUnits]);
+  const rankingUnits = useMemo(
+    () =>
+      buildUnitCards(data)
+        .slice()
+        .sort((a, b) => b.nearby.length - a.nearby.length),
+    [data]
+  );
 
   const counts = useMemo(() => {
     const nearbyCompetitors = data.reduce((acc, unit) => acc + getNearbyCompetitors(unit).length, 0);
@@ -117,7 +121,7 @@ export default function DashboardClient({ data }) {
           </div>
           <p>
             Painel para acompanhar as 3 unidades, visualizar os concorrentes dentro do raio de
-            2 km e entender a pressão competitiva por região.
+            2 km e analisar a pressão competitiva por região.
           </p>
         </div>
 
@@ -147,16 +151,16 @@ export default function DashboardClient({ data }) {
           <Link className="control" href="/concorrentes">
             Ver concorrentes
           </Link>
-          {data.map((u) => (
+          {data.map((unit) => (
             <button
-              key={u.id}
-              className={viewMode !== 'all' && activeUnitId === u.id ? 'control active' : 'control'}
+              key={unit.id}
+              className={viewMode !== 'all' && activeUnitId === unit.id ? 'control active' : 'control'}
               onClick={() => {
-                setActiveUnitId(u.id);
+                setActiveUnitId(unit.id);
                 setViewMode('one');
               }}
             >
-              {u.nome.replace('UP Total Farma - ', '')}
+              {unit.nome.replace('UP Total Farma - ', '')}
             </button>
           ))}
         </div>
@@ -259,21 +263,24 @@ export default function DashboardClient({ data }) {
         </div>
 
         <div className="grid-units">
-          {visibleUnits.map((u) => {
-            const nearby = getNearbyCompetitors(u);
+          {visibleUnits.map((unit) => {
+            const nearby = getNearbyCompetitors(unit);
+
             return (
-              <article key={u.id} className="summary-card summary-card--executive">
+              <article key={unit.id} className="summary-card summary-card--executive">
                 <div className="summary-card__top">
-                  <h3>{u.nome}</h3>
+                  <h3>{unit.nome}</h3>
                   <span className="pill">{nearby.length} concorrentes no raio</span>
                 </div>
-                <p>{u.endereco}</p>
+                <p>{unit.endereco}</p>
                 <div className="summary-meta">
-                  <span>{u.telefone || '—'}</span>
+                  <span>{unit.telefone || '—'}</span>
                 </div>
                 <div className="summary-meta" style={{ marginTop: 8 }}>
                   {nearby[0] ? (
-                    <span>Mais próximo: {nearby[0].nome} • {nearby[0].distanceKm.toFixed(2)} km</span>
+                    <span>
+                      Mais próximo: {nearby[0].nome} • {nearby[0].distanceKm.toFixed(2)} km
+                    </span>
                   ) : (
                     <span>Nenhum concorrente dentro do raio</span>
                   )}

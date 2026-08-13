@@ -130,16 +130,19 @@ export default async function ConcorrentesPage() {
 
                 <div className="competitor-list">
                   {nearby.length > 0 ? (
-                    nearby.map((c) => (
-                      <article key={`${unit.id}-${c.nome}-${c.lat}-${c.lon}`} className="summary-card summary-card--executive">
+                    nearby.map((competitor) => (
+                      <article
+                        key={`${unit.id}-${competitor.nome}-${competitor.lat}-${competitor.lon}`}
+                        className="summary-card summary-card--executive"
+                      >
                         <div className="summary-card__top">
-                          <h3>{c.nome}</h3>
-                          <span className="pill">{c.distanceKm.toFixed(2)} km</span>
+                          <h3>{competitor.nome}</h3>
+                          <span className="pill">{competitor.distanceKm.toFixed(2)} km</span>
                         </div>
-                        <p>{c.end || 'Endereço não informado'}</p>
+                        <p>{competitor.end || 'Endereço não informado'}</p>
                         <div className="summary-meta">
-                          <span>{c.tel || '—'}</span>
-                          <span>{c.fonte || 'Fonte não informada'}</span>
+                          <span>{competitor.tel || '—'}</span>
+                          <span>{competitor.fonte || 'Fonte não informada'}</span>
                         </div>
                       </article>
                     ))
