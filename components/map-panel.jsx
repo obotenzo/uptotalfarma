@@ -4,6 +4,7 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 
 const UNIT_COLOR = '#d6006e';
 const OTHER_COLOR = '#5c6675';
+const RADIUS_FILL = '#d6006e';
 const DEFAULT_CENTER = [-23.6, -46.74];
 const RADIUS_KM = 2;
 
@@ -48,6 +49,7 @@ export default function MapPanel({ units, viewMode, activeUnitId }) {
   const elRef = useRef(null);
   const mapRef = useRef(null);
   const markersRef = useRef([]);
+  const overlaysRef = useRef([]);
   const [leafletReady, setLeafletReady] = useState(false);
 
   const activeUnits = useMemo(() => {
@@ -140,10 +142,24 @@ export default function MapPanel({ units, viewMode, activeUnitId }) {
 
     markersRef.current.forEach((marker) => marker.remove());
     markersRef.current = [];
+    overlaysRef.current.forEach((overlay) => overlay.remove());
+    overlaysRef.current = [];
 
     if (mapPoints.length === 0) {
       mapRef.current.setView(activeAnchor || DEFAULT_CENTER, activeAnchor ? 14 : 12);
       return;
+    }
+
+    if (activeAnchor) {
+      const radiusCircle = window.L.circle(activeAnchor, {
+        radius: RADIUS_KM * 1000,
+        color: UNIT_COLOR,
+        weight: 1.5,
+        fillColor: RADIUS_FILL,
+        fillOpacity: 0.08,
+        opacity: 0.75,
+      }).addTo(mapRef.current);
+      overlaysRef.current.push(radiusCircle);
     }
 
     mapPoints.forEach(({ type, point, data, distanceKm }) => {
@@ -155,8 +171,19 @@ export default function MapPanel({ units, viewMode, activeUnitId }) {
 
       const popup =
         type === 'unit'
-          ? `<b>${data.nome}</b><br>${data.endereco}<br>${data.telefone || '—'}`
-          : `<b>${data.nome}</b><br>${data.tel || '—'}<br><small>${data.end || ''}</small><br><small>${distanceKm.toFixed(2)} km da unidade</small>`;
+          ? `
+            <div style="min-width:220px">
+              <div style="font-weight:800;font-size:14px;color:#081d3f;margin-bottom:6px">${data.nome}</div>
+              <div style="color:#475569;line-height:1.45">${data.endereco}</div>
+              <div style="margin-top:8px;font-weight:700;color:#0f172a">${data.telefone || '—'}</div>
+            </div>`
+          : `
+            <div style="min-width:220px">
+              <div style="font-weight:800;font-size:14px;color:#081d3f;margin-bottom:6px">${data.nome}</div>
+              <div style="color:#475569;line-height:1.45">${data.end || ''}</div>
+              <div style="margin-top:8px;font-weight:700;color:#d6006e">${distanceKm.toFixed(2)} km da unidade</div>
+              <div style="margin-top:4px;color:#64748b">${data.tel || '—'}</div>
+            </div>`;
 
       marker.bindPopup(popup);
       markersRef.current.push(marker);
