@@ -159,17 +159,20 @@ export default function MapPanel({ units, viewMode, activeUnitId, radiusKm = DEF
       return;
     }
 
-    if (activeAnchor) {
-      const radiusCircle = window.L.circle(activeAnchor, {
+    activeUnits.forEach((unit, index) => {
+      const unitPoint = getValidPoint(unit.lat, unit.lon);
+      if (!unitPoint) return;
+
+      const radiusCircle = window.L.circle(unitPoint, {
         radius: radiusKm * 1000,
         color: UNIT_COLOR,
         weight: 1.5,
         fillColor: RADIUS_FILL,
-        fillOpacity: 0.08,
-        opacity: 0.75,
+        fillOpacity: 0.06,
+        opacity: 0.55 + index * 0.05,
       }).addTo(mapRef.current);
       overlaysRef.current.push(radiusCircle);
-    }
+    });
 
     mapPoints.forEach(({ type, point, data, distanceKm }) => {
       const marker = window.L

@@ -47,7 +47,7 @@ function getNearbyCompetitors(unit) {
 
 function getNetworkName(name) {
   const value = String(name || '').toLowerCase();
-  if (value.includes('drogaria sao paulo') || value.includes('drogaria sãoo paulo')) return 'Drogaria Sãoo Paulo';
+  if (value.includes('drogaria sao paulo') || value.includes('drogaria são paulo')) return 'Drogaria São Paulo';
   if (value.includes('drogasil')) return 'Drogasil';
   if (value.includes('droga raia')) return 'Droga Raia';
   if (value.includes('ultrafarma')) return 'Ultrafarma';
@@ -126,7 +126,7 @@ export default function DashboardClient({ data }) {
             <img src="/uptotalfarma-logo.png" alt="Logo da Up Total Farma" className="brand-logo" />
             <div>
               <div className="eyebrow">Dashboard Up Total Farma</div>
-              <h1>{viewMode === 'all' ? 'Visãoo executiva das unidades' : selectedUnit?.nome || 'Unidade'}</h1>
+              <h1>{viewMode === 'all' ? 'Visão executiva das unidades' : selectedUnit?.nome || 'Unidade'}</h1>
             </div>
           </div>
           <p>
@@ -156,7 +156,7 @@ export default function DashboardClient({ data }) {
         </div>
         <div className="controls-card controls-card--clean">
           <button className={viewMode === 'all' ? 'control active' : 'control'} onClick={() => setViewMode('all')}>
-            Visãoo geral
+            Visão geral
           </button>
           <Link className="control" href="/concorrentes">
             Ver concorrentes
