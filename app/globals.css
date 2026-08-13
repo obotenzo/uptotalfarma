@@ -406,6 +406,26 @@ button, input { font: inherit; }
   color: var(--navy-700);
 }
 
+.summary-list {
+  display: grid;
+  gap: 6px;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+}
+
+.summary-list__title {
+  font-size: 0.8rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+}
+
+.summary-list span:not(.summary-list__title) {
+  color: var(--navy-700);
+}
+
 .pill,
 .badge {
   display: inline-flex;

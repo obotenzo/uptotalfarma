@@ -1,7 +1,7 @@
 'use client';
 
-import { useMemo, useState } from 'react';
 import Link from 'next/link';
+import { useMemo, useState } from 'react';
 import MapPanel from './map-panel';
 
 const RADIUS_KM = 2;
@@ -69,6 +69,7 @@ function buildUnitCards(units) {
   return units.map((unit) => {
     const nearby = getNearbyCompetitors(unit);
     const networks = Object.values(groupByNetwork(nearby)).sort((a, b) => b.count - a.count);
+    const hasPhone = Boolean(String(unit.telefone || '').trim() && unit.telefone !== '—');
 
     return {
       ...unit,
@@ -76,8 +77,18 @@ function buildUnitCards(units) {
       networks,
       closest: nearby[0] || null,
       topNearby: nearby.slice(0, 3),
+      hasPhone,
     };
   });
+}
+
+function InfoList({ title, children }) {
+  return (
+    <div className="summary-list">
+      <span className="summary-list__title">{title}</span>
+      {children}
+    </div>
+  );
 }
 
 export default function DashboardClient({ data }) {
@@ -183,15 +194,10 @@ export default function DashboardClient({ data }) {
               </div>
               <p>{unit.endereco}</p>
               <div className="summary-meta">
-                <span>{unit.telefone || '—'}</span>
-                <span>
-                  {unit.closest
-                    ? `Mais próximo: ${unit.closest.distanceKm.toFixed(2)} km`
-                    : 'Sem concorrentes no raio'}
-                </span>
+                <span>{unit.hasPhone ? unit.telefone : 'Telefone não informado'}</span>
+                <span>{unit.closest ? `Mais próximo: ${unit.closest.distanceKm.toFixed(2)} km` : 'Sem concorrentes no raio'}</span>
               </div>
-              <div className="summary-meta" style={{ marginTop: 8, display: 'grid' }}>
-                <span>Top 3 mais próximos</span>
+              <InfoList title="Top 3 mais próximos">
                 {unit.topNearby.length > 0 ? (
                   unit.topNearby.map((competitor) => (
                     <span key={`${unit.id}-${competitor.nome}-${competitor.lat}-${competitor.lon}`}>
@@ -201,9 +207,8 @@ export default function DashboardClient({ data }) {
                 ) : (
                   <span>Nenhum concorrente dentro do raio</span>
                 )}
-              </div>
-              <div className="summary-meta" style={{ marginTop: 8, display: 'grid' }}>
-                <span>Redes no raio</span>
+              </InfoList>
+              <InfoList title="Redes no raio">
                 {unit.networks.length > 0 ? (
                   unit.networks.map((network) => (
                     <span key={`${unit.id}-${network.network}`}>
@@ -213,7 +218,7 @@ export default function DashboardClient({ data }) {
                 ) : (
                   <span>Nenhuma rede identificada</span>
                 )}
-              </div>
+              </InfoList>
             </article>
           ))}
         </div>
@@ -238,7 +243,7 @@ export default function DashboardClient({ data }) {
               </div>
               <p>{unit.endereco}</p>
               <div className="summary-meta">
-                <span>{unit.telefone || '—'}</span>
+                <span>{unit.hasPhone ? unit.telefone : 'Telefone não informado'}</span>
                 <span>
                   {unit.nearby[0]
                     ? `Mais próximo: ${unit.nearby[0].nome} (${unit.nearby[0].distanceKm.toFixed(2)} km)`
@@ -274,7 +279,7 @@ export default function DashboardClient({ data }) {
                 </div>
                 <p>{unit.endereco}</p>
                 <div className="summary-meta">
-                  <span>{unit.telefone || '—'}</span>
+                  <span>{unit.hasPhone ? unit.telefone : 'Telefone não informado'}</span>
                 </div>
                 <div className="summary-meta" style={{ marginTop: 8 }}>
                   {nearby[0] ? (
