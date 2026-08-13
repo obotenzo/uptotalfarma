@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useMemo, useRef } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 
 const UNIT_COLOR = '#d6006e';
 const OTHER_COLOR = '#5c6675';
@@ -36,6 +36,7 @@ export default function MapPanel({ units, viewMode, activeUnitId }) {
   const elRef = useRef(null);
   const mapRef = useRef(null);
   const markersRef = useRef([]);
+  const [leafletReady, setLeafletReady] = useState(false);
 
   const activeUnits = useMemo(() => {
     if (viewMode === 'all') return units;
@@ -75,7 +76,25 @@ export default function MapPanel({ units, viewMode, activeUnitId }) {
   }, [activeUnits]);
 
   useEffect(() => {
-    if (!elRef.current || !window.L || mapRef.current) return;
+    if (typeof window === 'undefined') return;
+
+    if (window.L) {
+      setLeafletReady(true);
+      return;
+    }
+
+    const timer = setInterval(() => {
+      if (window.L) {
+        setLeafletReady(true);
+        clearInterval(timer);
+      }
+    }, 50);
+
+    return () => clearInterval(timer);
+  }, []);
+
+  useEffect(() => {
+    if (!leafletReady || !elRef.current || !window.L || mapRef.current) return;
 
     mapRef.current = window.L.map(elRef.current, {
       zoomControl: true,
@@ -87,7 +106,7 @@ export default function MapPanel({ units, viewMode, activeUnitId }) {
       minZoom: 12,
       attribution: '© OpenStreetMap',
     }).addTo(mapRef.current);
-  }, []);
+  }, [leafletReady]);
 
   useEffect(() => {
     if (!mapRef.current || !window.L) return;
