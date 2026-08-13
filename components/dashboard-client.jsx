@@ -131,7 +131,7 @@ export default function DashboardClient({ data }) {
           </div>
           <p>
             Painel para acompanhar as 3 unidades, visualizar os concorrentes dentro do raio de
-            2 km e analisar a pressÃ£o competitiva por regiÃ£o.
+            2 km e analisar a competitiva por região.
           </p>
         </div>
 
@@ -150,13 +150,13 @@ export default function DashboardClient({ data }) {
       <section className="section-card section-card--tight">
         <div className="section-head">
           <div>
-            <h2>Escolha o nÃ­vel de leitura</h2>
-            <p>Comece pela visÃ£o geral ou foque em uma unidade especÃ­fica.</p>
+            <h2>Escolha o nível de leitura</h2>
+            <p>Comece pela visão geral ou foque em uma unidade específica.</p>
           </div>
         </div>
         <div className="controls-card controls-card--clean">
           <button className={viewMode === 'all' ? 'control active' : 'control'} onClick={() => setViewMode('all')}>
-            VisÃ£o geral
+            Visãoo geral
           </button>
           <Link className="control" href="/concorrentes">
             Ver concorrentes
