@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { useMemo, useState } from 'react';
 import MapPanel from './map-panel';
 
-const RADIUS_KM = 2;
+const RADIUS_KM = 5;
 
 function toFiniteNumber(value) {
   const parsed = Number(value);
@@ -240,44 +240,6 @@ export default function DashboardClient({ data }) {
               <p>{unit.endereco}</p>
             </article>
           ))}
-        </div>
-      </section>
-
-      <section className="section-card">
-        <div className="section-head">
-          <div>
-            <h2>{viewMode === 'all' ? 'Resumo das unidades' : 'Resumo da unidade selecionada'}</h2>
-            <p>
-              {viewMode === 'all'
-                ? 'Cartões curtos e objetivos para leitura rápida.'
-                : 'Informações essenciais da unidade ativa antes de abrir o mapa.'}
-            </p>
-          </div>
-        </div>
-
-        <div className="grid-units">
-          {visibleUnits.map((unit) => {
-            const nearby = getNearbyCompetitors(unit);
-
-            return (
-              <article key={unit.id} className="summary-card summary-card--executive">
-                <div className="summary-card__top">
-                  <h3>{unit.nome}</h3>
-                  <span className="pill">{nearby.length} concorrentes no raio</span>
-                </div>
-                <p>{unit.endereco}</p>
-                <div className="summary-meta" style={{ marginTop: 8 }}>
-                  {nearby[0] ? (
-                    <span>
-                      Mais próximo: {nearby[0].nome} • {nearby[0].distanceKm.toFixed(2)} km
-                    </span>
-                  ) : (
-                    <span>Nenhum concorrente dentro do raio</span>
-                  )}
-                </div>
-              </article>
-            );
-          })}
         </div>
       </section>
 

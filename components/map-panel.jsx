@@ -6,7 +6,7 @@ const UNIT_COLOR = '#d6006e';
 const OTHER_COLOR = '#5c6675';
 const RADIUS_FILL = '#d6006e';
 const DEFAULT_CENTER = [-23.6, -46.74];
-const RADIUS_KM = 2;
+const RADIUS_KM = 5;
 
 function toFiniteNumber(value) {
   const parsed = Number(value);
