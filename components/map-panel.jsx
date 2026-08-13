@@ -5,6 +5,7 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 const UNIT_COLOR = '#d6006e';
 const OTHER_COLOR = '#5c6675';
 const DEFAULT_CENTER = [-23.6, -46.74];
+const RADIUS_KM = 2;
 
 function toFiniteNumber(value) {
   const parsed = Number(value);
@@ -20,6 +21,17 @@ function getValidPoint(lat, lon) {
 
 function pointKey(point, label) {
   return `${point[0]}:${point[1]}:${label}`;
+}
+
+function haversineKm([lat1, lon1], [lat2, lon2]) {
+  const toRad = (value) => (value * Math.PI) / 180;
+  const earthRadiusKm = 6371;
+  const dLat = toRad(lat2 - lat1);
+  const dLon = toRad(lon2 - lon1);
+  const a =
+    Math.sin(dLat / 2) ** 2 +
+    Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * Math.sin(dLon / 2) ** 2;
+  return 2 * earthRadiusKm * Math.asin(Math.sqrt(a));
 }
 
 function divIcon(color, bigger = false) {
@@ -43,6 +55,8 @@ export default function MapPanel({ units, viewMode, activeUnitId }) {
     return units.filter((u) => u.id === activeUnitId);
   }, [units, viewMode, activeUnitId]);
 
+  const activeAnchor = activeUnits[0] ? getValidPoint(activeUnits[0].lat, activeUnits[0].lon) : null;
+
   const mapPoints = useMemo(() => {
     const seen = new Set();
     const points = [];
@@ -50,25 +64,38 @@ export default function MapPanel({ units, viewMode, activeUnitId }) {
     activeUnits.forEach((unit) => {
       const unitPoint = getValidPoint(unit.lat, unit.lon);
       if (unitPoint) {
-        const key = pointKey(unitPoint, unit.nome || unit.id || 'unit');
-        if (!seen.has(key)) {
-          seen.add(key);
-          points.push({ type: 'unit', point: unitPoint, data: unit });
+        const unitKey = pointKey(unitPoint, unit.nome || unit.id || 'unit');
+        if (!seen.has(unitKey)) {
+          seen.add(unitKey);
+          points.push({
+            type: 'unit',
+            point: unitPoint,
+            data: unit,
+            distanceKm: 0,
+          });
         }
       }
 
       (unit.concorrentes || []).forEach((competitor) => {
         const competitorPoint = getValidPoint(competitor.lat, competitor.lon);
-        if (!competitorPoint) return;
+        if (!competitorPoint || !unitPoint) return;
 
-        const key = pointKey(
+        const distanceKm = haversineKm(unitPoint, competitorPoint);
+        if (distanceKm > RADIUS_KM) return;
+
+        const competitorKey = pointKey(
           competitorPoint,
           competitor.nome || competitor.end || 'competitor'
         );
-        if (seen.has(key)) return;
+        if (seen.has(competitorKey)) return;
 
-        seen.add(key);
-        points.push({ type: 'competitor', point: competitorPoint, data: competitor });
+        seen.add(competitorKey);
+        points.push({
+          type: 'competitor',
+          point: competitorPoint,
+          data: competitor,
+          distanceKm,
+        });
       });
     });
 
@@ -99,14 +126,14 @@ export default function MapPanel({ units, viewMode, activeUnitId }) {
     mapRef.current = window.L.map(elRef.current, {
       zoomControl: true,
       scrollWheelZoom: true,
-    }).setView(DEFAULT_CENTER, 13);
+    }).setView(activeAnchor || DEFAULT_CENTER, activeAnchor ? 14 : 13);
 
     window.L.tileLayer('/tiles/{z}/{x}/{y}.png', {
       maxZoom: 18,
       minZoom: 12,
       attribution: '© OpenStreetMap',
     }).addTo(mapRef.current);
-  }, [leafletReady]);
+  }, [leafletReady, activeAnchor]);
 
   useEffect(() => {
     if (!mapRef.current || !window.L) return;
@@ -115,31 +142,34 @@ export default function MapPanel({ units, viewMode, activeUnitId }) {
     markersRef.current = [];
 
     if (mapPoints.length === 0) {
-      mapRef.current.setView(DEFAULT_CENTER, 12);
+      mapRef.current.setView(activeAnchor || DEFAULT_CENTER, activeAnchor ? 14 : 12);
       return;
     }
 
-    mapPoints.forEach(({ type, point, data }) => {
-      const marker = window.L.marker(point, {
-        icon: divIcon(type === 'unit' ? UNIT_COLOR : OTHER_COLOR, type === 'unit'),
-      }).addTo(mapRef.current);
+    mapPoints.forEach(({ type, point, data, distanceKm }) => {
+      const marker = window.L
+        .marker(point, {
+          icon: divIcon(type === 'unit' ? UNIT_COLOR : OTHER_COLOR, type === 'unit'),
+        })
+        .addTo(mapRef.current);
 
       const popup =
         type === 'unit'
           ? `<b>${data.nome}</b><br>${data.endereco}<br>${data.telefone || '—'}`
-          : `<b>${data.nome}</b><br>${data.tel || '—'}<br><small>${data.end || ''}</small>`;
+          : `<b>${data.nome}</b><br>${data.tel || '—'}<br><small>${data.end || ''}</small><br><small>${distanceKm.toFixed(2)} km da unidade</small>`;
 
       marker.bindPopup(popup);
       markersRef.current.push(marker);
     });
 
-    const bounds = window.L.latLngBounds(mapPoints.map(({ point }) => point));
+    const pointsForBounds = mapPoints.map(({ point }) => point);
+    const bounds = window.L.latLngBounds(pointsForBounds);
     if (mapPoints.length > 1 && bounds.isValid()) {
       mapRef.current.fitBounds(bounds, { padding: [32, 32] });
     } else if (mapPoints.length === 1) {
       mapRef.current.setView(mapPoints[0].point, 14);
     }
-  }, [mapPoints]);
+  }, [mapPoints, activeAnchor]);
 
   useEffect(() => {
     if (!mapRef.current) return;
