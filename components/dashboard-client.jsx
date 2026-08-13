@@ -47,7 +47,7 @@ function getNearbyCompetitors(unit) {
 
 function getNetworkName(name) {
   const value = String(name || '').toLowerCase();
-  if (value.includes('drogaria sao paulo') || value.includes('drogaria sÃ£o paulo')) return 'Drogaria SÃ£o Paulo';
+  if (value.includes('drogaria sao paulo') || value.includes('drogaria sãoo paulo')) return 'Drogaria Sãoo Paulo';
   if (value.includes('drogasil')) return 'Drogasil';
   if (value.includes('droga raia')) return 'Droga Raia';
   if (value.includes('ultrafarma')) return 'Ultrafarma';
@@ -126,7 +126,7 @@ export default function DashboardClient({ data }) {
             <img src="/uptotalfarma-logo.png" alt="Logo da Up Total Farma" className="brand-logo" />
             <div>
               <div className="eyebrow">Dashboard Up Total Farma</div>
-              <h1>{viewMode === 'all' ? 'VisÃ£o executiva das unidades' : selectedUnit?.nome || 'Unidade'}</h1>
+              <h1>{viewMode === 'all' ? 'Visãoo executiva das unidades' : selectedUnit?.nome || 'Unidade'}</h1>
             </div>
           </div>
           <p>
@@ -179,7 +179,7 @@ export default function DashboardClient({ data }) {
       <section className="section-card">
         <div className="section-head">
           <div>
-            <h2>Ranking de pressÃ£o competitiva</h2>
+            <h2>Ranking de unidades por concorrentes</h2>
             <p>Unidades ordenadas pela quantidade de concorrentes dentro do raio de 2 km.</p>
           </div>
         </div>
