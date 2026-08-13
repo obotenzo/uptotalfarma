@@ -1,11 +1,11 @@
 {
   "uptotalfarma": {
     "nome": "UP Total Farma",
-    "logo_desc": "Azul petroleo + magenta/rosa + branco (pill com cruz)",
+    "logo_desc": "Azul petróleo + magenta/rosa + branco (pill com cruz)",
     "unidades": [
       {
         "id": "vila-andrade",
-        "nome": "UP Total Farma - Vila Andrade",
+        "nome": "UP Total Farma - Monte Kemel",
         "endereco": "Av. Claudio Franchi, 273 - Jardim Monte Kemel, São Paulo - SP",
         "telefone": "(11) 96213-5847 (WhatsApp)",
         "lat": -23.6004131,
@@ -16,84 +16,84 @@
             "end": "Av. Dr. Guilherme Dumont Vilares, 1030 - Jardim Caboré, São Paulo - SP, 05640-001",
             "tel": "(11) 3743-1493",
             "lat": -23.611444444444444,
-            "lon": -46.74158333333333,
+            "lon": -46.74158333333333
           },
           {
             "nome": "Drogasil",
             "end": "Av. Dr. Guilherme Dumont Vilares, 1078 - Portal do Morumbi, São Paulo - SP, 05640-002",
             "tel": "(11) 99705-4993",
             "lat": -23.6136,
-            "lon": -46.74122,
+            "lon": -46.74122
           },
           {
             "nome": "Ultrafarma - Unidade Morumbi",
             "end": "Av. Dr. Guilherme Dumont Vilares, 1155 - Jardim Londrina, São Paulo - SP, 05640-001",
             "tel": "(11) 99988-2263",
             "lat": -23.613611,
-            "lon": -46.741222,
+            "lon": -46.741222
           },
           {
             "nome": "Drogasil",
             "end": "Avenida Eliseu de Almeida - São Paulo - SP",
             "tel": "(11) 3772-4262",
             "lat": -23.5892552,
-            "lon": -46.7346043,
+            "lon": -46.7346043
           },
           {
             "nome": "Drogasil",
             "end": "Avenida Jorge João Saad, 214, São Paulo",
             "tel": "(11) 3772-4262",
             "lat": -23.58859,
-            "lon": -46.72345,
+            "lon": -46.72345
           },
           {
             "nome": "Droga Raia",
             "end": "Avenida Professor Francisco Morato, 2858, São Paulo",
             "tel": "(11) 3742-2048",
             "lat": -23.58698,
-            "lon": -46.72599,
+            "lon": -46.72599
           },
           {
             "nome": "Drogaria São Paulo",
             "end": "Avenida Professor Francisco Morato, 2878, São Paulo",
             "tel": "(11) 3743-3112",
             "lat": -23.58727,
-            "lon": -46.7265,
+            "lon": -46.7265
           },
           {
             "nome": "Droga Raia",
             "end": "Jardim Peri Peri, São Paulo - SP",
             "tel": "(11) 3742-2048",
             "lat": -23.5876667,
-            "lon": -46.7374444,
+            "lon": -46.7374444
           },
           {
             "nome": "Drogaria e Perfumaria Sulavi",
             "end": "R. Manoel Antônio Pinto, 458 - Paraisópolis, São Paulo - SP, 05663-020",
             "tel": "(11) 3739-3338",
             "lat": -23.613694444444445,
-            "lon": -46.725833333333334,
+            "lon": -46.725833333333334
           },
           {
             "nome": "Droga Raia",
             "end": "Rua Correggio, 1 - Loja 01 - Vila Suzana",
             "tel": "(11) 99846-6502",
             "lat": -23.61116,
-            "lon": -46.73381,
+            "lon": -46.73381
           },
           {
             "nome": "Droga Raia",
             "end": "Rua Desembargador Dalmo do Valle Nogueira, 79, São Paulo",
             "tel": "(11) 3742-2048",
             "lat": -23.61574,
-            "lon": -46.74024,
+            "lon": -46.74024
           },
           {
             "nome": "Drogaria São Paulo",
             "end": "Rua Jeriquara, Vila Sônia",
             "tel": "(11) 3743-3112",
             "lat": -23.5941,
-            "lon": -46.72131,
+            "lon": -46.72131
           }
         ]
       },
