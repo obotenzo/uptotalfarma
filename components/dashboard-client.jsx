@@ -1,10 +1,10 @@
-'use client';
+﻿'use client';
 
 import Link from 'next/link';
 import { useMemo, useState } from 'react';
 import MapPanel from './map-panel';
 
-const RADIUS_KM = 5;
+const RADIUS_KM = 2;
 
 function toFiniteNumber(value) {
   const parsed = Number(value);
@@ -47,7 +47,7 @@ function getNearbyCompetitors(unit) {
 
 function getNetworkName(name) {
   const value = String(name || '').toLowerCase();
-  if (value.includes('drogaria sao paulo') || value.includes('drogaria são paulo')) return 'Drogaria São Paulo';
+  if (value.includes('drogaria sao paulo') || value.includes('drogaria sÃ£o paulo')) return 'Drogaria SÃ£o Paulo';
   if (value.includes('drogasil')) return 'Drogasil';
   if (value.includes('droga raia')) return 'Droga Raia';
   if (value.includes('ultrafarma')) return 'Ultrafarma';
@@ -69,7 +69,7 @@ function buildUnitCards(units) {
   return units.map((unit) => {
     const nearby = getNearbyCompetitors(unit);
     const networks = Object.values(groupByNetwork(nearby)).sort((a, b) => b.count - a.count);
-    const hasPhone = Boolean(String(unit.telefone || '').trim() && unit.telefone !== '—');
+    const hasPhone = Boolean(String(unit.telefone || '').trim() && unit.telefone !== 'â€”');
 
     return {
       ...unit,
@@ -102,7 +102,6 @@ export default function DashboardClient({ data }) {
 
   const visibleUnits = viewMode === 'all' ? data : data.filter((unit) => unit.id === activeUnitId);
   const selectedUnit = viewMode === 'all' ? null : activeUnit;
-  const summaryUnits = useMemo(() => buildUnitCards(visibleUnits), [visibleUnits]);
   const rankingUnits = useMemo(
     () =>
       buildUnitCards(data)
@@ -127,12 +126,12 @@ export default function DashboardClient({ data }) {
             <img src="/uptotalfarma-logo.png" alt="Logo da Up Total Farma" className="brand-logo" />
             <div>
               <div className="eyebrow">Dashboard Up Total Farma</div>
-              <h1>{viewMode === 'all' ? 'Visão executiva das unidades' : selectedUnit?.nome || 'Unidade'}</h1>
+              <h1>{viewMode === 'all' ? 'VisÃ£o executiva das unidades' : selectedUnit?.nome || 'Unidade'}</h1>
             </div>
           </div>
           <p>
             Painel para acompanhar as 3 unidades, visualizar os concorrentes dentro do raio de
-            2 km e analisar a pressão competitiva por região.
+            2 km e analisar a pressÃ£o competitiva por regiÃ£o.
           </p>
         </div>
 
@@ -151,13 +150,13 @@ export default function DashboardClient({ data }) {
       <section className="section-card section-card--tight">
         <div className="section-head">
           <div>
-            <h2>Escolha o nível de leitura</h2>
-            <p>Comece pela visão geral ou foque em uma unidade específica.</p>
+            <h2>Escolha o nÃ­vel de leitura</h2>
+            <p>Comece pela visÃ£o geral ou foque em uma unidade especÃ­fica.</p>
           </div>
         </div>
         <div className="controls-card controls-card--clean">
           <button className={viewMode === 'all' ? 'control active' : 'control'} onClick={() => setViewMode('all')}>
-            Visão geral
+            VisÃ£o geral
           </button>
           <Link className="control" href="/concorrentes">
             Ver concorrentes
@@ -180,50 +179,7 @@ export default function DashboardClient({ data }) {
       <section className="section-card">
         <div className="section-head">
           <div>
-            <h2>Resumo executivo</h2>
-            <p>Leitura rápida das unidades com concorrentes dentro do raio de 2 km.</p>
-          </div>
-        </div>
-
-        <div className="grid-units">
-          {summaryUnits.map((unit) => (
-            <article key={unit.id} className="summary-card summary-card--executive">
-              <div className="summary-card__top">
-                <h3>{unit.nome}</h3>
-                <span className="pill">{unit.nearby.length} no raio</span>
-              </div>
-              <p>{unit.endereco}</p>
-              <InfoList title="Top 3 mais próximos">
-                {unit.topNearby.length > 0 ? (
-                  unit.topNearby.map((competitor) => (
-                    <span key={`${unit.id}-${competitor.nome}-${competitor.lat}-${competitor.lon}`}>
-                      {competitor.nome} - {competitor.distanceKm.toFixed(2)} km
-                    </span>
-                  ))
-                ) : (
-                  <span>Nenhum concorrente dentro do raio</span>
-                )}
-              </InfoList>
-              <InfoList title="Redes no raio">
-                {unit.networks.length > 0 ? (
-                  unit.networks.map((network) => (
-                    <span key={`${unit.id}-${network.network}`}>
-                      {network.network}: {network.count} pontos
-                    </span>
-                  ))
-                ) : (
-                  <span>Nenhuma rede identificada</span>
-                )}
-              </InfoList>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section className="section-card">
-        <div className="section-head">
-          <div>
-            <h2>Ranking de pressão competitiva</h2>
+            <h2>Ranking de pressÃ£o competitiva</h2>
             <p>Unidades ordenadas pela quantidade de concorrentes dentro do raio de 2 km.</p>
           </div>
         </div>
@@ -250,8 +206,9 @@ export default function DashboardClient({ data }) {
             <p>Use o mapa como apoio visual para localizar unidades e concorrentes dentro do raio.</p>
           </div>
         </div>
-        <MapPanel units={data} viewMode={viewMode} activeUnitId={activeUnitId} />
+        <MapPanel units={data} viewMode={viewMode} activeUnitId={activeUnitId} radiusKm={RADIUS_KM} />
       </section>
     </div>
   );
 }
+

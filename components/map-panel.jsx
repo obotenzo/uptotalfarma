@@ -6,7 +6,7 @@ const UNIT_COLOR = '#d6006e';
 const OTHER_COLOR = '#5c6675';
 const RADIUS_FILL = '#d6006e';
 const DEFAULT_CENTER = [-23.6, -46.74];
-const RADIUS_KM = 5;
+const DEFAULT_RADIUS_KM = 5;
 
 function toFiniteNumber(value) {
   const parsed = Number(value);
@@ -45,7 +45,7 @@ function divIcon(color, bigger = false) {
   });
 }
 
-export default function MapPanel({ units, viewMode, activeUnitId }) {
+export default function MapPanel({ units, viewMode, activeUnitId, radiusKm = DEFAULT_RADIUS_KM }) {
   const elRef = useRef(null);
   const mapRef = useRef(null);
   const markersRef = useRef([]);
@@ -83,7 +83,7 @@ export default function MapPanel({ units, viewMode, activeUnitId }) {
         if (!competitorPoint || !unitPoint) return;
 
         const distanceKm = haversineKm(unitPoint, competitorPoint);
-        if (distanceKm > RADIUS_KM) return;
+        if (distanceKm > radiusKm) return;
 
         const competitorKey = pointKey(
           competitorPoint,
@@ -152,7 +152,7 @@ export default function MapPanel({ units, viewMode, activeUnitId }) {
 
     if (activeAnchor) {
       const radiusCircle = window.L.circle(activeAnchor, {
-        radius: RADIUS_KM * 1000,
+        radius: radiusKm * 1000,
         color: UNIT_COLOR,
         weight: 1.5,
         fillColor: RADIUS_FILL,
@@ -191,12 +191,22 @@ export default function MapPanel({ units, viewMode, activeUnitId }) {
 
     const pointsForBounds = mapPoints.map(({ point }) => point);
     const bounds = window.L.latLngBounds(pointsForBounds);
-    if (mapPoints.length > 1 && bounds.isValid()) {
-      mapRef.current.fitBounds(bounds, { padding: [32, 32] });
+
+    activeUnits.forEach((unit) => {
+      const unitPoint = getValidPoint(unit.lat, unit.lon);
+      if (!unitPoint) return;
+      const circleBounds = window.L.circle(unitPoint, {
+        radius: radiusKm * 1000,
+      }).getBounds();
+      bounds.extend(circleBounds);
+    });
+
+    if (bounds.isValid() && mapPoints.length > 0) {
+      mapRef.current.fitBounds(bounds, { padding: [96, 96] });
     } else if (mapPoints.length === 1) {
       mapRef.current.setView(mapPoints[0].point, 14);
     }
-  }, [mapPoints, activeAnchor]);
+  }, [mapPoints, activeUnits, activeAnchor, radiusKm]);
 
   useEffect(() => {
     if (!mapRef.current) return;

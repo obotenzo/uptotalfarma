@@ -125,7 +125,7 @@ export default async function ConcorrentesPage() {
 
               <div className="competitor-layout">
                 <div className="competitor-map">
-                  <MapPanel units={[unit]} viewMode="one" activeUnitId={unit.id} />
+                  <MapPanel units={[unit]} viewMode="one" activeUnitId={unit.id} radiusKm={2} />
                 </div>
 
                 <div className="competitor-list">
