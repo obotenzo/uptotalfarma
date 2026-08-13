@@ -120,6 +120,7 @@ export default function DashboardClient({ data }) {
                 <p>{u.endereco}</p>
                 <div className="summary-meta">
                   <span>{u.telefone || '—'}</span>
+                  {cheapest ? <span>Menor preço: {cheapest.preco}</span> : null}
                 </div>
               </article>
             );

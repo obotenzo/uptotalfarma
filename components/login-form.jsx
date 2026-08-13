@@ -11,20 +11,25 @@ export default function LoginForm() {
     setLoading(true);
     setError('');
 
-    const form = new FormData(e.currentTarget);
-    const res = await fetch('/api/login', {
-      method: 'POST',
-      body: form,
-    });
+    try {
+      const form = new FormData(e.currentTarget);
+      const res = await fetch('/api/login', {
+        method: 'POST',
+        body: form,
+      });
 
-    if (res.ok) {
-      window.location.href = '/dashboard';
-      return;
+      if (res.ok) {
+        window.location.href = '/dashboard';
+        return;
+      }
+
+      const data = await res.json().catch(() => ({}));
+      setError(data?.error || 'Não foi possível entrar.');
+    } catch {
+      setError('Falha de rede ao tentar entrar.');
+    } finally {
+      setLoading(false);
     }
-
-    const data = await res.json().catch(() => ({}));
-    setError(data?.error || 'Não foi possível entrar.');
-    setLoading(false);
   }
 
   return (
