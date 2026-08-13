@@ -35,6 +35,15 @@ function haversineKm([lat1, lon1], [lat2, lon2]) {
   return 2 * earthRadiusKm * Math.asin(Math.sqrt(a));
 }
 
+function radiusBoundsForPoint([lat, lon], radiusKm, L) {
+  const latDelta = radiusKm / 111;
+  const lonDelta = radiusKm / (111 * Math.max(Math.cos((lat * Math.PI) / 180), 0.01));
+  return L.latLngBounds(
+    [lat - latDelta, lon - lonDelta],
+    [lat + latDelta, lon + lonDelta]
+  );
+}
+
 function divIcon(color, bigger = false) {
   const size = bigger ? 22 : 16;
   return window.L.divIcon({
@@ -195,10 +204,7 @@ export default function MapPanel({ units, viewMode, activeUnitId, radiusKm = DEF
     activeUnits.forEach((unit) => {
       const unitPoint = getValidPoint(unit.lat, unit.lon);
       if (!unitPoint) return;
-      const circleBounds = window.L.circle(unitPoint, {
-        radius: radiusKm * 1000,
-      }).getBounds();
-      bounds.extend(circleBounds);
+      bounds.extend(radiusBoundsForPoint(unitPoint, radiusKm, window.L));
     });
 
     if (bounds.isValid() && mapPoints.length > 0) {
