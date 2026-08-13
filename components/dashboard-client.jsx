@@ -61,6 +61,26 @@ function getNearbyCompetitors(unit) {
     .sort((a, b) => a.distanceKm - b.distanceKm);
 }
 
+function getNetworkName(name) {
+  const value = String(name || '').toLowerCase();
+  if (value.includes('drogaria são paulo') || value.includes('drogaria s?o paulo')) return 'Drogaria São Paulo';
+  if (value.includes('drogasil')) return 'Drogasil';
+  if (value.includes('droga raia')) return 'Droga Raia';
+  if (value.includes('ultrafarma')) return 'Ultrafarma';
+  return 'Outros';
+}
+
+function groupByNetwork(competitors) {
+  return competitors.reduce((acc, competitor) => {
+    const network = getNetworkName(competitor.nome);
+    const current = acc[network] || { network, count: 0, closest: competitor.distanceKm };
+    current.count += 1;
+    current.closest = Math.min(current.closest, competitor.distanceKm);
+    acc[network] = current;
+    return acc;
+  }, {});
+}
+
 export default function DashboardClient({ data }) {
   const [viewMode, setViewMode] = useState('all');
   const [activeUnitId, setActiveUnitId] = useState(data[0]?.id || '');
@@ -84,13 +104,21 @@ export default function DashboardClient({ data }) {
   const selectedUnit = viewMode === 'all' ? null : activeUnit;
   const summaryUnits = visibleUnits.map((unit) => {
     const nearby = getNearbyCompetitors(unit);
+    const networks = Object.values(groupByNetwork(nearby)).sort((a, b) => b.count - a.count);
     return {
       ...unit,
       nearby,
       closest: nearby[0] || null,
       topNearby: nearby.slice(0, 3),
+      networks,
     };
   });
+  const rankingUnits = [...data]
+    .map((unit) => ({
+      ...unit,
+      nearby: getNearbyCompetitors(unit),
+    }))
+    .sort((a, b) => b.nearby.length - a.nearby.length);
 
   return (
     <div className="dashboard">
@@ -175,17 +203,60 @@ export default function DashboardClient({ data }) {
               <div className="summary-meta" style={{ marginTop: 8 }}>
                 <span>{unit.nearby.length > 0 ? `Menor preço no raio: ${sortByPrice(unit.nearby)[0]?.preco || '—'}` : 'Preço ainda não consolidado'}</span>
               </div>
-              <div className="summary-meta" style={{ marginTop: 8, display: 'grid' }}>
-                <span>Top 3 mais próximos</span>
-                {unit.topNearby.length > 0 ? (
-                  unit.topNearby.map((competitor) => (
-                    <span key={`${unit.id}-${competitor.nome}-${competitor.lat}-${competitor.lon}`}>
-                      {competitor.nome} - {competitor.distanceKm.toFixed(2)} km
-                    </span>
-                  ))
-                ) : (
-                  <span>Nenhum concorrente dentro do raio</span>
-                )}
+            <div className="summary-meta" style={{ marginTop: 8, display: 'grid' }}>
+              <span>Top 3 mais próximos</span>
+              {unit.topNearby.length > 0 ? (
+                unit.topNearby.map((competitor) => (
+                  <span key={`${unit.id}-${competitor.nome}-${competitor.lat}-${competitor.lon}`}>
+                    {competitor.nome} - {competitor.distanceKm.toFixed(2)} km
+                  </span>
+                ))
+              ) : (
+                <span>Nenhum concorrente dentro do raio</span>
+              )}
+            </div>
+            <div className="summary-meta" style={{ marginTop: 8, display: 'grid' }}>
+              <span>Redes no raio</span>
+              {unit.networks.length > 0 ? (
+                unit.networks.map((network) => (
+                  <span key={`${unit.id}-${network.network}`}>
+                    {network.network}: {network.count} pontos
+                  </span>
+                ))
+              ) : (
+                <span>Nenhuma rede identificada</span>
+              )}
+            </div>
+          </article>
+        ))}
+      </div>
+      </section>
+
+      <section className="section-card">
+        <div className="section-head">
+          <div>
+            <h2>Ranking de pressão competitiva</h2>
+            <p>Unidades ordenadas pela quantidade de concorrentes dentro do raio de 2 km.</p>
+          </div>
+        </div>
+
+        <div className="grid-units">
+          {rankingUnits.map((unit, index) => (
+            <article key={unit.id} className="summary-card summary-card--executive">
+              <div className="summary-card__top">
+                <h3>
+                  #{index + 1} {unit.nome}
+                </h3>
+                <span className="pill">{unit.nearby.length} concorrentes</span>
+              </div>
+              <p>{unit.endereco}</p>
+              <div className="summary-meta">
+                <span>{unit.telefone || '—'}</span>
+                <span>
+                  {unit.nearby[0]
+                    ? `Mais próximo: ${unit.nearby[0].nome} (${unit.nearby[0].distanceKm.toFixed(2)} km)`
+                    : 'Sem concorrentes no raio'}
+                </span>
               </div>
             </article>
           ))}
