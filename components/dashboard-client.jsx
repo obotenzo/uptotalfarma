@@ -193,10 +193,6 @@ export default function DashboardClient({ data }) {
                 <span className="pill">{unit.nearby.length} no raio</span>
               </div>
               <p>{unit.endereco}</p>
-              <div className="summary-meta">
-                <span>{unit.hasPhone ? unit.telefone : 'Telefone não informado'}</span>
-                <span>{unit.closest ? `Mais próximo: ${unit.closest.distanceKm.toFixed(2)} km` : 'Sem concorrentes no raio'}</span>
-              </div>
               <InfoList title="Top 3 mais próximos">
                 {unit.topNearby.length > 0 ? (
                   unit.topNearby.map((competitor) => (
@@ -242,14 +238,6 @@ export default function DashboardClient({ data }) {
                 <span className="pill">{unit.nearby.length} concorrentes</span>
               </div>
               <p>{unit.endereco}</p>
-              <div className="summary-meta">
-                <span>{unit.hasPhone ? unit.telefone : 'Telefone não informado'}</span>
-                <span>
-                  {unit.nearby[0]
-                    ? `Mais próximo: ${unit.nearby[0].nome} (${unit.nearby[0].distanceKm.toFixed(2)} km)`
-                    : 'Sem concorrentes no raio'}
-                </span>
-              </div>
             </article>
           ))}
         </div>
@@ -278,9 +266,6 @@ export default function DashboardClient({ data }) {
                   <span className="pill">{nearby.length} concorrentes no raio</span>
                 </div>
                 <p>{unit.endereco}</p>
-                <div className="summary-meta">
-                  <span>{unit.hasPhone ? unit.telefone : 'Telefone não informado'}</span>
-                </div>
                 <div className="summary-meta" style={{ marginTop: 8 }}>
                   {nearby[0] ? (
                     <span>
