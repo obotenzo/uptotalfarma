@@ -139,7 +139,7 @@ export default async function ConcorrentesPage() {
                         <p>{c.end || 'Endereço não informado'}</p>
                         <div className="summary-meta">
                           <span>{c.tel || '—'}</span>
-                          <span>{c.preco_fonte || c.fonte || 'Fonte não informada'}</span>
+                          <span>{c.fonte || 'Fonte não informada'}</span>
                         </div>
                       </article>
                     ))

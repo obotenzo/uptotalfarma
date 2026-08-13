@@ -6,22 +6,6 @@ import MapPanel from './map-panel';
 
 const RADIUS_KM = 2;
 
-function parsePreco(text) {
-  const m = String(text || '').match(/[\d]+[,.]\d+/);
-  return m ? Number(m[0].replace(',', '.')) : Number.POSITIVE_INFINITY;
-}
-
-function sortByPrice(items) {
-  return [...items].sort((a, b) => {
-    const pa = parsePreco(a.preco);
-    const pb = parsePreco(b.preco);
-    if (Number.isFinite(pa) && Number.isFinite(pb)) return pa - pb;
-    if (Number.isFinite(pa)) return -1;
-    if (Number.isFinite(pb)) return 1;
-    return 0;
-  });
-}
-
 function toFiniteNumber(value) {
   const parsed = Number(value);
   return Number.isFinite(parsed) ? parsed : null;
@@ -90,18 +74,9 @@ export default function DashboardClient({ data }) {
     [data, activeUnitId]
   );
 
-  const stats = useMemo(() => {
-    const allCompetitors = data.flatMap((u) => u.concorrentes);
-    const nearbyCompetitors = data.reduce((acc, unit) => acc + getNearbyCompetitors(unit).length, 0);
-    return {
-      units: data.length,
-      competitors: allCompetitors.length,
-      nearbyCompetitors,
-    };
-  }, [data]);
-
   const visibleUnits = viewMode === 'all' ? data : data.filter((u) => u.id === activeUnitId);
   const selectedUnit = viewMode === 'all' ? null : activeUnit;
+
   const summaryUnits = visibleUnits.map((unit) => {
     const nearby = getNearbyCompetitors(unit);
     const networks = Object.values(groupByNetwork(nearby)).sort((a, b) => b.count - a.count);
@@ -113,12 +88,21 @@ export default function DashboardClient({ data }) {
       networks,
     };
   });
+
   const rankingUnits = [...data]
     .map((unit) => ({
       ...unit,
       nearby: getNearbyCompetitors(unit),
     }))
     .sort((a, b) => b.nearby.length - a.nearby.length);
+
+  const counts = useMemo(() => {
+    const nearbyCompetitors = data.reduce((acc, unit) => acc + getNearbyCompetitors(unit).length, 0);
+    return {
+      units: data.length,
+      nearbyCompetitors,
+    };
+  }, [data]);
 
   return (
     <div className="dashboard">
@@ -130,23 +114,19 @@ export default function DashboardClient({ data }) {
           </div>
           <h1>{viewMode === 'all' ? 'Visão executiva das unidades' : selectedUnit?.nome || 'Unidade'}</h1>
           <p>
-            Um painel para acompanhar as 3 unidades, visualizar os concorrentes dentro do raio de
-            2 km e preparar a base para comparação de preços por produto.
+            Painel para acompanhar as 3 unidades, visualizar os concorrentes dentro do raio de
+            2 km e entender a pressão competitiva por região.
           </p>
         </div>
 
         <div className="hero-stats">
           <div>
-            <strong>{stats.units}</strong>
+            <strong>{counts.units}</strong>
             <span>unidades</span>
           </div>
           <div>
-            <strong>{stats.competitors}</strong>
-            <span>concorrentes totais</span>
-          </div>
-          <div>
-            <strong>{stats.nearbyCompetitors}</strong>
-            <span>no raio de 2 km</span>
+            <strong>{counts.nearbyCompetitors}</strong>
+            <span>concorrentes no raio</span>
           </div>
         </div>
       </section>
@@ -198,38 +178,39 @@ export default function DashboardClient({ data }) {
               <p>{unit.endereco}</p>
               <div className="summary-meta">
                 <span>{unit.telefone || '—'}</span>
-                <span>{unit.closest ? `Mais próximo: ${unit.closest.distanceKm.toFixed(2)} km` : 'Sem concorrentes no raio'}</span>
+                <span>
+                  {unit.closest
+                    ? `Mais próximo: ${unit.closest.distanceKm.toFixed(2)} km`
+                    : 'Sem concorrentes no raio'}
+                </span>
               </div>
-              <div className="summary-meta" style={{ marginTop: 8 }}>
-                <span>{unit.nearby.length > 0 ? `Menor preço no raio: ${sortByPrice(unit.nearby)[0]?.preco || '—'}` : 'Preço ainda não consolidado'}</span>
+              <div className="summary-meta" style={{ marginTop: 8, display: 'grid' }}>
+                <span>Top 3 mais próximos</span>
+                {unit.topNearby.length > 0 ? (
+                  unit.topNearby.map((competitor) => (
+                    <span key={`${unit.id}-${competitor.nome}-${competitor.lat}-${competitor.lon}`}>
+                      {competitor.nome} - {competitor.distanceKm.toFixed(2)} km
+                    </span>
+                  ))
+                ) : (
+                  <span>Nenhum concorrente dentro do raio</span>
+                )}
               </div>
-            <div className="summary-meta" style={{ marginTop: 8, display: 'grid' }}>
-              <span>Top 3 mais próximos</span>
-              {unit.topNearby.length > 0 ? (
-                unit.topNearby.map((competitor) => (
-                  <span key={`${unit.id}-${competitor.nome}-${competitor.lat}-${competitor.lon}`}>
-                    {competitor.nome} - {competitor.distanceKm.toFixed(2)} km
-                  </span>
-                ))
-              ) : (
-                <span>Nenhum concorrente dentro do raio</span>
-              )}
-            </div>
-            <div className="summary-meta" style={{ marginTop: 8, display: 'grid' }}>
-              <span>Redes no raio</span>
-              {unit.networks.length > 0 ? (
-                unit.networks.map((network) => (
-                  <span key={`${unit.id}-${network.network}`}>
-                    {network.network}: {network.count} pontos
-                  </span>
-                ))
-              ) : (
-                <span>Nenhuma rede identificada</span>
-              )}
-            </div>
-          </article>
-        ))}
-      </div>
+              <div className="summary-meta" style={{ marginTop: 8, display: 'grid' }}>
+                <span>Redes no raio</span>
+                {unit.networks.length > 0 ? (
+                  unit.networks.map((network) => (
+                    <span key={`${unit.id}-${network.network}`}>
+                      {network.network}: {network.count} pontos
+                    </span>
+                  ))
+                ) : (
+                  <span>Nenhuma rede identificada</span>
+                )}
+              </div>
+            </article>
+          ))}
+        </div>
       </section>
 
       <section className="section-card">
@@ -269,7 +250,7 @@ export default function DashboardClient({ data }) {
             <h2>{viewMode === 'all' ? 'Resumo das unidades' : 'Resumo da unidade selecionada'}</h2>
             <p>
               {viewMode === 'all'
-                ? 'Cartões mais curtos e objetivos, para leitura rápida.'
+                ? 'Cartões curtos e objetivos para leitura rápida.'
                 : 'Informações essenciais da unidade ativa antes de abrir o mapa.'}
             </p>
           </div>
@@ -278,7 +259,6 @@ export default function DashboardClient({ data }) {
         <div className="grid-units">
           {visibleUnits.map((u) => {
             const nearby = getNearbyCompetitors(u);
-            const cheapest = sortByPrice(nearby).find((c) => Number.isFinite(parsePreco(c.preco)));
             return (
               <article key={u.id} className="summary-card summary-card--executive">
                 <div className="summary-card__top">
@@ -288,7 +268,6 @@ export default function DashboardClient({ data }) {
                 <p>{u.endereco}</p>
                 <div className="summary-meta">
                   <span>{u.telefone || '—'}</span>
-                  {cheapest ? <span>Menor preço: {cheapest.preco}</span> : null}
                 </div>
                 <div className="summary-meta" style={{ marginTop: 8 }}>
                   {nearby[0] ? (

@@ -36,7 +36,7 @@ export default function LoginForm() {
     <form className="login-card" onSubmit={onSubmit}>
       <div className="login-badge">Dashboard Up Total Farma</div>
       <h1>Entrar no painel</h1>
-      <p>Use seu login e senha para acessar mapas, preços e unidades.</p>
+      <p>Use seu login e senha para acessar mapas e unidades.</p>
       <label>
         Login
         <input name="username" type="text" placeholder="AdminUpTotalFarma" required autoComplete="username" />

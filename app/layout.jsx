@@ -3,7 +3,7 @@ import './globals.css';
 
 export const metadata = {
   title: 'Dashboard Up Total Farma',
-  description: 'Dashboard com mapas, preços e unidades da Up Total Farma',
+  description: 'Dashboard com mapas e unidades da Up Total Farma',
 };
 
 export default function RootLayout({ children }) {
