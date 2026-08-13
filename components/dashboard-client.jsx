@@ -106,13 +106,15 @@ export default function DashboardClient({ data }) {
 
   return (
     <div className="dashboard">
-      <section className="hero-card hero-card--executive">
+      <section className="hero-card hero-card--executive hero-card--brand">
         <div className="hero-copy">
           <div className="brand-lockup">
             <img src="/uptotalfarma-logo.png" alt="Logo da Up Total Farma" className="brand-logo" />
-            <div className="eyebrow">Dashboard Up Total Farma</div>
+            <div>
+              <div className="eyebrow">Dashboard Up Total Farma</div>
+              <h1>{viewMode === 'all' ? 'Visão executiva das unidades' : selectedUnit?.nome || 'Unidade'}</h1>
+            </div>
           </div>
-          <h1>{viewMode === 'all' ? 'Visão executiva das unidades' : selectedUnit?.nome || 'Unidade'}</h1>
           <p>
             Painel para acompanhar as 3 unidades, visualizar os concorrentes dentro do raio de
             2 km e entender a pressão competitiva por região.
