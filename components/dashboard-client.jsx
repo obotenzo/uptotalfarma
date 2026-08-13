@@ -155,24 +155,28 @@ export default function DashboardClient({ data }) {
           </div>
         </div>
         <div className="controls-card controls-card--clean">
-          <button className={viewMode === 'all' ? 'control active' : 'control'} onClick={() => setViewMode('all')}>
-            Visão geral
-          </button>
-          <Link className="control" href="/concorrentes">
-            Ver concorrentes
-          </Link>
-          {data.map((unit) => (
-            <button
-              key={unit.id}
-              className={viewMode !== 'all' && activeUnitId === unit.id ? 'control active' : 'control'}
-              onClick={() => {
-                setActiveUnitId(unit.id);
-                setViewMode('one');
-              }}
-            >
-              {unit.nome.replace('UP Total Farma - ', '')}
+          <div className="controls-group controls-group--left">
+            <button className={viewMode === 'all' ? 'control active' : 'control'} onClick={() => setViewMode('all')}>
+              Visão geral
             </button>
-          ))}
+            {data.map((unit) => (
+              <button
+                key={unit.id}
+                className={viewMode !== 'all' && activeUnitId === unit.id ? 'control active' : 'control'}
+                onClick={() => {
+                  setActiveUnitId(unit.id);
+                  setViewMode('one');
+                }}
+              >
+                {unit.nome.replace('UP Total Farma - ', '')}
+              </button>
+            ))}
+          </div>
+          <div className="controls-group controls-group--right">
+            <Link className="control control--secondary" href="/concorrentes">
+              Ver concorrentes
+            </Link>
+          </div>
         </div>
       </section>
 
@@ -211,4 +215,3 @@ export default function DashboardClient({ data }) {
     </div>
   );
 }
-

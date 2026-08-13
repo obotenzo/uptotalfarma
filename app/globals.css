@@ -303,6 +303,26 @@ button, input { font: inherit; }
   box-shadow: none;
 }
 
+.controls-group {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.controls-group--left {
+  flex: 1 1 auto;
+}
+
+.controls-group--right {
+  margin-left: auto;
+}
+
+.control--secondary {
+  border-style: dashed;
+  color: var(--pink-600);
+}
+
 .control {
   border: 1px solid var(--border);
   background: #fff;
@@ -501,4 +521,5 @@ button, input { font: inherit; }
   .map-shell { height: 520px; }
   .hero-card, .hero-card--executive { align-items: stretch; }
   .competitor-layout { grid-template-columns: 1fr; }
+  .controls-group--right { margin-left: 0; }
 }
