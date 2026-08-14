@@ -5,7 +5,7 @@
     "unidades": [
       {
         "id": "vila-andrade",
-        "nome": "UP Total Farma - Monte Kemel",
+        "nome": "Monte Kemel",
         "endereco": "Av. Claudio Franchi, 273 - Jardim Monte Kemel, São Paulo - SP",
         "telefone": "(11) 96213-5847 (WhatsApp)",
         "lat": -23.6004131,
@@ -99,7 +99,7 @@
       },
       {
         "id": "vila-Sônia",
-        "nome": "UP Total Farma - Vila Sônia",
+        "nome": "Vila Sônia",
         "endereco": "Av. José Maria da Silva Paranhos, 345 - Vila Sônia, São Paulo - SP, 05635-050",
         "telefone": "—",
         "lat": -23.6052474,
@@ -157,7 +157,7 @@
       },
       {
         "id": "campo-limpo",
-        "nome": "UP Total Farma - Campo Limpo",
+        "nome": "Campo Limpo",
         "endereco": "Rua Chico Mana, 34 - Campo Limpo, São Paulo - SP, 05777-001",
         "telefone": "—",
         "lat": -23.6186853,
