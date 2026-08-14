@@ -1,16 +1,35 @@
 {
   "loja": "UP Total Farma",
-  "descricao": "Pesquisa de preços de produtos da UP Total Farma (fonte incremental)",
+  "descricao": "Pesquisa de precos de produtos da UP Total Farma (fonte incremental)",
   "gerado_em": "2026-08-14",
   "fonte_pesquisa": "Web - buscas em Droga Raia, Drogasil, Pague Menos, Ultrafarma, Panvel, Drogaria Sao Paulo, Farma Conde, Consulta Remedios (agregador)",
   "precos": [
     {
       "id_produto": 1,
-      "produto": "Ondansetrona 8 mg orodispersível",
-      "barcode": "78962415296400",
+      "produto": "Ondansetrona orodispersível",
+      "principio_ativo": "Ondansetrona",
+      "barcode": null,
       "apresentacoes": [
         {
-          "apresentacao": "10 comprimidos orodispersíveis",
+          "apresentacao": "4 mg - 10 comprimidos orodispersíveis",
+          "menor_preco": 14.28,
+          "maior_preco": 25.60,
+          "onde_menor": "Consulta Remédios (agregador)",
+          "onde_maior": "Droga Raia (gen. Neo Química)",
+          "fontes": "Droga Raia, Drogasil, Pague Menos, Farma Conde, Ultrafarma, Consulta Remédios",
+          "data": "2026-08-14"
+        },
+        {
+          "apresentacao": "4 mg - 30 comprimidos orodispersíveis",
+          "menor_preco": 47.83,
+          "maior_preco": 77.34,
+          "onde_menor": "Consulta Remédios (agregador)",
+          "onde_maior": "Pague Menos (gen. Biolab)",
+          "fontes": "Droga Raia, Drogasil, Pague Menos, Ultrafarma, Consulta Remédios",
+          "data": "2026-08-14"
+        },
+        {
+          "apresentacao": "8 mg - 10 comprimidos orodispersíveis",
           "menor_preco": 14.28,
           "maior_preco": 51.12,
           "onde_menor": "Consulta Remédios (agregador)",
@@ -19,7 +38,7 @@
           "data": "2026-08-14"
         },
         {
-          "apresentacao": "30 comprimidos orodispersíveis",
+          "apresentacao": "8 mg - 30 comprimidos orodispersíveis",
           "menor_preco": 33.63,
           "maior_preco": 141.13,
           "onde_menor": "Ultrafarma (gen. Prati-Donaduzzi, Pix)",
@@ -31,32 +50,8 @@
     },
     {
       "id_produto": 2,
-      "produto": "Ondansetrona 4 mg orodispersível",
-      "barcode": "7896112401599",
-      "apresentacoes": [
-        {
-          "apresentacao": "10 comprimidos orodispersíveis",
-          "menor_preco": 14.28,
-          "maior_preco": 25.60,
-          "onde_menor": "Consulta Remédios (agregador)",
-          "onde_maior": "Droga Raia (gen. Neo Química)",
-          "fontes": "Droga Raia, Drogasil, Pague Menos, Farma Conde, Ultrafarma, Consulta Remédios",
-          "data": "2026-08-14"
-        },
-        {
-          "apresentacao": "30 comprimidos orodispersíveis",
-          "menor_preco": 47.83,
-          "maior_preco": 77.34,
-          "onde_menor": "Consulta Remédios (agregador)",
-          "onde_maior": "Pague Menos (gen. Biolab)",
-          "fontes": "Droga Raia, Drogasil, Pague Menos, Ultrafarma, Consulta Remédios",
-          "data": "2026-08-14"
-        }
-      ]
-    },
-    {
-      "id_produto": 3,
       "produto": "Embeleze Natu Cor (tintura vegana sem amônia)",
+      "principio_ativo": "Tintura capilar (sem amônia, vegana)",
       "barcode": null,
       "apresentacoes": [
         {
