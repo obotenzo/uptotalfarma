@@ -81,6 +81,15 @@ export default function CompetitorsClient({ units }) {
           {ranking.map((unit, index) => (
             <article
               key={unit.id}
+              role="button"
+              tabIndex={0}
+              onClick={() => setActiveUnitId(unit.id)}
+              onKeyDown={(event) => {
+                if (event.key === 'Enter' || event.key === ' ') {
+                  event.preventDefault();
+                  setActiveUnitId(unit.id);
+                }
+              }}
               className={
                 activeUnitId === unit.id
                   ? 'summary-card summary-card--executive ranking-card ranking-card--active'
@@ -91,13 +100,7 @@ export default function CompetitorsClient({ units }) {
                 <h3>
                   #{index + 1} {unit.nome.replace('UP Total Farma - ', '')}
                 </h3>
-                <button
-                  type="button"
-                  className="pill ranking-pill"
-                  onClick={() => setActiveUnitId(unit.id)}
-                >
-                  {unit.nearbyCount} concorrentes
-                </button>
+                <span className="pill ranking-pill">{unit.nearbyCount} concorrentes</span>
               </div>
               <p>{unit.endereco}</p>
             </article>
