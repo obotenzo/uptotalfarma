@@ -126,7 +126,7 @@ export default function DashboardClient({ data }) {
             <img src="/uptotalfarma-logo.png" alt="Logo da Up Total Farma" className="brand-logo" />
             <div>
               <div className="eyebrow">Dashboard Up Total Farma</div>
-              <h1>{viewMode === 'all' ? 'Visão executiva das unidades' : selectedUnit?.nome || 'Unidade'}</h1>
+              <h1>{viewMode === 'all' ? 'Visão executiva' : selectedUnit?.nome || 'Unidade'}</h1>
             </div>
           </div>
           <p>
