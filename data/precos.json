@@ -98,6 +98,23 @@
           "data": "2026-08-14"
         }
       ]
+    },
+    {
+      "id_produto": 5,
+      "produto": "Cor & Ton Mega Colors (Niely - tintura permanente)",
+      "principio_ativo": "Tintura capilar permanente em creme",
+      "barcode": null,
+      "apresentacoes": [
+        {
+          "apresentacao": "1 unidade (tom variável, ex.: 6.646 Vermelho Cereja)",
+          "menor_preco": 9.99,
+          "maior_preco": 34.99,
+          "onde_menor": "Nossa Farma (tom 12.111 Louro Super Platinado)",
+          "onde_maior": "Drogarias Pacheco (tom 12.111)",
+          "fontes": "Drogaria São Paulo, Farmácias Nogueira, Mega Farma, Farmanello, Nossa Farma, Drogaria Retiro, Descontão, Cliquefarma, Goya Perfumaria, Amazon, Lumina Web, Pacheco, Goiás Atacado",
+          "data": "2026-08-14"
+        }
+      ]
     }
   ]
 }
