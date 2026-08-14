@@ -520,6 +520,13 @@ button, input { font: inherit; }
 
 .competitor-map .map-shell { height: 520px; }
 .competitor-list { display: grid; gap: 12px; }
+.competitors-dashboard .hero-card {
+  min-height: 220px;
+}
+
+.competitors-head {
+  align-items: center;
+}
 
 .leaflet-container {
   font-family: inherit;
@@ -541,4 +548,5 @@ button, input { font: inherit; }
   .hero-card, .hero-card--executive { align-items: stretch; }
   .competitor-layout { grid-template-columns: 1fr; }
   .controls-group--right { margin-left: 0; }
+  .competitors-dashboard .hero-card { min-height: 0; }
 }

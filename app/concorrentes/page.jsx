@@ -52,20 +52,24 @@ export default async function ConcorrentesPage() {
 
   const data = await loadDashboardData();
   const units = data?.uptotalfarma?.unidades || [];
+  const activeUnit = units[0] || null;
+  const nearby = activeUnit ? getNearbyCompetitors(activeUnit) : [];
 
   return (
     <main className="page-shell">
-      <div className="dashboard">
-        <section className="hero-card hero-card--executive">
+      <div className="dashboard competitors-dashboard">
+        <section className="hero-card hero-card--executive hero-card--brand">
           <div className="hero-copy">
             <div className="brand-lockup">
               <img src="/uptotalfarma-logo.png" alt="Logo da Up Total Farma" className="brand-logo" />
-              <div className="eyebrow">Mapa por unidade</div>
+              <div>
+                <div className="eyebrow">Mapa por unidade</div>
+                <h1>Concorrentes por unidade</h1>
+              </div>
             </div>
-            <h1>Concorrentes por unidade</h1>
             <p>
-              Visualização dedicada para cada unidade, mostrando apenas os concorrentes dentro
-              do raio de 2 km e a distância até o ponto da loja.
+              Visão focada nos concorrentes dentro de 2 km da unidade selecionada, com mapa e
+              lista em um layout limpo e consistente.
             </p>
           </div>
 
@@ -82,26 +86,32 @@ export default async function ConcorrentesPage() {
         </section>
 
         <section className="section-card section-card--tight">
-          <div className="section-head">
+          <div className="section-head competitors-head">
             <div>
-              <h2>Unidades</h2>
-              <p>Cada bloco abaixo mostra a unidade, seus concorrentes no raio e o mapa dedicado.</p>
+              <h2>Unidade ativa</h2>
+              <p>Comece pela unidade em destaque e avance para os pontos ao redor.</p>
             </div>
-            <Link className="control" href="/dashboard">
+            <Link className="control control--secondary" href="/dashboard">
               Voltar ao dashboard
             </Link>
           </div>
+
+          <div className="controls-card controls-card--clean">
+            <div className="controls-group controls-group--left">
+              <button className="control active" type="button">
+                {activeUnit ? activeUnit.nome.replace('UP Total Farma - ', '') : 'Sem unidade'}
+              </button>
+            </div>
+          </div>
         </section>
 
-        {units.map((unit) => {
-          const nearby = getNearbyCompetitors(unit);
-
-          return (
-            <section key={unit.id} className="section-card competitor-section">
+        {activeUnit ? (
+          <>
+            <section className="section-card">
               <div className="section-head">
                 <div>
-                  <h2>{unit.nome}</h2>
-                  <p>{unit.endereco}</p>
+                  <h2>{activeUnit.nome}</h2>
+                  <p>{activeUnit.endereco}</p>
                 </div>
                 <span className="pill">{nearby.length} concorrentes no raio</span>
               </div>
@@ -109,54 +119,66 @@ export default async function ConcorrentesPage() {
               <div className="unit-mini-grid">
                 <div>
                   <strong>Telefone</strong>
-                  <span>{unit.telefone || '—'}</span>
+                  <span>{activeUnit.telefone || '—'}</span>
                 </div>
                 <div>
                   <strong>Localização</strong>
                   <span>
-                    {unit.lat.toFixed(5)}, {unit.lon.toFixed(5)}
+                    {activeUnit.lat.toFixed(5)}, {activeUnit.lon.toFixed(5)}
                   </span>
                 </div>
                 <div>
-                  <strong>Visão</strong>
-                  <span>Somente concorrentes até 2 km</span>
-                </div>
-              </div>
-
-              <div className="competitor-layout">
-                <div className="competitor-map">
-                  <MapPanel units={[unit]} viewMode="one" activeUnitId={unit.id} radiusKm={2} />
-                </div>
-
-                <div className="competitor-list">
-                  {nearby.length > 0 ? (
-                    nearby.map((competitor) => (
-                      <article
-                        key={`${unit.id}-${competitor.nome}-${competitor.lat}-${competitor.lon}`}
-                        className="summary-card summary-card--executive"
-                      >
-                        <div className="summary-card__top">
-                          <h3>{competitor.nome}</h3>
-                          <span className="pill">{competitor.distanceKm.toFixed(2)} km</span>
-                        </div>
-                        <p>{competitor.end || 'Endereço não informado'}</p>
-                        <div className="summary-meta">
-                          <span>{competitor.tel || '—'}</span>
-                          <span>{competitor.fonte || 'Fonte não informada'}</span>
-                        </div>
-                      </article>
-                    ))
-                  ) : (
-                    <article className="summary-card summary-card--executive">
-                      <h3>Nenhum concorrente dentro do raio</h3>
-                      <p>Esta unidade não possui pontos válidos dentro de 2 km no dataset atual.</p>
-                    </article>
-                  )}
+                  <strong>Raio</strong>
+                  <span>2 km</span>
                 </div>
               </div>
             </section>
-          );
-        })}
+
+            <section className="map-card">
+              <div className="section-head">
+                <div>
+                  <h2>Mapa de contexto</h2>
+                  <p>Concorrentes dentro do raio de 2 km da unidade selecionada.</p>
+                </div>
+              </div>
+              <MapPanel units={[activeUnit]} viewMode="one" activeUnitId={activeUnit.id} radiusKm={2} />
+            </section>
+
+            <section className="section-card">
+              <div className="section-head">
+                <div>
+                  <h2>Lista de concorrentes</h2>
+                  <p>Cards compactos com os pontos encontrados no raio.</p>
+                </div>
+              </div>
+
+              <div className="competitor-list">
+                {nearby.length > 0 ? (
+                  nearby.map((competitor) => (
+                    <article
+                      key={`${activeUnit.id}-${competitor.nome}-${competitor.lat}-${competitor.lon}`}
+                      className="summary-card summary-card--executive"
+                    >
+                      <div className="summary-card__top">
+                        <h3>{competitor.nome}</h3>
+                        <span className="pill">{competitor.distanceKm.toFixed(2)} km</span>
+                      </div>
+                      <p>{competitor.end || 'Endereço não informado'}</p>
+                      <div className="summary-meta">
+                        <span>{competitor.tel || '—'}</span>
+                      </div>
+                    </article>
+                  ))
+                ) : (
+                  <article className="summary-card summary-card--executive">
+                    <h3>Nenhum concorrente dentro do raio</h3>
+                    <p>Esta unidade não possui pontos válidos dentro de 2 km no dataset atual.</p>
+                  </article>
+                )}
+              </div>
+            </section>
+          </>
+        ) : null}
       </div>
     </main>
   );
