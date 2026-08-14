@@ -183,7 +183,7 @@ export default function DashboardClient({ data }) {
       <section className="section-card">
         <div className="section-head">
           <div>
-            <h2>Ranking de unidades por concorrentes</h2>
+            <h2>Unidades e seus concorrentes próximos</h2>
             <p>Unidades ordenadas pela quantidade de concorrentes dentro do raio de 2 km.</p>
           </div>
         </div>

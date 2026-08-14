@@ -69,7 +69,7 @@ export default function CompetitorsClient({ units }) {
       <section className="section-card section-card--tight">
         <div className="section-head competitors-head">
           <div>
-            <h2>Ranking de unidades por concorrentes</h2>
+            <h2>Unidades e seus concorrentes próximos</h2>
             <p>Clique no número de concorrentes para carregar o mapa e a lista daquela unidade.</p>
           </div>
           <a className="control control--secondary" href="/dashboard">
