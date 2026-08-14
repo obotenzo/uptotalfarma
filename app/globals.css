@@ -185,7 +185,7 @@ button, input { font: inherit; }
   display: flex;
   gap: 18px;
   justify-content: space-between;
-  align-items: stretch;
+  align-items: flex-start;
   flex-wrap: wrap;
   min-height: 240px;
   background:
@@ -218,7 +218,7 @@ button, input { font: inherit; }
 .hero-copy {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
 }
 
 .brand-lockup {
@@ -271,7 +271,7 @@ button, input { font: inherit; }
   min-width: 260px;
   position: relative;
   z-index: 1;
-  align-self: stretch;
+  align-self: flex-start;
 }
 
 .hero-stats div {
