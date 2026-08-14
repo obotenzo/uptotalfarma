@@ -53,6 +53,22 @@
           "data": "2026-08-14"
         }
       ]
+    },
+    {
+      "id_produto": 3,
+      "produto": "Embeleze Natu Cor (tintura vegana sem amônia)",
+      "barcode": null,
+      "apresentacoes": [
+        {
+          "apresentacao": "1 unidade (tom variável, ex.: 1.0 Preto Natural)",
+          "menor_preco": 10.39,
+          "maior_preco": 20.88,
+          "onde_menor": "Drogaria Venâncio (tom 1.0, 20% off)",
+          "onde_maior": "Magazine Luiza (tom 5.0, Pix)",
+          "fontes": "Embelleze (site), Mercado Livre, Drogaria Venâncio, Drogaria São Paulo, Drogarias Minas Mais, Araujo, Drogarias Pacheco, Magazine Luiza, Drogasil",
+          "data": "2026-08-14"
+        }
+      ]
     }
   ]
 }
