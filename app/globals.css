@@ -215,6 +215,7 @@ button, input { font: inherit; }
 .hero-card--executive { align-items: flex-start; }
 
 .hero-copy { max-width: 780px; position: relative; z-index: 1; }
+
 .hero-copy {
   display: flex;
   flex-direction: column;
@@ -222,11 +223,22 @@ button, input { font: inherit; }
 }
 
 .brand-lockup {
-  display: flex;
-  align-items: center;
+  display: grid;
+  grid-template-columns: 86px minmax(0, 1fr);
   gap: 14px;
+  align-items: center;
   margin-bottom: 12px;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
+}
+
+.brand-lockup > div {
+  min-width: 0;
+}
+
+.brand-lockup h1 {
+  max-width: 100%;
+  line-height: 1.04;
+  text-wrap: balance;
 }
 
 .brand-logo {
