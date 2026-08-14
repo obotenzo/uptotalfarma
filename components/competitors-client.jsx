@@ -79,7 +79,14 @@ export default function CompetitorsClient({ units }) {
 
         <div className="ranking-grid">
           {ranking.map((unit, index) => (
-            <article key={unit.id} className={activeUnitId === unit.id ? 'summary-card summary-card--executive ranking-card ranking-card--active' : 'summary-card summary-card--executive ranking-card'}>
+            <article
+              key={unit.id}
+              className={
+                activeUnitId === unit.id
+                  ? 'summary-card summary-card--executive ranking-card ranking-card--active'
+                  : 'summary-card summary-card--executive ranking-card'
+              }
+            >
               <div className="summary-card__top">
                 <h3>
                   #{index + 1} {unit.nome.replace('UP Total Farma - ', '')}
@@ -100,39 +107,13 @@ export default function CompetitorsClient({ units }) {
 
       {activeUnit ? (
         <>
-          <section className="section-card">
-            <div className="section-head">
-              <div>
-                <h2>{activeUnit.nome}</h2>
-                <p>{activeUnit.endereco}</p>
-              </div>
-              <span className="pill">{nearby.length} concorrentes no raio</span>
-            </div>
-
-            <div className="unit-mini-grid">
-              <div>
-                <strong>Telefone</strong>
-                <span>{activeUnit.telefone || '—'}</span>
-              </div>
-              <div>
-                <strong>Localização</strong>
-                <span>
-                  {activeUnit.lat.toFixed(5)}, {activeUnit.lon.toFixed(5)}
-                </span>
-              </div>
-              <div>
-                <strong>Raio</strong>
-                <span>2 km</span>
-              </div>
-            </div>
-          </section>
-
           <section className="map-card">
             <div className="section-head">
               <div>
                 <h2>Mapa de contexto</h2>
                 <p>Concorrentes dentro do raio de 2 km da unidade selecionada.</p>
               </div>
+              <span className="pill">{nearby.length} concorrentes no raio</span>
             </div>
             <MapPanel units={[activeUnit]} viewMode="one" activeUnitId={activeUnit.id} radiusKm={2} />
           </section>
