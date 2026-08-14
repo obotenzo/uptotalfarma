@@ -64,6 +64,23 @@
           "data": "2026-08-14"
         }
       ]
+    },
+    {
+      "id_produto": 3,
+      "produto": "L'Oréal Paris Casting Creme Gloss (tintura sem amônia)",
+      "principio_ativo": "Tintura capilar (sem amônia)",
+      "barcode": null,
+      "apresentacoes": [
+        {
+          "apresentacao": "1 unidade (tom variável, ex.: 600 Louro Escuro)",
+          "menor_preco": 20.07,
+          "maior_preco": 58.55,
+          "onde_menor": "Drogaria São Paulo (tom 400 Castanho Natural)",
+          "onde_maior": "Magazine Luiza (tom 600, tonalizante)",
+          "fontes": "Amazon, L'Oréal (site), Drogarias Pacheco, Ultrafarma, Magazine Luiza, Droga Raia, Drogasil, Drogaria São Paulo, Farmácia Indiana, Pague Menos, Drogaria Shopper",
+          "data": "2026-08-14"
+        }
+      ]
     }
   ]
 }
