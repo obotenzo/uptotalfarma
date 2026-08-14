@@ -115,6 +115,161 @@
           "data": "2026-08-14"
         }
       ]
+    },
+    {
+      "id_produto": 6,
+      "produto": "L'Oréal Paris Nutrisse (tintura permanente)",
+      "principio_ativo": "Tintura capilar permanente (linha L'Oréal Paris)",
+      "barcode": null,
+      "apresentacoes": [
+        {
+          "apresentacao": "1 unidade (tom variável, ex.: 81 Louro Paixão Nacional)",
+          "menor_preco": 26.90,
+          "maior_preco": 29.99,
+          "onde_menor": "Promoção L'Oréal Paris (Instagram, R$ 26,90)",
+          "onde_maior": "Mercado Livre (Nutrisse permanente)",
+          "fontes": "Droga Raia, Mercado Livre, Droga Cristal 24h, Goyaperfumaria, L'Oréal Paris (site), Instagram promo",
+          "data": "2026-08-14"
+        }
+      ]
+    },
+    {
+      "id_produto": 7,
+      "produto": "Wella Koleston (linha padrão, tintura permanente)",
+      "principio_ativo": "Tintura capilar permanente",
+      "barcode": null,
+      "apresentacoes": [
+        {
+          "apresentacao": "1 unidade (tom variável, ex.: 20 Preto)",
+          "menor_preco": 22.95,
+          "maior_preco": 36.48,
+          "onde_menor": "Promoção de farmácia (Instagram, De R$ 25,95 por R$ 22,95)",
+          "onde_maior": "Droga Raia (loja parceira, tom 20 Preto)",
+          "fontes": "Droga Raia, Drogasil, Pacheco, Instagram promo, Wella (site), Farmácia Permanente",
+          "data": "2026-08-14"
+        }
+      ]
+    },
+    {
+      "id_produto": 8,
+      "produto": "L'Oréal Paris Excellence Creme (Imédia Excellence)",
+      "principio_ativo": "Tintura capilar permanente (triplo cuidado)",
+      "barcode": null,
+      "apresentacoes": [
+        {
+          "apresentacao": "1 unidade (tom variável, ex.: 1 Preto / 7.1 Louro Acinzentado)",
+          "menor_preco": 25.09,
+          "maior_preco": 53.53,
+          "onde_menor": "Drogasil (via Melhora o Preço, R$ 25,09)",
+          "onde_maior": "Droga Raia (tom 7.1 Louro Acinzentado)",
+          "fontes": "Droga Raia, Drogasil, Mercado Livre, eBay, Melhora o Preço, L'Oréal Paris (site/PT)",
+          "data": "2026-08-14"
+        }
+      ]
+    },
+    {
+      "id_produto": 9,
+      "produto": "Garnier Nutrisse (tintura permanente)",
+      "principio_ativo": "Tintura capilar permanente (Garnier)",
+      "barcode": null,
+      "apresentacoes": [
+        {
+          "apresentacao": "1 unidade (tom variável, ex.: 100 Louro Sol / 50 Amêndoa)",
+          "menor_preco": 26.99,
+          "maior_preco": 29.99,
+          "onde_menor": "Ultrafarma / Shopper (R$ 26,99)",
+          "onde_maior": "Drogaria São João (R$ 29,99)",
+          "fontes": "Droga Raia, Drogasil, Drogaria São João, Ultrafarma, Shopper, Magazine Luiza, Garnier (site)",
+          "data": "2026-08-14"
+        }
+      ]
+    },
+    {
+      "id_produto": 10,
+      "produto": "Expec Xarope Tripla Ação 120 mL",
+      "principio_ativo": "Cloridrato de oxomemazina + iodeto de potássio + benzoato de sódio + guaifenesina",
+      "barcode": "7896004812168",
+      "apresentacoes": [
+        {
+          "apresentacao": "Xarope 120 mL",
+          "menor_preco": 27.90,
+          "maior_preco": 56.58,
+          "onde_menor": "Drogasil (R$ 27,90)",
+          "onde_maior": "Drogarias Pacheco (R$ 56,58)",
+          "fontes": "Droga Raia, Drogasil, Drogaria São Paulo, Pacheco, Pague Menos, Ultrafarma",
+          "data": "2026-08-14"
+        }
+      ]
+    },
+    {
+      "id_produto": 11,
+      "produto": "Lavitan (linha de vitaminas/suplementos)",
+      "principio_ativo": "Polivitamínicos / vitaminas (linha diversa)",
+      "barcode": null,
+      "apresentacoes": [
+        {
+          "apresentacao": "1 unidade (variável por tipo: Vit D, A-Z, etc.)",
+          "menor_preco": 19.99,
+          "maior_preco": 39.59,
+          "onde_menor": "Drogaria São João (Vitamina D Cimed, R$ 19,99)",
+          "onde_maior": "Drogaria São Paulo (Lavitan 0,21mg, R$ 39,59)",
+          "fontes": "Droga Raia, Drogasil, Drogaria São Paulo, Drogaria São João, Panvel, lavitan.com.br",
+          "data": "2026-08-14"
+        }
+      ]
+    },
+    {
+      "id_produto": 12,
+      "produto": "Ibuprofeno 400 mg (Alivium) - cápsulas",
+      "principio_ativo": "Ibuprofeno 400 mg",
+      "barcode": "7891142982407",
+      "apresentacoes": [
+        {
+          "apresentacao": "10 cápsulas (400 mg)",
+          "menor_preco": 26.99,
+          "maior_preco": 33.48,
+          "onde_menor": "Droga Raia / Farmácia Modelo (R$ 26,99)",
+          "onde_maior": "Qualidoc (R$ 33,48)",
+          "fontes": "Droga Raia, Ultrafarma, Farmácia Modelo, Preço Popular, Drogaria Venâncio, Qualidoc",
+          "data": "2026-08-14",
+          "observacoes": "Barcode da foto 12 (analgésico/AINE) corresponde a Alivium Ibuprofeno 400mg 10 caps."
+        }
+      ]
+    },
+    {
+      "id_produto": 13,
+      "produto": "Cápsula 'ESFENO...' (marca a confirmar)",
+      "principio_ativo": "A confirmar",
+      "barcode": "78963317034311",
+      "apresentacoes": [
+        {
+          "apresentacao": "A confirmar",
+          "menor_preco": null,
+          "maior_preco": null,
+          "onde_menor": "Não localizado",
+          "onde_maior": "Não localizado",
+          "fontes": "Busca por barcode 78963317034311 (sem resultado)",
+          "data": "2026-08-14",
+          "observacoes": "Preço não encontrado na web. Necessária identificação da marca exata (foto mostra 'ESFENOIE' parcial)."
+        }
+      ]
+    },
+    {
+      "id_produto": 14,
+      "produto": "Ibuprofeno Suspensão Gotas 100 mg/mL",
+      "principio_ativo": "Ibuprofeno 100 mg/mL",
+      "barcode": "7891142115492",
+      "apresentacoes": [
+        {
+          "apresentacao": "Suspensão gotas 20 mL (100 mg/mL)",
+          "menor_preco": 6.99,
+          "maior_preco": 8.49,
+          "onde_menor": "Droga Raia (Nova Química, R$ 6,99)",
+          "onde_maior": "Drogaria Venâncio (Geolab, R$ 8,49)",
+          "fontes": "Drogasil, Droga Raia, Drogaria São Paulo, Drogaria Venâncio, Pague Menos, Consulta Remédios",
+          "data": "2026-08-14"
+        }
+      ]
     }
   ]
 }
