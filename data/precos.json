@@ -81,6 +81,23 @@
           "data": "2026-08-14"
         }
       ]
+    },
+    {
+      "id_produto": 4,
+      "produto": "Wella Koleston Deluxe (tintura permanente 0% amônia)",
+      "principio_ativo": "Tintura capilar permanente (sem amônia)",
+      "barcode": null,
+      "apresentacoes": [
+        {
+          "apresentacao": "1 unidade (tom variável, ex.: 60 Louro Escuro)",
+          "menor_preco": 24.99,
+          "maior_preco": 55.90,
+          "onde_menor": "Promoção de farmácia (Instagram, R$ 24,99)",
+          "onde_maior": "Shopee (variações R$ 51,90-55,90)",
+          "fontes": "Loja Wella, Mercado Livre, Shopee, Lojas Rede, Magazine Luiza, Buscapé, Pacheco, Drogaria São Paulo, Stylosa, Farmagerty, Instagram promo",
+          "data": "2026-08-14"
+        }
+      ]
     }
   ]
 }
