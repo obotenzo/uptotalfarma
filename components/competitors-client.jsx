@@ -53,33 +53,48 @@ export default function CompetitorsClient({ units }) {
   );
 
   const nearby = useMemo(() => (activeUnit ? getNearbyCompetitors(activeUnit) : []), [activeUnit]);
+  const ranking = useMemo(
+    () =>
+      units
+        .map((unit) => ({
+          ...unit,
+          nearbyCount: getNearbyCompetitors(unit).length,
+        }))
+        .sort((a, b) => b.nearbyCount - a.nearbyCount),
+    [units]
+  );
 
   return (
     <>
       <section className="section-card section-card--tight">
         <div className="section-head competitors-head">
           <div>
-            <h2>Selecionar unidade</h2>
-            <p>Escolha uma unidade para analisar os concorrentes próximos.</p>
+            <h2>Ranking de unidades por concorrentes</h2>
+            <p>Clique no número de concorrentes para carregar o mapa e a lista daquela unidade.</p>
           </div>
           <a className="control control--secondary" href="/dashboard">
             Voltar ao dashboard
           </a>
         </div>
 
-        <div className="controls-card controls-card--clean">
-          <div className="controls-group controls-group--left">
-            {units.map((unit) => (
-              <button
-                key={unit.id}
-                className={activeUnitId === unit.id ? 'control active' : 'control'}
-                type="button"
-                onClick={() => setActiveUnitId(unit.id)}
-              >
-                {unit.nome.replace('UP Total Farma - ', '')}
-              </button>
-            ))}
-          </div>
+        <div className="ranking-grid">
+          {ranking.map((unit, index) => (
+            <article key={unit.id} className={activeUnitId === unit.id ? 'summary-card summary-card--executive ranking-card ranking-card--active' : 'summary-card summary-card--executive ranking-card'}>
+              <div className="summary-card__top">
+                <h3>
+                  #{index + 1} {unit.nome.replace('UP Total Farma - ', '')}
+                </h3>
+                <button
+                  type="button"
+                  className="pill ranking-pill"
+                  onClick={() => setActiveUnitId(unit.id)}
+                >
+                  {unit.nearbyCount} concorrentes
+                </button>
+              </div>
+              <p>{unit.endereco}</p>
+            </article>
+          ))}
         </div>
       </section>
 
