@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>UP Total Farma — Pesquisa de Preços</title>
+<style>
+  :root {
+    --azul: #0f3d5e;
+    --magenta: #d11a6b;
+    --verde: #1f6f54;
+    --areia: #f5f7f6;
+    --cinza: #5a6a72;
+    --borda: #e2e8e6;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; font-family: -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+    background: var(--areia); color: #1c2b30; line-height: 1.45;
+  }
+  header {
+    background: linear-gradient(120deg, var(--azul), #15557e);
+    color: #fff; padding: 22px 20px; display: flex; align-items: center; gap: 16px;
+  }
+  header img { height: 46px; width: auto; }
+  header h1 { margin: 0; font-size: 20px; font-weight: 700; }
+  header p { margin: 2px 0 0; font-size: 13px; opacity: .85; }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 20px; }
+  .toolbar { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 18px; align-items: center; }
+  .toolbar input, .toolbar select {
+    padding: 9px 12px; border: 1px solid var(--borda); border-radius: 8px; font-size: 14px; background: #fff;
+  }
+  .toolbar input { flex: 1; min-width: 220px; }
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; margin-bottom: 26px; }
+  .card {
+    background: #fff; border: 1px solid var(--borda); border-radius: 12px; padding: 16px;
+    box-shadow: 0 1px 3px rgba(0,0,0,.05);
+  }
+  .card .v { font-size: 26px; font-weight: 800; color: var(--azul); }
+  .card .l { font-size: 12px; color: var(--cinza); text-transform: uppercase; letter-spacing: .04em; }
+  .card.m span { color: var(--magenta); }
+  .card.g span { color: var(--verde); }
+  .panel { background: #fff; border: 1px solid var(--borda); border-radius: 12px; padding: 18px; margin-bottom: 26px; }
+  .panel h2 { margin: 0 0 14px; font-size: 16px; color: var(--azul); }
+  .row { display: grid; grid-template-columns: 240px 1fr; gap: 12px; align-items: center; margin-bottom: 14px; }
+  .row .name { font-size: 13px; font-weight: 600; }
+  .row .name small { display:block; font-weight: 400; color: var(--cinza); font-size: 11px; }
+  .bar-track { position: relative; height: 26px; background: #eef2f1; border-radius: 6px; }
+  .bar-min { position: absolute; left: 0; top: 0; height: 100%; background: var(--verde); border-radius: 6px 0 0 6px; }
+  .bar-max { position: absolute; left: 0; top: 0; height: 100%; background: rgba(209,26,107,.35); border-radius: 6px; }
+  .bar-label { position: absolute; right: 8px; top: 50%; transform: translateY(-50%); font-size: 11px; color: #333; white-space: nowrap; }
+  .bar-label.left { left: 8px; right: auto; color: #fff; font-weight: 700; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th, td { text-align: left; padding: 9px 10px; border-bottom: 1px solid var(--borda); }
+  th { color: var(--cinza); font-size: 11px; text-transform: uppercase; letter-spacing: .03em; background: #fafbfb; }
+  td .preco { font-weight: 700; }
+  td .menor { color: var(--verde); }
+  td .maior { color: var(--magenta); }
+  .tag { display:inline-block; padding: 2px 8px; border-radius: 20px; font-size: 11px; background: #eaf4f0; color: var(--verde); }
+  .empty { color: var(--cinza); font-style: italic; padding: 8px 0; }
+  footer { text-align: center; color: var(--cinza); font-size: 12px; padding: 24px; }
+</style>
+</head>
+<body>
+<header>
+  <img src="uptotalfarma-logo.png" alt="UP Total Farma" onerror="this.style.display='none'">
+  <div>
+    <h1>UP Total Farma — Pesquisa de Preços</h1>
+    <p>Catálogo de produtos identificados nas fotos &middot; gerado em 2026-08-14</p>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="cards" id="cards"></div>
+
+  <div class="toolbar">
+    <input id="busca" type="text" placeholder="Filtrar por nome do produto...">
+    <select id="ordem">
+      <option value="nome">Ordenar: Nome</option>
+      <option value="menor">Ordenar: Menor preço</option>
+      <option value="maior">Ordenar: Maior preço</option>
+      <option value="variacao">Ordenar: Maior variação</option>
+    </select>
+  </div>
+
+  <div class="panel">
+    <h2>Faixa de preço por produto (menor → maior)</h2>
+    <div id="grafico"></div>
+  </div>
+
+  <div class="panel">
+    <h2>Detalhamento</h2>
+    <table>
+      <thead>
+        <tr><th>Produto</th><th>Apresentação</th><th>Menor</th><th>Maior</th><th>Onde é mais barato</th><th>Onde é mais caro</th></tr>
+      </thead>
+      <tbody id="tabela"></tbody>
+    </table>
+  </div>
+</div>
+
+<footer>UP Total Farma &middot; dados de pesquisa web (Droga Raia, Drogasil, Pacheco, Ultrafarma, Consulta Remédios e outras) &middot; preços referenciais</footer>
+
+<script>
+const DATA = [{"id": 1, "produto": "Ondansetrona orodispersível", "apresentacao": "4 mg - 10 comprimidos orodispersíveis", "menor": 14.28, "maior": 25.6, "onde_menor": "Consulta Remédios (agregador)", "onde_maior": "Droga Raia (gen. Neo Química)"}, {"id": 1, "produto": "Ondansetrona orodispersível", "apresentacao": "4 mg - 30 comprimidos orodispersíveis", "menor": 47.83, "maior": 77.34, "onde_menor": "Consulta Remédios (agregador)", "onde_maior": "Pague Menos (gen. Biolab)"}, {"id": 1, "produto": "Ondansetrona orodispersível", "apresentacao": "8 mg - 10 comprimidos orodispersíveis", "menor": 14.28, "maior": 51.12, "onde_menor": "Consulta Remédios (agregador)", "onde_maior": "Pague Menos (gen. Pharlab)"}, {"id": 1, "produto": "Ondansetrona orodispersível", "apresentacao": "8 mg - 30 comprimidos orodispersíveis", "menor": 33.63, "maior": 141.13, "onde_menor": "Ultrafarma (gen. Prati-Donaduzzi, Pix)", "onde_maior": "Drogaria São João (gen. Althaia)"}, {"id": 2, "produto": "Embeleze Natu Cor (tintura vegana sem amônia)", "apresentacao": "1 unidade (tom variável, ex.: 1.0 Preto Natural)", "menor": 10.39, "maior": 20.88, "onde_menor": "Drogaria Venâncio (tom 1.0, 20% off)", "onde_maior": "Magazine Luiza (tom 5.0, Pix)"}, {"id": 3, "produto": "L'Oréal Paris Casting Creme Gloss (tintura sem amônia)", "apresentacao": "1 unidade (tom variável, ex.: 600 Louro Escuro)", "menor": 20.07, "maior": 58.55, "onde_menor": "Drogaria São Paulo (tom 400 Castanho Natural)", "onde_maior": "Magazine Luiza (tom 600, tonalizante)"}, {"id": 4, "produto": "Wella Koleston Deluxe (tintura permanente 0% amônia)", "apresentacao": "1 unidade (tom variável, ex.: 60 Louro Escuro)", "menor": 24.99, "maior": 55.9, "onde_menor": "Promoção de farmácia (Instagram, R$ 24,99)", "onde_maior": "Shopee (variações R$ 51,90-55,90)"}, {"id": 5, "produto": "Cor & Ton Mega Colors (Niely - tintura permanente)", "apresentacao": "1 unidade (tom variável, ex.: 6.646 Vermelho Cereja)", "menor": 9.99, "maior": 34.99, "onde_menor": "Nossa Farma (tom 12.111 Louro Super Platinado)", "onde_maior": "Drogarias Pacheco (tom 12.111)"}, {"id": 6, "produto": "L'Oréal Paris Nutrisse (tintura permanente)", "apresentacao": "1 unidade (tom variável, ex.: 81 Louro Paixão Nacional)", "menor": 26.9, "maior": 29.99, "onde_menor": "Promoção L'Oréal Paris (Instagram, R$ 26,90)", "onde_maior": "Mercado Livre (Nutrisse permanente)"}, {"id": 7, "produto": "Wella Koleston (linha padrão, tintura permanente)", "apresentacao": "1 unidade (tom variável, ex.: 20 Preto)", "menor": 22.95, "maior": 36.48, "onde_menor": "Promoção de farmácia (Instagram, De R$ 25,95 por R$ 22,95)", "onde_maior": "Droga Raia (loja parceira, tom 20 Preto)"}, {"id": 8, "produto": "L'Oréal Paris Excellence Creme (Imédia Excellence)", "apresentacao": "1 unidade (tom variável, ex.: 1 Preto / 7.1 Louro Acinzentado)", "menor": 25.09, "maior": 53.53, "onde_menor": "Drogasil (via Melhora o Preço, R$ 25,09)", "onde_maior": "Droga Raia (tom 7.1 Louro Acinzentado)"}, {"id": 9, "produto": "Garnier Nutrisse (tintura permanente)", "apresentacao": "1 unidade (tom variável, ex.: 100 Louro Sol / 50 Amêndoa)", "menor": 26.99, "maior": 29.99, "onde_menor": "Ultrafarma / Shopper (R$ 26,99)", "onde_maior": "Drogaria São João (R$ 29,99)"}, {"id": 10, "produto": "Expec Xarope Tripla Ação 120 mL", "apresentacao": "Xarope 120 mL", "menor": 27.9, "maior": 56.58, "onde_menor": "Drogasil (R$ 27,90)", "onde_maior": "Drogarias Pacheco (R$ 56,58)"}, {"id": 11, "produto": "Lavitan (linha de vitaminas/suplementos)", "apresentacao": "1 unidade (variável por tipo: Vit D, A-Z, etc.)", "menor": 19.99, "maior": 39.59, "onde_menor": "Drogaria São João (Vitamina D Cimed, R$ 19,99)", "onde_maior": "Drogaria São Paulo (Lavitan 0,21mg, R$ 39,59)"}, {"id": 12, "produto": "Ibuprofeno 400 mg (Alivium) - cápsulas", "apresentacao": "10 cápsulas (400 mg)", "menor": 26.99, "maior": 33.48, "onde_menor": "Droga Raia / Farmácia Modelo (R$ 26,99)", "onde_maior": "Qualidoc (R$ 33,48)"}, {"id": 13, "produto": "Cápsula 'ESFENO...' (marca a confirmar)", "apresentacao": "A confirmar", "menor": null, "maior": null, "onde_menor": "Não localizado", "onde_maior": "Não localizado"}, {"id": 14, "produto": "Ibuprofeno Suspensão Gotas 100 mg/mL", "apresentacao": "Suspensão gotas 20 mL (100 mg/mL)", "menor": 6.99, "maior": 8.49, "onde_menor": "Droga Raia (Nova Química, R$ 6,99)", "onde_maior": "Drogaria Venâncio (Geolab, R$ 8,49)"}];
+
+function fmt(v) {
+  if (v === null || v === undefined) return "—";
+  return "R$ " + Number(v).toLocaleString("pt-BR", {minimumFractionDigits: 2, maximumFractionDigits: 2});
+}
+
+let filtro = "";
+let ordem = "nome";
+
+function aplicar() {
+  let rows = DATA.filter(d => d.produto.toLowerCase().includes(filtro.toLowerCase()));
+  if (ordem === "menor") rows.sort((a,b) => (a.menor||0) - (b.menor||0));
+  else if (ordem === "maior") rows.sort((a,b) => (b.maior||0) - (a.maior||0));
+  else if (ordem === "variacao") rows.sort((a,b) => ((b.maior||0)-(b.menor||0)) - ((a.maior||0)-(a.menor||0)));
+  else rows.sort((a,b) => a.produto.localeCompare(b.produto));
+  return rows;
+}
+
+function renderCards(rows) {
+  const el = document.getElementById("cards");
+  const total = rows.length;
+  const comPreco = rows.filter(r => r.menor != null);
+  const menorGeral = Math.min(...comPreco.map(r => r.menor));
+  const maiorGeral = Math.max(...comPreco.map(r => r.maior));
+  const semPreco = rows.filter(r => r.menor == null).length;
+  el.innerHTML = `
+    <div class="card"><div class="v">${total}</div><div class="l">Produtos pesquisados</div></div>
+    <div class="card g"><div class="v">${fmt(menorGeral)}</div><div class="l">Menor preço geral</div></div>
+    <div class="card m"><div class="v">${fmt(maiorGeral)}</div><div class="l">Maior preço geral</div></div>
+    <div class="card"><div class="v">${semPreco}</div><div class="l">Sem preço localizado</div></div>
+  `;
+}
+
+function renderGrafico(rows) {
+  const el = document.getElementById("grafico");
+  if (!rows.length) { el.innerHTML = '<div class="empty">Nenhum produto encontrado.</div>'; return; }
+  const max = Math.max(...rows.map(r => r.maior || 0));
+  el.innerHTML = rows.map(r => {
+    const wMax = max ? (r.maior / max) * 100 : 0;
+    const wMin = (r.menor != null && max) ? (r.menor / max) * 100 : 0;
+    return `
+      <div class="row">
+        <div class="name">${r.produto}<small>${r.apresentacao}</small></div>
+        <div class="bar-track">
+          <div class="bar-max" style="width:${wMax}%"></div>
+          <div class="bar-min" style="width:${wMin}%"></div>
+          <div class="bar-label left">${fmt(r.menor)}</div>
+          <div class="bar-label">${fmt(r.maior)}</div>
+        </div>
+      </div>`;
+  }).join("");
+}
+
+function renderTabela(rows) {
+  const el = document.getElementById("tabela");
+  if (!rows.length) { el.innerHTML = '<tr><td colspan="6" class="empty">Nenhum produto encontrado.</td></tr>'; return; }
+  el.innerHTML = rows.map(r => `
+    <tr>
+      <td>${r.produto}</td>
+      <td><span class="tag">${r.apresentacao}</span></td>
+      <td class="preco menor">${fmt(r.menor)}</td>
+      <td class="preco maior">${fmt(r.maior)}</td>
+      <td>${r.onde_menor || "—"}</td>
+      <td>${r.onde_maior || "—"}</td>
+    </tr>`).join("");
+}
+
+function render() {
+  const rows = aplicar();
+  renderCards(rows);
+  renderGrafico(rows);
+  renderTabela(rows);
+}
+
+document.getElementById("busca").addEventListener("input", e => { filtro = e.target.value; render(); });
+document.getElementById("ordem").addEventListener("change", e => { ordem = e.target.value; render(); });
+render();
+</script>
+</body>
+</html>
