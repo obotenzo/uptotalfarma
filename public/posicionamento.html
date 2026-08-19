@@ -43,6 +43,8 @@
   td .p { font-weight:700; }
   td .v { color:var(--verde); } td .m { color:var(--magenta); } td .u { color:var(--azul); }
   footer { text-align:center; color:var(--cinza); font-size:11px; padding:20px; }
+  .cat { font-size:14px; color:var(--azul); margin:18px 0 8px; border-bottom:2px solid var(--borda); padding-bottom:4px; }
+  .cat-row td { background:var(--azul); color:#fff; font-size:12px; text-transform:uppercase; letter-spacing:.04em; }
   .note { font-size:11px; color:var(--cinza); background:#fff8e1; border:1px solid #f0e0a8; padding:10px 12px; border-radius:8px; margin-bottom:18px; }
 </style>
 </head>
@@ -76,7 +78,7 @@
 <footer>Piloto de price intelligence &middot; fontes: pesquisa web de concorrentes + Relatório de Conferência Master Pharma (UP Monte Kemel)</footer>
 
 <script>
-const DATA = [{"id": 1, "produto": "Ondansetrona orodispersível", "preco_up": 42.51, "ref_up": "Ondansetrona 8mg ODT 10cps (EAN 7899547536706)", "menor_mercado": 14.28, "maior_mercado": 141.13, "onde_menor": "Consulta Remédios (4mg/10)", "onde_maior": "Drogaria São João (8mg/30)", "pos": "media"}, {"id": 2, "produto": "Embeleze Natu Cor", "preco_up": 13.99, "ref_up": "Tinta NatuCor (linha, R$13,99)", "menor_mercado": 10.39, "maior_mercado": 20.88, "onde_menor": "Drogaria Venâncio (tom 1.0)", "onde_maior": "Magazine Luiza (tom 5.0)", "pos": "media"}, {"id": 3, "produto": "L'Oréal Casting Creme Gloss", "preco_up": 36.99, "ref_up": "Casting 0% amônia (linha, R$36,99)", "menor_mercado": 20.07, "maior_mercado": 58.55, "onde_menor": "Drogaria São Paulo (tom 400)", "onde_maior": "Magazine Luiza (tom 600)", "pos": "media"}, {"id": 4, "produto": "Wella Koleston Deluxe", "preco_up": 25.99, "ref_up": "Koleston Deluxe (linha, R$25,99)", "menor_mercado": 24.99, "maior_mercado": 55.9, "onde_menor": "Promo Instagram", "onde_maior": "Shopee", "pos": "media"}, {"id": 5, "produto": "Cor & Ton Mega Colors", "preco_up": 17.49, "ref_up": "Cor & Ton 6.7 (EAN 7896000705921)", "menor_mercado": 9.99, "maior_mercado": 34.99, "onde_menor": "Nossa Farma", "onde_maior": "Pacheco", "pos": "media"}, {"id": 6, "produto": "L'Oréal Nutrisse", "preco_up": 24.99, "ref_up": "Nutrisse (linha, R$24,99)", "menor_mercado": 26.9, "maior_mercado": 29.99, "onde_menor": "Promo L'Oréal", "onde_maior": "Mercado Livre", "pos": "abaixo"}, {"id": 7, "produto": "Wella Koleston (padrão)", "preco_up": 25.99, "ref_up": "Koleston linha padrão (linha, R$25,99)", "menor_mercado": 22.95, "maior_mercado": 36.48, "onde_menor": "Promo Instagram", "onde_maior": "Droga Raia", "pos": "media"}, {"id": 8, "produto": "L'Oréal Excellence", "preco_up": 33.99, "ref_up": "Imédia Excellence (linha, R$33,99)", "menor_mercado": 25.09, "maior_mercado": 53.53, "onde_menor": "Drogasil", "onde_maior": "Droga Raia", "pos": "media"}, {"id": 9, "produto": "Garnier Nutrisse", "preco_up": 24.99, "ref_up": "Garnier Nutrisse (linha, R$24,99)", "menor_mercado": 26.99, "maior_mercado": 29.99, "onde_menor": "Ultrafarma/Shopper", "onde_maior": "Drogaria São João", "pos": "abaixo"}, {"id": 10, "produto": "Expec Xarope 120mL", "preco_up": 53.82, "ref_up": "Expec Xpe 120ml (EAN 7896004812168)", "menor_mercado": 27.9, "maior_mercado": 56.58, "onde_menor": "Drogasil", "onde_maior": "Pacheco", "pos": "media"}, {"id": 11, "produto": "Lavitan (Cimed)", "preco_up": 49.9, "ref_up": "Cimed Lavitan Calcio+D 60c (EAN 7897947607705)", "menor_mercado": 19.99, "maior_mercado": 39.59, "onde_menor": "São João (Vit D)", "onde_maior": "Drogaria São Paulo", "pos": "acima"}, {"id": 13, "produto": "Resfenol 20 cápsulas (Hertz)", "preco_up": 26.74, "ref_up": "Resfenol 20caps Hertz (EAN 7896331703443) — era 'ESFENO' na foto", "menor_mercado": 9.99, "maior_mercado": 32.85, "onde_menor": "Ultrafarma (R$ 9,99)", "onde_maior": "Drogarias Pacheco (de R$ 32,85)", "pos": "media"}, {"id": 14, "produto": "Ibuprofeno Gotas 100mg/ml", "preco_up": 20.63, "ref_up": "Ibuprofeno 100mg/ml gotas Geolab (EAN 7899095260481)", "menor_mercado": 6.99, "maior_mercado": 8.49, "onde_menor": "Droga Raia", "onde_maior": "Venâncio", "pos": "acima"}];
+const DATA = [{"id": 11, "produto": "Lavitan (Cimed)", "preco_up": 49.9, "ref_up": "Cimed Lavitan Calcio+D 60c (EAN 7897947607705)", "menor_mercado": 19.99, "maior_mercado": 39.59, "onde_menor": "São João (Vit D)", "onde_maior": "Drogaria São Paulo", "categoria": "Medicamentos", "marca": "Cimed", "pos": "acima"}, {"id": 1, "produto": "Ondansetrona orodispersível", "preco_up": 42.51, "ref_up": "Ondansetrona 8mg ODT 10cps (EAN 7899547536706)", "menor_mercado": 14.28, "maior_mercado": 141.13, "onde_menor": "Consulta Remédios (4mg/10)", "onde_maior": "Drogaria São João (8mg/30)", "categoria": "Medicamentos", "marca": "Genérico (GEN Cloridrato)", "pos": "media"}, {"id": 14, "produto": "Ibuprofeno Gotas 100mg/ml", "preco_up": 20.63, "ref_up": "Ibuprofeno 100mg/ml gotas Geolab (EAN 7899095260481)", "menor_mercado": 6.99, "maior_mercado": 8.49, "onde_menor": "Droga Raia", "onde_maior": "Venâncio", "categoria": "Medicamentos", "marca": "Geolab", "pos": "acima"}, {"id": 13, "produto": "Resfenol 20 cápsulas (Hertz)", "preco_up": 26.74, "ref_up": "Resfenol 20caps Hertz (EAN 7896331703443) — era 'ESFENO' na foto", "menor_mercado": 9.99, "maior_mercado": 32.85, "onde_menor": "Ultrafarma (R$ 9,99)", "onde_maior": "Drogarias Pacheco (de R$ 32,85)", "categoria": "Medicamentos", "marca": "Hertz", "pos": "media"}, {"id": 10, "produto": "Expec Xarope 120mL", "preco_up": 53.82, "ref_up": "Expec Xpe 120ml (EAN 7896004812168)", "menor_mercado": 27.9, "maior_mercado": 56.58, "onde_menor": "Drogasil", "onde_maior": "Pacheco", "categoria": "Medicamentos", "marca": "Legrand", "pos": "media"}, {"id": 5, "produto": "Cor & Ton Mega Colors", "preco_up": 17.49, "ref_up": "Cor & Ton 6.7 (EAN 7896000705921)", "menor_mercado": 9.99, "maior_mercado": 34.99, "onde_menor": "Nossa Farma", "onde_maior": "Pacheco", "categoria": "Tinturas", "marca": "Cor & Ton (Niely)", "pos": "media"}, {"id": 2, "produto": "Embeleze Natu Cor", "preco_up": 13.99, "ref_up": "Tinta NatuCor (linha, R$13,99)", "menor_mercado": 10.39, "maior_mercado": 20.88, "onde_menor": "Drogaria Venâncio (tom 1.0)", "onde_maior": "Magazine Luiza (tom 5.0)", "categoria": "Tinturas", "marca": "Embeleze", "pos": "media"}, {"id": 9, "produto": "Garnier Nutrisse", "preco_up": 24.99, "ref_up": "Garnier Nutrisse (linha, R$24,99)", "menor_mercado": 26.99, "maior_mercado": 29.99, "onde_menor": "Ultrafarma/Shopper", "onde_maior": "Drogaria São João", "categoria": "Tinturas", "marca": "Garnier", "pos": "abaixo"}, {"id": 3, "produto": "L'Oréal Casting Creme Gloss", "preco_up": 36.99, "ref_up": "Casting 0% amônia (linha, R$36,99)", "menor_mercado": 20.07, "maior_mercado": 58.55, "onde_menor": "Drogaria São Paulo (tom 400)", "onde_maior": "Magazine Luiza (tom 600)", "categoria": "Tinturas", "marca": "L'Oréal Paris", "pos": "media"}, {"id": 8, "produto": "L'Oréal Excellence", "preco_up": 33.99, "ref_up": "Imédia Excellence (linha, R$33,99)", "menor_mercado": 25.09, "maior_mercado": 53.53, "onde_menor": "Drogasil", "onde_maior": "Droga Raia", "categoria": "Tinturas", "marca": "L'Oréal Paris", "pos": "media"}, {"id": 6, "produto": "L'Oréal Nutrisse", "preco_up": 24.99, "ref_up": "Nutrisse (linha, R$24,99)", "menor_mercado": 26.9, "maior_mercado": 29.99, "onde_menor": "Promo L'Oréal", "onde_maior": "Mercado Livre", "categoria": "Tinturas", "marca": "L'Oréal Paris", "pos": "abaixo"}, {"id": 7, "produto": "Wella Koleston (padrão)", "preco_up": 25.99, "ref_up": "Koleston linha padrão (linha, R$25,99)", "menor_mercado": 22.95, "maior_mercado": 36.48, "onde_menor": "Promo Instagram", "onde_maior": "Droga Raia", "categoria": "Tinturas", "marca": "Wella", "pos": "media"}, {"id": 4, "produto": "Wella Koleston Deluxe", "preco_up": 25.99, "ref_up": "Koleston Deluxe (linha, R$25,99)", "menor_mercado": 24.99, "maior_mercado": 55.9, "onde_menor": "Promo Instagram", "onde_maior": "Shopee", "categoria": "Tinturas", "marca": "Wella", "pos": "media"}];
 function fmt(v) { return (v==null) ? "—" : "R$ "+Number(v).toLocaleString("pt-BR",{minimumFractionDigits:2,maximumFractionDigits:2}); }
 const POS = {abaixo:"Abaixo", media:"Na média", acima:"Acima", sem_dados:"Sem dados"};
 function renderCards() {
@@ -93,12 +95,14 @@ function renderCards() {
     '<div class="card"><div class="v" style="color:var(--magenta)">'+acima+'</div><div class="l">Acima do mercado</div></div>'+
     '<div class="card"><div class="v">'+sem+'</div><div class="l">Sem dado de mercado</div></div>';
 }
-function renderGrafico() {
-  const el=document.getElementById("grafico");
-  const max=Math.max(...DATA.map(d=>d.maior_mercado||0), ...DATA.map(d=>d.preco_up||0));
-  el.innerHTML=DATA.map(d=>{
+function grupo(cat) {
+  return DATA.filter(d=>d.categoria===cat);
+}
+function secao(cat, itens) {
+  const max=Math.max(...itens.map(d=>d.maior_mercado||0), ...itens.map(d=>d.preco_up||0));
+  const rows=itens.map(d=>{
     if(d.menor_mercado==null) {
-      return '<div class="row"><div class="name">'+d.produto+'<small>sem preço de mercado</small></div>'+
+      return '<div class="row"><div class="name">'+d.marca+' — '+d.produto+'<small>sem preço de mercado</small></div>'+
         '<div class="track"><span class="lab-up" style="left:50%">UP '+fmt(d.preco_up)+'</span></div></div>';
     }
     const wMax=(d.maior_mercado/max)*100;
@@ -108,7 +112,7 @@ function renderGrafico() {
       ? '<div class="bar-up" style="left:'+wUp+'%"></div><div class="lab-up" style="left:'+wUp+'%">UP '+fmt(d.preco_up)+'</div>'
       : '';
     return '<div class="row">'+
-      '<div class="name">'+d.produto+'<small>'+posLabel+'</small></div>'+
+      '<div class="name">'+d.marca+' — '+d.produto+'<small>'+posLabel+'</small></div>'+
       '<div class="track">'+
         '<div class="bar-max" style="width:'+wMax+'%"></div>'+
         '<div class="lab-min">'+fmt(d.menor_mercado)+'</div>'+
@@ -116,20 +120,32 @@ function renderGrafico() {
         upMark+
       '</div></div>';
   }).join("");
+  return '<h3 class="cat">'+cat+'</h3>'+rows;
+}
+function renderGrafico() {
+  const el=document.getElementById("grafico");
+  const cats=[...new Set(DATA.map(d=>d.categoria))];
+  el.innerHTML=cats.map(c=>secao(c, grupo(c))).join("");
 }
 function renderTabela() {
   const el=document.getElementById("tabela");
-  el.innerHTML=DATA.map(d=>
-    '<tr>'+
-    '<td>'+d.produto+'</td>'+
-    '<td class="p u">'+fmt(d.preco_up)+'</td>'+
-    '<td class="p v">'+fmt(d.menor_mercado)+'</td>'+
-    '<td class="p m">'+fmt(d.maior_mercado)+'</td>'+
-    '<td>'+(d.onde_menor||"—")+'</td>'+
-    '<td>'+(d.onde_maior||"—")+'</td>'+
-    '<td><span class="tag '+d.pos+'">'+POS[d.pos]+'</span></td>'+
-    '</tr>'
-  ).join("");
+  const cats=[...new Set(DATA.map(d=>d.categoria))];
+  let html="";
+  cats.forEach(c=>{
+    html+='<tr class="cat-row"><td colspan="7"><b>'+c+'</b></td></tr>';
+    grupo(c).forEach(d=>{
+      html+='<tr>'+
+        '<td>'+d.marca+' — '+d.produto+'</td>'+
+        '<td class="p u">'+fmt(d.preco_up)+'</td>'+
+        '<td class="p v">'+fmt(d.menor_mercado)+'</td>'+
+        '<td class="p m">'+fmt(d.maior_mercado)+'</td>'+
+        '<td>'+(d.onde_menor||"—")+'</td>'+
+        '<td>'+(d.onde_maior||"—")+'</td>'+
+        '<td><span class="tag '+d.pos+'">'+POS[d.pos]+'</span></td>'+
+      '</tr>';
+    });
+  });
+  el.innerHTML=html;
 }
 renderCards(); renderGrafico(); renderTabela();
 </script>
