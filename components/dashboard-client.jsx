@@ -150,6 +150,25 @@ export default function DashboardClient({ data }) {
       <section className="section-card section-card--tight">
         <div className="section-head">
           <div>
+            <h2>Material de apoio</h2>
+            <p>Acesse a apresentação da vertical digital e o painel de posicionamento de preços.</p>
+          </div>
+        </div>
+        <div className="controls-card controls-card--clean">
+          <div className="controls-group controls-group--left">
+            <a className="control control--secondary" href="/apresentacao.html" target="_blank" rel="noopener noreferrer">
+              Apresentação da vertical digital
+            </a>
+            <a className="control control--secondary" href="/posicionamento.html" target="_blank" rel="noopener noreferrer">
+              Posicionamento de preços (UP vs mercado)
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section className="section-card section-card--tight">
+        <div className="section-head">
+          <div>
             <h2>Escolha o nível de leitura</h2>
             <p>Comece pela visão geral ou foque em uma unidade específica.</p>
           </div>
