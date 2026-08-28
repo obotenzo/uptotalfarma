@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UP Total Farma — Vertical Digital</title>
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300;400;500;600&family=Source+Code+Pro:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --purple:#533afd; --purple-hover:#4434d4; --navy:#061b31; --white:#fff; --brand-dark:#1c1e54;
+  --body:#273951; --label:#1a2b3d; --border:#e5edf5; --ruby:#ea2261; --magenta:#f96bee;
+  --green:#15be53; --green-txt:#0c7a34;
+  --shadow:rgba(50,50,93,0.25) 0px 30px 45px -30px, rgba(0,0,0,0.1) 0px 18px 36px -18px;
+  --shadow-sm:rgba(23,23,23,0.08) 0px 15px 35px 0px;
+}
+*{box-sizing:border-box;font-feature-settings:"ss01";}
+html,body{margin:0;padding:0;}
+body{font-family:'Source Sans 3',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;color:var(--navy);background:#f6f9fc;line-height:1.5;font-weight:400;}
+h1,h2{color:var(--navy);font-weight:300;letter-spacing:-0.02em;margin:0;}
+h3,h4{color:var(--navy);font-weight:400;letter-spacing:-0.01em;margin:0;}
+a{color:var(--purple);text-decoration:none;}
+.hero-deco{position:absolute;top:-40px;right:-40px;width:280px;height:280px;background:linear-gradient(135deg,var(--ruby),var(--magenta));filter:blur(60px);opacity:.35;border-radius:50%;}
+
+/* Layout */
+.shell{display:flex;min-height:100vh;}
+.nav{width:240px;background:#fff;border-right:1px solid var(--border);padding:28px 18px;position:sticky;top:0;height:100vh;overflow-y:auto;}
+.nav .brand{font-size:18px;font-weight:600;color:var(--navy);margin-bottom:4px;}
+.nav .brand small{display:block;font-size:11px;font-weight:400;color:var(--body);letter-spacing:0;}
+.nav ul{list-style:none;padding:0;margin:24px 0 0;}
+.nav li{margin:2px 0;}
+.nav a{display:block;padding:9px 12px;border-radius:6px;font-size:14px;color:var(--label);transition:all .15s;}
+.nav a:hover,.nav a.active{background:rgba(83,58,253,0.07);color:var(--purple);}
+.nav a .n{display:inline-block;width:22px;color:var(--purple);font-weight:600;font-feature-settings:"tnum";}
+.main{flex:1;overflow-x:hidden;}
+.wrap{max-width:980px;margin:0 auto;padding:64px 40px 100px;}
+
+/* Hero */
+.hero{position:relative;background:#fff;border:1px solid var(--border);border-radius:8px;padding:54px 48px;box-shadow:var(--shadow);overflow:hidden;margin-bottom:56px;}
+.hero .tag{display:inline-block;background:rgba(83,58,253,0.1);color:var(--purple);font-size:12px;padding:3px 10px;border-radius:4px;letter-spacing:.04em;text-transform:uppercase;font-weight:500;}
+.hero h1{font-size:46px;line-height:1.08;margin:18px 0 14px;}
+.hero p{font-size:18px;color:var(--body);font-weight:400;max-width:620px;}
+
+/* Section */
+section{margin-bottom:64px;scroll-margin-top:20px;}
+.sec-head{display:flex;align-items:center;gap:12px;margin-bottom:22px;}
+.sec-head .num{width:34px;height:34px;border-radius:8px;background:var(--purple);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:500;font-size:15px;font-feature-settings:"tnum";}
+.sec-head h2{font-size:28px;}
+
+/* Cards */
+.grid{display:grid;gap:18px;}
+.g2{grid-template-columns:repeat(2,1fr);}
+.g3{grid-template-columns:repeat(3,1fr);}
+.card{background:#fff;border:1px solid var(--border);border-radius:8px;padding:24px;box-shadow:var(--shadow-sm);}
+.card h3{font-size:19px;margin-bottom:8px;}
+.card p{font-size:14.5px;color:var(--body);font-weight:400;margin:0;}
+.card .ico{font-size:22px;margin-bottom:10px;}
+
+/* Timeline / patamares */
+.phase{background:#fff;border:1px solid var(--border);border-radius:8px;padding:24px 26px;box-shadow:var(--shadow-sm);margin-bottom:16px;display:flex;gap:20px;align-items:flex-start;}
+.phase .pnum{background:var(--brand-dark);color:#fff;font-size:13px;font-weight:600;padding:6px 12px;border-radius:6px;white-space:nowrap;font-feature-settings:"tnum";}
+.phase .ptxt{flex:1;}
+.phase h3{font-size:20px;margin-bottom:6px;}
+.phase p{font-size:14.5px;color:var(--body);font-weight:400;margin:0;}
+
+/* Dark feature */
+.dark{background:var(--brand-dark);border-radius:8px;padding:40px;color:#fff;margin-bottom:24px;}
+.dark h3{color:#fff;font-size:22px;margin-bottom:14px;}
+.dark p{color:rgba(255,255,255,0.75);font-weight:400;font-size:15px;margin:0 0 12px;}
+.dark .li{display:flex;gap:10px;align-items:flex-start;font-size:14.5px;color:rgba(255,255,255,0.85);margin-bottom:8px;}
+.dark .li b{color:#fff;font-weight:500;}
+
+/* MVP flow */
+.flow{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:8px;}
+.step{background:#fff;border:1px solid var(--border);border-radius:6px;padding:12px 16px;font-size:14px;box-shadow:var(--shadow-sm);}
+.step b{color:var(--purple);display:block;font-size:12px;font-weight:600;font-feature-settings:"tnum";}
+
+/* Badges */
+.badge{display:inline-block;font-size:11px;padding:2px 9px;border-radius:4px;font-weight:400;}
+.badge.ok{background:rgba(21,190,83,0.18);color:var(--green-txt);border:1px solid rgba(21,190,83,0.4);}
+.badge.no{background:rgba(234,34,97,0.12);color:var(--ruby);border:1px solid rgba(234,34,97,0.3);}
+
+/* Table */
+table{width:100%;border-collapse:collapse;background:#fff;border-radius:8px;overflow:hidden;border:1px solid var(--border);box-shadow:var(--shadow-sm);}
+th,td{text-align:left;padding:13px 16px;border-bottom:1px solid var(--border);font-size:14px;}
+th{background:#f6f9fc;color:var(--label);font-weight:500;font-size:12px;text-transform:uppercase;letter-spacing:.03em;}
+td{color:var(--navy);font-weight:400;}
+td .m{color:var(--green-txt);font-weight:500;} td .a{color:var(--ruby);font-weight:500;}
+
+/* CTA */
+.cta{background:linear-gradient(120deg,var(--brand-dark),#2a2c7a);border-radius:8px;padding:44px;color:#fff;text-align:center;}
+.cta h2{color:#fff;font-size:26px;margin-bottom:10px;}
+.cta p{color:rgba(255,255,255,0.75);font-weight:400;margin:0 0 22px;font-size:15px;}
+.btn{display:inline-block;background:var(--purple);color:#fff;padding:11px 26px;border-radius:4px;font-size:15px;font-weight:400;transition:background .15s;}
+.btn:hover{background:var(--purple-hover);}
+.foot{text-align:center;color:var(--body);font-size:12px;margin-top:40px;}
+
+@media(max-width:860px){
+  .nav{display:none;}
+  .g2,.g3{grid-template-columns:1fr;}
+  .wrap{padding:40px 20px 80px;}
+  .hero h1{font-size:34px;}
+}
+</style>
+</head>
+<body>
+<div class="shell">
+  <aside class="nav">
+    <div class="brand">UP Total Farma<small>Vertical Digital</small></div>
+    <ul>
+      <li><a href="#visao" class="active"><span class="n">01</span>Visão</a></li>
+      <li><a href="#base"><span class="n">02</span>Base de partida</a></li>
+      <li><a href="#patamares"><span class="n">03</span>Patamares</a></li>
+      <li><a href="#mvp"><span class="n">04</span>MVP de largada</a></li>
+      <li><a href="#aquisição"><span class="n">05</span>Aquisição</a></li>
+      <li><a href="#proximos"><span class="n">06</span>Próximos passos</a></li>
+    </ul>
+  </aside>
+
+  <main class="main">
+    <div class="wrap">
+
+      <!-- HERO -->
+      <div class="hero">
+        <div class="hero-deco"></div>
+        <span class="tag">Plano estratégico</span>
+        <h1>A 4ª loja da UP Total Farma</h1>
+        <p>Vertical de digital em sociedade: uma operação de e-commerce de saúde e beleza estruturada, com inteligência de preços e aquisição própria.</p>
+      </div>
+
+      <!-- 01 VISAO -->
+      <section id="visao">
+        <div class="sec-head"><div class="num">01</div><h2>Para onde queremos chegar</h2></div>
+        <div class="grid g2">
+          <div class="card"><div class="ico">🏪</div><h3>A 4ª loja</h3><p>O canal digital da rede: e-commerce próprio + marketplaces + robô de monitoramento de concorrentes.</p></div>
+          <div class="card"><div class="ico">📦</div><h3>Distribuidor digital</h3><p>Fornecimento + operação online para pequenas farmácias, apoiado pela estrutura que construímos.</p></div>
+          <div class="card"><div class="ico">🤖</div><h3>Inteligência de preços</h3><p>O robô de concorrentes vira o ativo central e o produto mais fácil de licenciar para fora.</p></div>
+          <div class="card"><div class="ico">🌐</div><h3>Operação estruturada</h3><p>E-commerce próprio, recorrente, com marca forte da UP no digital.</p></div>
+        </div>
+      </section>
+
+      <!-- 02 BASE -->
+      <section id="base">
+        <div class="sec-head"><div class="num">02</div><h2>O que a UP já é hoje</h2></div>
+        <div class="grid g3">
+          <div class="card"><div class="ico">🧪</div><h3>Perfil farmacêutico</h3><p>Manipulação própria — base para marca própria e serviços de saúde.</p></div>
+          <div class="card"><div class="ico">🚚</div><h3>Entrega</h3><p>Operação de entrega já existente, reaproveitada na vertical.</p></div>
+          <div class="card"><div class="ico">💊</div><h3>Revenda</h3><p>Medicamentos, produtos de saúde e beleza — o catálogo de partida.</p></div>
+        </div>
+      </section>
+
+      <!-- 03 PATAMARES -->
+      <section id="patamares">
+        <div class="sec-head"><div class="num">03</div><h2>Patamares de evolução</h2></div>
+        <div class="phase"><div class="pnum">HOJE–1A</div><div class="ptxt"><h3>Patamar 1 — A 4ª loja</h3><p>E-commerce próprio + marketplaces + robô de concorrentes. Atendimento e vendas automatizadas via WhatsApp. Início do marketing (orgânico + pago). Meta: receita online recorrente.</p></div></div>
+        <div class="phase"><div class="pnum">1–3A</div><div class="ptxt"><h3>Patamar 2 — Ecossistema de dados</h3><p>App da UP, clube de vantagens, assinaturas de consumo contínuo (suplemento), entrega própria escalada. A vertical vira o cérebro de vendas da rede.</p></div></div>
+        <div class="phase"><div class="pnum">3–5A</div><div class="ptxt"><h3>Patamar 3 — Plataforma regional</h3><p>A UP vira referência e a vertical licencia o modelo (loja digital + robô de preço + operação) para outras farmácias. Receita de tecnologia, não só de venda.</p></div></div>
+      </section>
+
+      <!-- 04 MVP -->
+      <section id="mvp">
+        <div class="sec-head"><div class="num">04</div><h2>MVP de largada</h2></div>
+        <div class="grid g2" style="margin-bottom:18px;">
+          <div class="card"><div class="ico">🛒</div><h3>O que entrega</h3><p>Site institucional + loja no mesmo domínio. Catálogo de 10–20 itens via planilha. Vitrine, busca, carrinho e checkout com Pix ou maquininha local. Confirmação de pedido.</p></div>
+          <div class="card"><div class="ico">📊</div><h3>Precificação inteligente</h3><p>Cada item nasce sabendo se está abaixo, na média ou acima do mercado (reaproveita o painel já construído).</p></div>
+        </div>
+        <div class="card" style="margin-bottom:18px;">
+          <h3 style="margin-bottom:10px;">Fluxo do cliente</h3>
+          <div class="flow">
+            <div class="step"><b>1</b>Acessa o domínio</div><span>→</span>
+            <div class="step"><b>2</b>Vê loja + institucional</div><span>→</span>
+            <div class="step"><b>3</b>Navega e coloca no carrinho</div><span>→</span>
+            <div class="step"><b>4</b>Escolhe retirada ou entrega local</div><span>→</span>
+            <div class="step"><b>5</b>Paga (PIX/maquininha ou gateway)</div><span>→</span>
+            <div class="step"><b>6</b>Recebe e time das lojas opera</div>
+          </div>
+        </div>
+        <table>
+          <thead><tr><th>Funcionalidade</th><th>No MVP</th><th>Depois (Fase 2+)</th></tr></thead>
+          <tbody>
+            <tr><td>Marketplaces</td><td><span class="badge no">fora</span></td><td><span class="badge ok">espelhamento</span></td></tr>
+            <tr><td>Fidelização / clube</td><td><span class="badge no">fora</span></td><td><span class="badge ok">app + clube</span></td></tr>
+            <tr><td>Estoque em tempo real</td><td><span class="badge no">assume disponível</span></td><td><span class="badge ok">integração</span></td></tr>
+            <tr><td>Entrega fora da região</td><td><span class="badge no">só local</span></td><td><span class="badge ok">Correios/transp.</span></td></tr>
+            <tr><td>Precificação por API</td><td><span class="badge no">manual</span></td><td><span class="badge ok">automática</span></td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- 05 AQUISIÇÃO -->
+      <section id="aquisição">
+        <div class="sec-head"><div class="num">05</div><h2>Aquisição e conversão</h2></div>
+        <div class="grid g2">
+          <div class="card"><div class="ico">💬</div><h3>WhatsApp automatizado</h3><p>Consulta, fechamento e acompanhamento de pedido pelo celular. Maior conversão para farmácia: acompanha o hábito do cliente.</p></div>
+          <div class="card"><div class="ico">📈</div><h3>Marketing digital</h3><p><b>Orgânico:</b> conteúdo da UP, perfil nas redes, indicação, SEO. <b>Pago:</b> busca, redes e retargeting. Equilíbrio entre marca e venda imediata.</p></div>
+        </div>
+        <div class="dark">
+          <h3>Objetivo da máquina de crescimento</h3>
+          <div class="li"><b>Orgânico</b> — marca e confiança, custo baixo, efeito acumulativo.</div>
+          <div class="li"><b>Pago</b> — venda imediata, escala conforme o retorno sobre investimento.</div>
+          <div class="li"><b>WhatsApp</b> — canal de fechamento, onde o cliente realmente compra.</div>
+        </div>
+      </section>
+
+      <!-- 06 PROXIMOS -->
+      <section id="proximos">
+        <div class="sec-head"><div class="num">06</div><h2>Próximos passos</h2></div>
+        <div class="grid g2" style="margin-bottom:24px;">
+          <div class="card"><div class="ico">✅</div><h3>Consolidar o MVP</h3><p>4ª loja no ar, gerando receita online recorrente.</p></div>
+          <div class="card"><div class="ico">📊</div><h3>Subir ao Patamar 2</h3><p>Usar os dados da operação para fidelidade e assinaturas.</p></div>
+          <div class="card"><div class="ico">🧱</div><h3>Arquitetura preparada</h3><p>Manter pronta para white-label (Patamar 3) sem construir agora.</p></div>
+          <div class="card"><div class="ico">🤝</div><h3>Decisões dos sócios</h3><p>Escolher 10–20 itens, fechar preço digital, validar infra de pagamento/entrega.</p></div>
+        </div>
+        <div class="cta">
+          <h2>Primeira venda digital: o marco</h2>
+          <p>Loja publicada, acessível pelo domínio, com o time das lojas operando pedidos.</p>
+          <a href="#visao" class="btn">Voltar ao topo</a>
+        </div>
+        <div class="foot">UP Total Farma · Vertical Digital · documento de apresentação (versão resumida dos MDs de projeto)</div>
+      </section>
+
+    </div>
+  </main>
+</div>
+<script>
+const links=[...document.querySelectorAll('.nav a')];
+const secs=[...document.querySelectorAll('section')];
+links.forEach(a=>a.addEventListener('click',e=>{
+  e.preventDefault();
+  const t=document.querySelector(a.getAttribute('href'));
+  if(t) t.scrollIntoView({behavior:'smooth'});
+}));
+window.addEventListener('scroll',()=>{
+  let cur='visao';
+  secs.forEach(s=>{if(s.getBoundingClientRect().top<120)cur=s.id;});
+  links.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+cur));
+});
+</script>
+</body>
+</html>
